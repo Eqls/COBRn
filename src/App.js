@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
 import { Provider } from 'react-redux'
 import { store } from './utils'
 import { Router, Scene, Actions } from 'react-native-router-flux'
@@ -10,13 +10,31 @@ import Challenges from './screens/Challenges';
 import MyTeam from './screens/MyTeam';
 import Comments from './screens/Comments';
 import MyProfile from './screens/MyProfile';
+import EditProfile from './screens/EditProfile';
+import { connect } from 'react-redux'
+import { auth } from './actions/'
 
-export default class App extends React.Component {
+class App extends React.Component {
+
+  componentDidMount() {
+    console.log('called');
+
+    AsyncStorage.getItem('jwt').then(token => {
+      console.log(token)
+      if (token) {
+        store.dispatch(auth.validate(token))
+      }
+    })
+      .catch(error => console.log(error))
+  }
+
   render() {
     return (
       <Provider store={store}>
         <Router>
-          <Scene hideNavBar key="root">
+          <Scene
+            hideNavBar
+            key="root">
             <Scene
               key="main"
               component={Login}
@@ -38,6 +56,12 @@ export default class App extends React.Component {
               key="myprofile"
               component={MyProfile}
               title="My Profile"
+              swipeEnabled
+            />
+            <Scene
+              key="editprofile"
+              component={EditProfile}
+              title="Edit Profile"
               swipeEnabled
             />
             <Scene
@@ -73,3 +97,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 })
+
+export default App

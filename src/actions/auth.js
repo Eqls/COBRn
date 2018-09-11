@@ -10,7 +10,7 @@ export const auth = {
   logout
 }
 
-const setLocalStorage = response => AsyncStorage.jwt = response.token
+const setLocalStorage = response => AsyncStorage.setItem('jwt', response.token)
 const removeLocalStorage = () => AsyncStorage.removeItem('jwt')
 
 function login(credentials) {
@@ -26,16 +26,16 @@ function login(credentials) {
   }
 }
 
-function validate() {
+function validate(token) {
   return ({
     types: [
       userConstants.LOGIN_REQUEST,
       userConstants.LOGIN_SUCCESS,
       userConstants.LOGIN_FAILURE
     ],
-    callAPI: () => axios.get(config.API_URL + 'auth/validate', { headers: authHeader() })
+    callAPI: () => axios.post(config.API_URL + 'validate', { jwt: token }, { headers: { 'Authorization': 'Bearer ' + token } })
       .then(res => res.data),
-    // onFailure: logout
+    onFailure: logout
   })
 }
 

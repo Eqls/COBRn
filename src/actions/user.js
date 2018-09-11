@@ -80,14 +80,14 @@ function create(user) {
   }
 }
 
-function update(user) {
+function update(user, token) {
   return {
     types: [
       userConstants.UPDATE_REQUEST,
       userConstants.UPDATE_SUCCESS,
       userConstants.UPDATE_FAILURE
     ],
-    callAPI: () => axios.put(config.API_URL + 'users/' + user._id, { ...user }, { headers: authHeader() })
+    callAPI: () => axios.put(config.API_URL + 'user', { id: user._id, user }, { headers: { 'Authorization': 'Bearer ' + token } })
       .then(res => res.data)
   }
 }

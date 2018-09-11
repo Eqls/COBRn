@@ -61,6 +61,10 @@ class Login extends React.Component {
     }
   }
 
+  componentDidMount() {
+    if (this.props.isLogged) Actions.home()
+  }
+
   sendLoginRequest = () => {
     const { dispatch } = this.props
     const { user } = this.state

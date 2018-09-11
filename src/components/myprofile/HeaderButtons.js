@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { CameraIcon, WriteIcon } from "../../assets/images";
+import { Actions } from 'react-native-router-flux'
 
 const styles = StyleSheet.create({
   container: {
@@ -30,7 +31,9 @@ const HeaderButtons = ({ selectPicture }) => (
       <Text style={{ color: "#010763" }}>Upload Photo</Text>
       <Image style={styles.button_icon} source={CameraIcon} />
     </TouchableOpacity>
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity
+      style={styles.button}
+      onPress={Actions.editprofile}>
       <Text style={{ color: "#010763" }}>Edit Profile</Text>
       <Image style={styles.button_icon} source={WriteIcon} />
     </TouchableOpacity>
