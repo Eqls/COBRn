@@ -13,6 +13,7 @@ import MyProfile from './screens/MyProfile';
 import EditProfile from './screens/EditProfile';
 import { connect } from 'react-redux'
 import { auth } from './actions/'
+import AllTeams from './screens/AllTeams';
 
 class App extends React.Component {
 
@@ -77,6 +78,12 @@ class App extends React.Component {
               key="comments"
               component={Comments}
               title="Comments"
+              swipeEnabled
+            />
+            <Scene
+              key="allteams"
+              component={AllTeams}
+              title="All Teams"
               swipeEnabled
             />
           </Scene>

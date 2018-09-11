@@ -3,17 +3,19 @@ import { Actions } from 'react-native-router-flux'
 import {
   View,
   Text,
-  ImageBackground,
+  Image,
   TextInput,
   Button,
   Platform,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
 import { connect } from 'react-redux'
 import { auth } from '../actions'
 import styleConsts from '../constants/styles'
 import { Illustration } from '../assets/images/login'
+import { CheckinIcon } from '../assets/images'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,30 +28,46 @@ const styles = StyleSheet.create({
   },
   formField: {
     height: 50,
-    borderWidth: 0.5,
-    borderColor: "gray",
-    borderRadius: 3,
+    backgroundColor: "#f2f2f2",
+    borderRadius: 50,
     width: "100%",
-    marginTop: 10
-  },
-  buttonWrapper: {
-    height: 100,
-    paddingTop: 10
-  },
-  avatar: {
-    width: 80,
-    height: 80
+    marginBottom: 10,
+    zIndex: 1,
+    color: 'darkblue'
   },
   header: {
-    fontSize: 46,
+    flex: 1,
+    paddingTop: 30,
+    fontSize: 38,
+    zIndex: 1,
     color: styleConsts.login_font_color
   },
   illustration: {
-    flex: 1,
-    resizeMode: 'cover',
+    position: 'absolute',
+    bottom: 140,
+    left: 0,
+    resizeMode: 'contain',
     width: Dimensions.get('window').width,
-    alignItems: "center",
-    justifyContent: "center"
+  },
+  button: {
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: 50,
+    padding: 12,
+    backgroundColor: styleConsts.login_font_color
+  },
+  form: {
+    flex: 1,
+    width: '100%',
+    padding: 10
+  },
+  checkin: {
+    aspectRatio: 0.5,
+    resizeMode: 'cover',
+    position: 'absolute',
+    right: 25,
+    bottom: 0,
+    zIndex: 5
   }
 });
 
@@ -89,36 +107,38 @@ class Login extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <ImageBackground style={styles.illustration} source={Illustration}>
-          <Text style={styles.header}>RNAPP</Text>
-        </ImageBackground>
+        <Text style={styles.header}>Klantgericht Omroepen</Text>
         <Text>{error}</Text>
-        <TextInput
-          style={styles.formField}
-          onChangeText={name => this.handleChange({ name: name })}
-          value={user.name}
-          placeholder="Enter Your username"
-          autoCapitalize="none"
-          underlineColorAndroid="transparent"
-          textAlign={"center"}
-        />
-        <TextInput
-          style={styles.formField}
-          onChangeText={password => this.handleChange({ password: password })}
-          value={user.password}
-          type="password"
-          placeholder="Enter Your password"
-          autoCapitalize="none"
-          underlineColorAndroid="transparent"
-          textAlign={"center"}
-          secureTextEntry
-        />
-        <View style={styles.buttonWrapper}>
-          <Button
-            onPress={this.sendLoginRequest}
-            title="Login"
-            color="#841584"
+        <View style={styles.form}>
+          <Image style={styles.illustration} source={Illustration} />
+          <TextInput
+            style={styles.formField}
+            placeholderTextColor="darkblue"
+            onChangeText={name => this.handleChange({ name: name })}
+            value={user.name}
+            placeholder="Enter Your username"
+            autoCapitalize="none"
+            underlineColorAndroid="transparent"
+            textAlign={"center"}
           />
+          <TextInput
+            style={styles.formField}
+            placeholderTextColor="darkblue"
+            onChangeText={password => this.handleChange({ password: password })}
+            value={user.password}
+            type="password"
+            placeholder="Enter Your password"
+            autoCapitalize="none"
+            underlineColorAndroid="transparent"
+            textAlign={"center"}
+            secureTextEntry
+          />
+          <TouchableOpacity
+            onPress={this.sendLoginRequest}
+            style={styles.button}>
+            <Image style={styles.checkin} source={CheckinIcon} />
+            <Text style={{ fontSize: 16, color: 'white', fontWeight: 'bold' }}>Login</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

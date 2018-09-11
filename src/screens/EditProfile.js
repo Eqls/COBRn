@@ -105,8 +105,7 @@ class EditProfile extends React.Component {
           <FormInput
             style={{ height: 40, backgroundColor: 'white' }}
             onChange={this.handleChange}
-            value={user.name}
-          />
+            value={user.name} />
           <TouchableOpacity
             style={styles.button}
             onPress={() => this.submitUpdate(user)}>

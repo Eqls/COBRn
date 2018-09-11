@@ -73,7 +73,7 @@ export default class Home extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.row}>
-          <TouchableOpacity style={styles.box}>
+          <TouchableOpacity onPress={() => Actions.allteams()} style={styles.box}>
             <Image source={TeamListIcon} />
             <Text style={styles.box_text}>All Teams</Text>
           </TouchableOpacity>
