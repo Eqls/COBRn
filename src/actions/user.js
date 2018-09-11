@@ -1,7 +1,7 @@
-import axios from 'axios'
-import { userConstants } from '../constants'
-import config from '../config/config'
-import { authHeader } from '../utils'
+import axios from "axios";
+import { userConstants } from "../constants";
+import config from "../config/config";
+import { authHeader } from "../utils";
 
 export const userActions = {
   create,
@@ -10,7 +10,7 @@ export const userActions = {
   readAll,
   remove,
   uploadAvatar
-}
+};
 
 function readAll() {
   return {
@@ -19,29 +19,30 @@ function readAll() {
       userConstants.READALL_SUCCESS,
       userConstants.READALL_FAILURE
     ],
-    callAPI: () => axios.get(config.API_URL + 'users/', { headers: authHeader() })
-      .then(res => res.data)
-  }
+    callAPI: () =>
+      axios
+        .get(config.API_URL + "users/", { headers: authHeader() })
+        .then(res => res.data)
+  };
 }
 
 function uploadAvatar(user, file) {
-  let fd = new FormData()
+  let fd = new FormData();
   user.avatar = {
     ...file[0],
     type: file[0].mime
-  }
-  fd.append('user', user)
-  fd.append('id', user.id)
+  };
+  fd.append("user", user);
+  fd.append("id", user.id);
 
   return {
     types: [
       userConstants.UPLOAD_AVATAR_REQUEST,
       userConstants.UPLOAD_AVATAR_SUCCESS,
-      userConstants.UPLOAD_AVATAR_FAILURE,
+      userConstants.UPLOAD_AVATAR_FAILURE
     ],
-    callAPI: () => axios.put(config.API_URL + 'user', fd)
-      .then(res => res.data)
-  }
+    callAPI: () => axios.put(config.API_URL + "user", fd).then(res => res.data)
+  };
 }
 
 function read(id, token) {
@@ -51,9 +52,13 @@ function read(id, token) {
       userConstants.READ_SUCCESS,
       userConstants.READ_FAILURE
     ],
-    callAPI: () => axios.get(config.API_URL + 'user/', { headers: { 'Authorization': 'Bearer ' + token } })
-      .then(res => res.data)
-  }
+    callAPI: () =>
+      axios
+        .get(config.API_URL + "user/", {
+          headers: { Authorization: "Bearer " + token }
+        })
+        .then(res => res.data)
+  };
 }
 
 function remove(id) {
@@ -63,9 +68,11 @@ function remove(id) {
       userConstants.DELETE_SUCCESS,
       userConstants.DELETE_FAILURE
     ],
-    callAPI: () => axios.delete(config.API_URL + 'users/' + id, { headers: authHeader() })
-      .then(res => res.data)
-  }
+    callAPI: () =>
+      axios
+        .delete(config.API_URL + "users/" + id, { headers: authHeader() })
+        .then(res => res.data)
+  };
 }
 
 function create(user) {
@@ -75,9 +82,9 @@ function create(user) {
       userConstants.CREATE_SUCCESS,
       userConstants.CREATE_FAILURE
     ],
-    callAPI: () => axios.post(config.API_URL + 'users', { user })
-      .then(res => res.data)
-  }
+    callAPI: () =>
+      axios.post(config.API_URL + "users", { user }).then(res => res.data)
+  };
 }
 
 function update(user, token) {
@@ -87,7 +94,13 @@ function update(user, token) {
       userConstants.UPDATE_SUCCESS,
       userConstants.UPDATE_FAILURE
     ],
-    callAPI: () => axios.put(config.API_URL + 'user', { id: user._id, user }, { headers: { 'Authorization': 'Bearer ' + token } })
-      .then(res => res.data)
-  }
+    callAPI: () =>
+      axios
+        .put(
+          config.API_URL + "user",
+          { id: user.id, user },
+          { headers: { Authorization: "Bearer " + token } }
+        )
+        .then(res => res.data)
+  };
 }

@@ -19,7 +19,7 @@ import { HomeIcon, DefaultAvatar } from "../assets/images";
 // import ImagePicker from "react-native-customized-image-picker";
 import { Player, Recorder, MediaStates } from "react-native-audio-toolkit";
 import axios from "axios";
-import { authHeader } from "./../utils";
+import { authHeader } from "../utils";
 
 const styles = StyleSheet.create({
   container: {
@@ -85,7 +85,7 @@ class MyProfile extends React.Component {
 
     //   dispatch(userActions.uploadAvatar(user.current, image));
     // });
-  }
+  };
 
   // onPress() {
   //   this.setState({ disabled: true });
@@ -115,30 +115,32 @@ class MyProfile extends React.Component {
         {user.isFetching || !user.current ? (
           <ActivityIndicator size="small" color="#FECB45" />
         ) : (
-            [
-              <View style={styles.header}>
-                <TouchableOpacity
-                  onPress={Actions.pop}
-                  style={styles.homebar}>
-                  <Image source={HomeIcon} />
-                </TouchableOpacity>
-                <Image source={DefaultAvatar} />
-                <Text style={styles.username}>@{user.current.name}</Text>
-                <HeaderButtons />
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>My Scores</Text>
-                <Scores score={user.current.team_score[0]} />
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>Team opnames</Text>
-                <TeamRecordingsRow />
-                <TeamRecordingsRow />
-                <TeamRecordingsRow />
-                <TeamRecordingsRow />
-              </View>
-            ]
-          )}
+          [
+            <View style={styles.header}>
+              <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                <Image source={HomeIcon} />
+              </TouchableOpacity>
+              <Image source={DefaultAvatar} />
+              <Text style={styles.username}>@{user.current.name}</Text>
+              <HeaderButtons />
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>My Scores</Text>
+              <Scores
+                score={user.current.team_score}
+                rating={user.current.mod_score_sum}
+                numberofratings={user.current.num_of_recordings}
+              />
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>Team opnames</Text>
+              <TeamRecordingsRow />
+              <TeamRecordingsRow />
+              <TeamRecordingsRow />
+              <TeamRecordingsRow />
+            </View>
+          ]
+        )}
       </View>
     );
   }
