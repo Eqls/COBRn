@@ -77,7 +77,7 @@ class EditProfile extends React.Component {
     dispatch(userActions.update(user, auth.token));
   }
 
-  handleChange = e => {
+  handleChange = event => {
     const { name, type, value } = event.nativeEvent
     console.log(this.state)
     this.setState({
@@ -104,7 +104,7 @@ class EditProfile extends React.Component {
         <View style={styles.form}>
           <FormInput
             style={{ height: 40, backgroundColor: 'white' }}
-            onChangeText={this.handleChange)}
+            onChange={this.handleChange}
             value={user.name}
           />
           <TouchableOpacity

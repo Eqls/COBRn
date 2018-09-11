@@ -17,10 +17,7 @@ import { auth } from './actions/'
 class App extends React.Component {
 
   componentDidMount() {
-    console.log('called');
-
     AsyncStorage.getItem('jwt').then(token => {
-      console.log(token)
       if (token) {
         store.dispatch(auth.validate(token))
       }
