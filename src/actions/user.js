@@ -21,7 +21,7 @@ function readAll() {
     ],
     callAPI: () =>
       axios
-        .get(config.API_URL + "users/", { headers: authHeader() })
+        .get(config.API_URL + "users", { headers: authHeader() })
         .then(res => res.data)
   };
 }

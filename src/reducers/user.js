@@ -1,8 +1,8 @@
-import { userConstants } from '../constants'
+import { userConstants } from "../constants";
 
 const initialState = {
-  isFetching: false,
-}
+  isFetching: false
+};
 
 const user = (state = initialState, action) => {
   switch (action.type) {
@@ -12,14 +12,14 @@ const user = (state = initialState, action) => {
         isFetching: true,
         error: undefined,
         all: undefined
-      }
+      };
     case userConstants.READALL_SUCCESS:
       return {
         ...state,
         isFetching: false,
         error: undefined,
         all: action.response
-      }
+      };
     case userConstants.CREATE_REQUEST:
     case userConstants.UPDATE_REQUEST:
     case userConstants.READ_REQUEST:
@@ -29,7 +29,7 @@ const user = (state = initialState, action) => {
         ...state,
         isFetching: true,
         error: undefined
-      }
+      };
     case userConstants.CREATE_SUCCESS:
     case userConstants.UPDATE_SUCCESS:
     case userConstants.READ_SUCCESS:
@@ -39,14 +39,14 @@ const user = (state = initialState, action) => {
         isFetching: false,
         error: undefined,
         current: action.response
-      }
+      };
     case userConstants.UPLOAD_AVATAR_SUCCESS:
       return {
         ...state,
         isFetching: false,
         error: undefined,
         current: action.response
-      }
+      };
     case userConstants.CREATE_FAILURE:
     case userConstants.UPDATE_FAILURE:
     case userConstants.READ_FAILURE:
@@ -57,10 +57,10 @@ const user = (state = initialState, action) => {
         ...state,
         isFetching: false,
         error: action.error
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default user
+export default user;
