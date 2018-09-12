@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 50,
     padding: 12,
+    zIndex: 2,
     backgroundColor: styleConsts.login_font_color
   },
   form: {
@@ -62,12 +63,13 @@ const styles = StyleSheet.create({
     padding: 10
   },
   checkin: {
-    aspectRatio: 0.5,
-    resizeMode: 'cover',
     position: 'absolute',
-    right: 25,
-    bottom: 0,
-    zIndex: 5
+    right: 30,
+    bottom: -23,
+  },
+  checkin_icon: {
+    aspectRatio: .25,
+    resizeMode: 'contain',
   }
 });
 
@@ -136,11 +138,13 @@ class Login extends React.Component {
           <TouchableOpacity
             onPress={this.sendLoginRequest}
             style={styles.button}>
-            <Image style={styles.checkin} source={CheckinIcon} />
+            <View style={styles.checkin}>
+              <Image style={styles.checkin_icon} source={CheckinIcon} />
+            </View>
             <Text style={{ fontSize: 16, color: 'white', fontWeight: 'bold' }}>Login</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View >
     );
   }
 }

@@ -1,11 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  TouchableOpacity,
+  Image
+} from "react-native"
+import { CommentIcon, PlayIcon } from '../../assets/images'
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "stretch",
+    alignItems: "center",
+    justifyContent: 'center',
     paddingRight: 20,
     paddingLeft: 20,
     paddingTop: 15,
@@ -18,14 +27,32 @@ const styles = StyleSheet.create({
     flex: 3,
     color: "#010763",
     fontWeight: "bold"
+  },
+  comment_icon: {
+    aspectRatio: 1.25,
+    paddingBottom: 2,
+    resizeMode: 'contain',
+    alignItems: 'center',
+  },
+  play_icon: {
+    marginTop: -10,
+    marginBottom: -10,
+    aspectRatio: 0.5,
+    resizeMode: 'contain',
   }
 });
 
 const TeamRecordingsRow = () => (
   <View style={styles.container}>
     <Text style={styles.title}>Bla bla bla</Text>
-    <Text style={{ flex: 1 }}> 1 c.</Text>
-    <Text style={{ flex: 1 }}> Play</Text>
+    <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
+      <ImageBackground style={styles.comment_icon} source={CommentIcon}>
+        <Text style={{ fontSize: 12 }}>13</Text>
+      </ImageBackground>
+    </TouchableOpacity>
+    <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
+      <Image style={styles.play_icon} source={PlayIcon} />
+    </TouchableOpacity>
   </View>
 );
 

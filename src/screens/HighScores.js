@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    padding: 15,
+    padding: 20,
     width: "100%"
   },
   header_title: {
