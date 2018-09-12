@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 const Scores = ({ score, rating, numberofratings }) => [
   <View style={styles.container}>
     <Text style={styles.title}>My Feedback</Text>
-    <Text>{numberofratings}</Text>
+    <Text>{"(" + numberofratings + ")"}</Text>
     <StarRatingDisplay rating={rating} />
   </View>,
   <View style={styles.container}>

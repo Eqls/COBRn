@@ -12,7 +12,7 @@ export const userActions = {
   uploadAvatar
 };
 
-function readAll() {
+function readAll(token) {
   return {
     types: [
       userConstants.READALL_REQUEST,
@@ -21,7 +21,9 @@ function readAll() {
     ],
     callAPI: () =>
       axios
-        .get(config.API_URL + "users", { headers: authHeader() })
+        .get(config.API_URL + "users", {
+          headers: { Authorization: "Bearer " + token }
+        })
         .then(res => res.data)
   };
 }

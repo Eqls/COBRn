@@ -11,24 +11,24 @@ import {
 import config from "../config/config";
 import TeamRow from "../components/highcores/TeamRow";
 import { connect } from "react-redux";
-import { teamActions } from "../actions";
+import { teamActions, userActions } from "../actions";
 import { authHeader } from "../utils";
 import UserRow from "../components/highcores/UserRow";
 import { Actions } from "react-native-router-flux";
 import { HomeIconBlue, HighScoresIcon2, HighScoresGuy } from "../assets/images";
-import styleConsts from '../constants/styles'
+import styleConsts from "../constants/styles";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#f2f2f2',
-    height: '100%'
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#f2f2f2",
+    height: "100%"
   },
   homebar: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     padding: 20,
@@ -37,32 +37,32 @@ const styles = StyleSheet.create({
   header_title: {
     fontSize: 24,
     margin: 15,
-    color: '#010763',
+    color: "#010763"
   },
   header: {
     display: "flex",
     padding: 10,
-    flexDirection: 'column',
-    width: '100%',
+    flexDirection: "column",
+    width: "100%",
     alignItems: "center"
   },
   table: {
     flex: 1,
-    display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
-    marginTop: 10,
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    marginTop: 10
   },
   table_header: {
     fontSize: 14,
     padding: 10,
     paddingLeft: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: styleConsts.light_blue
   },
   guy: {
-    position: 'absolute',
+    position: "absolute",
     top: -50,
     right: 10
   }
@@ -77,12 +77,15 @@ class HighScores extends React.Component {
   }
 
   render() {
-    const { teams } = this.props;
+    const { teams, users } = this.props;
     return (
       <ScrollView>
-        {teams.isFetching ? (
-          <ActivityIndicator size="small" color="#FECB45" />
-        ) : (
+        {teams.isFetching &&
+          !this.props.teams.all &&
+          users.isFetching &&
+          !this.props.users.all ? (
+            <ActivityIndicator size="small" color="#FECB45" />
+          ) : (
             [
               <View style={styles.header}>
                 <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
@@ -90,26 +93,30 @@ class HighScores extends React.Component {
                 </TouchableOpacity>
                 <Image source={HighScoresIcon2} />
                 <Text style={styles.header_title}>High Scores</Text>
-                {/* <ScrollView>
-              {teams.all.map((item, index) => (
-                <Text data={item} key={index} />
-              ))}
-            </ScrollView> */}
               </View>,
               <View style={styles.table}>
                 <Image style={styles.guy} source={HighScoresGuy} />
                 <Text style={styles.table_header}>Team highscores</Text>
-                <TeamRow />
-                <TeamRow />
-                <TeamRow />
-                <TeamRow />
+                {teams.all &&
+                  teams.all.data.map((item, index) => (
+                    <TeamRow
+                      name={item.name}
+                      team_score={item.team_score}
+                      position={index + 1}
+                    />
+                  ))}
               </View>,
               <View style={styles.table}>
                 <Text style={styles.table_header}>Personal highscores</Text>
-                <UserRow />
-                <UserRow />
-                <UserRow />
-                <UserRow />
+                {users.all &&
+                  users.all.data.map((item, index) => (
+                    <UserRow
+                      name={item.name}
+                      mod_score={item.mod_score}
+                      num_of_recordings={item.num_of_recordings}
+                      position={index + 1}
+                    />
+                  ))}
               </View>
             ]
           )}
@@ -120,7 +127,8 @@ class HighScores extends React.Component {
 
 const mapStateToProps = state => ({
   auth: state.auth.user,
-  teams: state.team
+  teams: state.team,
+  users: state.user
 });
 
 export default connect(mapStateToProps)(HighScores);

@@ -16,7 +16,7 @@ import ChallengeRow from '../components/challenges/ChallengeRow';
 import { HomeIconBlue, ChallengesIcon2, ChallengesGuy } from '../assets/images'
 import styleConsts from '../constants/styles'
 import { connect } from 'react-redux'
-import { challengeActions } from '../actions'
+import { challengeActions, teamActions } from '../actions'
 
 const styles = StyleSheet.create({
   container: {
@@ -78,12 +78,13 @@ class Challenges extends React.Component {
   componentDidMount() {
     const { dispatch, auth } = this.props;
     dispatch(challengeActions.readAll(auth.token));
+    dispatch(teamActions.readAll(auth.token));
   }
 
   render() {
-    const { challengeIsFetching, allChallenges } = this.props
+    const { challengeIsFetching, allChallenges, teamIsFetching, teams } = this.props
     let elements = <ActivityIndicator size="small" color="#FECB45" />
-    if (!challengeIsFetching) elements = (
+    if (!challengeIsFetching && !teamIsFetching) elements = (
       <ScrollView>
         <View style={styles.header}>
           <TouchableOpacity
@@ -104,10 +105,14 @@ class Challenges extends React.Component {
         </View>
         <View style={styles.table}>
           <Text style={styles.table_header}>Team highscores</Text>
-          <TeamRow />
-          <TeamRow />
-          <TeamRow />
-          <TeamRow />
+          {teams &&
+            teams.data.map((item, index) => (
+              <TeamRow
+                name={item.name}
+                team_score={item.team_score}
+                position={index + 1}
+              />
+            ))}
         </View>
       </ScrollView>
     )
@@ -117,6 +122,8 @@ class Challenges extends React.Component {
 
 const mapStateToProps = state => ({
   auth: state.auth.user,
+  teams: state.team.all,
+  teamIsFetching: state.team.isFetching,
   allChallenges: state.challenge.all,
   challengeIsFetching: state.challenge.isFetching
 });
