@@ -43,10 +43,10 @@ const styles = StyleSheet.create({
   }
 })
 
-const ChallengeRow = () => (
+const ChallengeRow = ({ challenge }) => (
   <View style={styles.container}>
     <Text style={{ flex: 1 }}>Icon</Text>
-    <Text style={{ flex: 2 }}> Robot off</Text>
+    <Text style={{ flex: 2 }}>{challenge.name ? challenge.name : 'No title'}</Text>
     <TouchableOpacity style={styles.button}>
       <Text style={styles.button_text}>Bekijk</Text>
       <Image style={styles.arrow} source={RightArrow} />
