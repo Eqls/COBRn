@@ -5,7 +5,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  ActivityIndicator
 } from "react-native";
 import config from '../config/config';
 import { Actions } from 'react-native-router-flux'
@@ -14,6 +15,8 @@ import UserRow from '../components/highcores/UserRow';
 import ChallengeRow from '../components/challenges/ChallengeRow';
 import { HomeIconBlue, ChallengesIcon2, ChallengesGuy } from '../assets/images'
 import styleConsts from '../constants/styles'
+import { connect } from 'react-redux'
+import { challengeActions } from '../actions'
 
 const styles = StyleSheet.create({
   container: {
@@ -72,8 +75,15 @@ const styles = StyleSheet.create({
 
 class Challenges extends React.Component {
 
+  componentDidMount() {
+    const { dispatch, auth } = this.props;
+    dispatch(challengeActions.readAll(auth.token));
+  }
+
   render() {
-    return (
+    const { challengeIsFetching, allChallenges } = this.props
+    let elements = <ActivityIndicator size="small" color="#FECB45" />
+    if (!challengeIsFetching) elements = (
       <ScrollView>
         <View style={styles.header}>
           <TouchableOpacity
@@ -89,11 +99,8 @@ class Challenges extends React.Component {
             <Image style={styles.guy_icon} source={ChallengesGuy} />
           </View>
           <Text style={styles.table_header}></Text>
-          <ChallengeRow />
-          <ChallengeRow />
-          <ChallengeRow />
-          <ChallengeRow />
-          <ChallengeRow />
+          {allChallenges &&
+            allChallenges.map(x => <ChallengeRow challenge={x} />)}
         </View>
         <View style={styles.table}>
           <Text style={styles.table_header}>Team highscores</Text>
@@ -104,7 +111,15 @@ class Challenges extends React.Component {
         </View>
       </ScrollView>
     )
+    return elements
   }
 }
 
-export default Challenges
+const mapStateToProps = state => ({
+  auth: state.auth.user,
+  allChallenges: state.challenge.all,
+  challengeIsFetching: state.challenge.isFetching
+});
+
+
+export default connect(mapStateToProps)(Challenges)

@@ -72,11 +72,6 @@ class HighScores extends React.Component {
   state = {};
 
   componentDidMount() {
-    console.log("hehexdDD");
-    console.log("hehexdDD");
-    console.log("hehexdDD");
-    console.log("hehexdDD");
-    console.log("hehexdDD");
     const { dispatch, auth } = this.props;
     dispatch(teamActions.readAll(auth.token));
   }
