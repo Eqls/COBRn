@@ -11,6 +11,7 @@ import TeamRow from '../components/highcores/TeamRow';
 import UserRow from '../components/highcores/UserRow';
 import { Actions } from 'react-native-router-flux'
 import { HomeIconBlue, AllTeamsIcon } from '../assets/images'
+import styleConsts from '../constants/styles'
 
 const styles = StyleSheet.create({
   container: {
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   header_title: {
     fontSize: 22,
     margin: 10,
-    color: '#010763',
+    color: styleConsts.dark_blue,
   },
   header: {
     display: "flex",
@@ -52,8 +53,9 @@ const styles = StyleSheet.create({
   table_header: {
     fontSize: 14,
     padding: 10,
+    paddingLeft: 30,
     fontWeight: 'bold',
-    color: '#137BD1'
+    color: styleConsts.light_blue
   },
   icon: {
     aspectRatio: 0.5,

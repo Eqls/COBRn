@@ -62,7 +62,6 @@ class EditProfile extends React.Component {
   state = {};
 
   static getDerivedStateFromProps(props, state) {
-    console.log(props);
     if (!state.user && props.user.current) {
       return {
         user: props.user.current
@@ -73,22 +72,23 @@ class EditProfile extends React.Component {
 
   submitUpdate = user => {
     const { dispatch, auth } = this.props;
-    dispatch(userActions.update(user, auth.token));
+    dispatch(userActions.update(user, auth.token))
+    Actions.pop()
   };
 
-  handleChange = event => {
-    const { name, type, value } = event.nativeEvent;
-    console.log(this.state);
+  handleChange = data => {
     this.setState({
+      ...this.state,
       user: {
         ...this.state.user,
-        [name]: value
+        ...data
       }
     });
   };
 
   render() {
     const { user } = this.state;
+    console.log()
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -102,7 +102,7 @@ class EditProfile extends React.Component {
           <Text>Name</Text>
           <TextInput
             style={{ height: 40, backgroundColor: "white" }}
-            onChange={this.handleChange}
+            onChangeText={name => this.handleChange({ name })}
             value={user.name} />
           <TouchableOpacity
             style={styles.button}

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   table_header: {
     fontSize: 14,
-    padding: 20,
+    padding: 10,
     paddingLeft: 30,
     fontWeight: 'bold',
     color: styleConsts.light_blue
