@@ -20,6 +20,20 @@ const team = (state = initialState, action) => {
         error: undefined,
         all: action.response
       };
+    case teamConstants.READ_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+        error: undefined,
+        current: action.response
+      };
+    case teamConstants.READ_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        error: undefined,
+        current: action.response
+      };
     default:
       return state;
   }

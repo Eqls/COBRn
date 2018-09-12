@@ -24,7 +24,7 @@ export const StarRatingDisplay = props => (
       disabled={true}
       maxStars={5}
       rating={props.rating}
-      starSize={30}
+      starSize={props.size}
       fullStar={require("./../../assets/images/star.png")}
       emptyStar={require("./../../assets/images/inactive_star.png")}
       halfStar={require("./../../assets/images/half_star.png")}

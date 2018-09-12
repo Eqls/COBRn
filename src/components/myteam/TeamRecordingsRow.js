@@ -6,15 +6,15 @@ import {
   ImageBackground,
   TouchableOpacity,
   Image
-} from "react-native"
-import { CommentIcon, PlayIcon } from '../../assets/images'
+} from "react-native";
+import { CommentIcon, PlayIcon } from "../../assets/images";
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingRight: 20,
     paddingLeft: 20,
     paddingTop: 15,
@@ -31,23 +31,23 @@ const styles = StyleSheet.create({
   comment_icon: {
     aspectRatio: 1.25,
     paddingBottom: 2,
-    resizeMode: 'contain',
-    alignItems: 'center',
+    resizeMode: "contain",
+    alignItems: "center"
   },
   play_icon: {
     marginTop: -10,
     marginBottom: -10,
     aspectRatio: 0.5,
-    resizeMode: 'contain',
+    resizeMode: "contain"
   }
 });
 
-const TeamRecordingsRow = () => (
+const TeamRecordingsRow = ({ name, num_of_comments }) => (
   <View style={styles.container}>
-    <Text style={styles.title}>Bla bla bla</Text>
+    <Text style={styles.title}>{name}</Text>
     <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
       <ImageBackground style={styles.comment_icon} source={CommentIcon}>
-        <Text style={{ fontSize: 12 }}>13</Text>
+        <Text style={{ fontSize: 12 }}>{num_of_comments}</Text>
       </ImageBackground>
     </TouchableOpacity>
     <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>

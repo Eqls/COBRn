@@ -32,7 +32,7 @@ const Scores = ({ score, rating, numberofratings }) => [
   <View style={styles.container}>
     <Text style={styles.title}>My Feedback</Text>
     <Text>{"(" + numberofratings + ")"}</Text>
-    <StarRatingDisplay rating={rating} />
+    <StarRatingDisplay size={30} rating={rating} />
   </View>,
   <View style={styles.container}>
     <Text style={styles.title}>My Team Score</Text>

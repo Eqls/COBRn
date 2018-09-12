@@ -74,6 +74,7 @@ class HighScores extends React.Component {
   componentDidMount() {
     const { dispatch, auth } = this.props;
     dispatch(teamActions.readAll(auth.token));
+    dispatch(userActions.readAll(auth.token));
   }
 
   render() {
@@ -87,39 +88,39 @@ class HighScores extends React.Component {
             <ActivityIndicator size="small" color="#FECB45" />
           ) : (
             [
-              <View style={styles.header}>
-                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-                  <Image source={HomeIconBlue} />
-                </TouchableOpacity>
-                <Image source={HighScoresIcon2} />
-                <Text style={styles.header_title}>High Scores</Text>
-              </View>,
-              <View style={styles.table}>
-                <Image style={styles.guy} source={HighScoresGuy} />
-                <Text style={styles.table_header}>Team highscores</Text>
-                {teams.all &&
-                  teams.all.data.map((item, index) => (
-                    <TeamRow
-                      name={item.name}
-                      team_score={item.team_score}
-                      position={index + 1}
-                    />
-                  ))}
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>Personal highscores</Text>
-                {users.all &&
-                  users.all.data.map((item, index) => (
-                    <UserRow
-                      name={item.name}
-                      mod_score={item.mod_score}
-                      num_of_recordings={item.num_of_recordings}
-                      position={index + 1}
-                    />
-                  ))}
-              </View>
-            ]
-          )}
+            <View style={styles.header}>
+              <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                <Image source={HomeIconBlue} />
+              </TouchableOpacity>
+              <Image source={HighScoresIcon2} />
+              <Text style={styles.header_title}>High Scores</Text>
+            </View>,
+            <View style={styles.table}>
+              <Image style={styles.guy} source={HighScoresGuy} />
+              <Text style={styles.table_header}>Team highscores</Text>
+              {teams.all &&
+                teams.all.data.map((item, index) => (
+                  <TeamRow
+                    name={item.name}
+                    team_score={item.team_score}
+                    position={index + 1}
+                  />
+                ))}
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>Personal highscores</Text>
+              {users.all &&
+                users.all.data.map((item, index) => (
+                  <UserRow
+                    name={item.name}
+                    mod_score={item.mod_score}
+                    num_of_recordings={item.num_of_recordings}
+                    position={index + 1}
+                  />
+                ))}
+            </View>
+          ]
+        )}
       </ScrollView>
     );
   }
