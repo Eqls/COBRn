@@ -21,7 +21,7 @@ import { HomeIcon, DefaultAvatar } from "../assets/images";
 import { Player, Recorder, MediaStates } from "react-native-audio-toolkit";
 import axios from "axios";
 import { authHeader } from "../utils";
-import styleConsts from '../constants/styles'
+import styleConsts from "../constants/styles";
 
 const styles = StyleSheet.create({
   container: {
@@ -45,16 +45,16 @@ const styles = StyleSheet.create({
   },
   table: {
     flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
-    marginTop: 10,
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    marginTop: 10
   },
   table_header: {
     fontSize: 14,
-    padding: 20,
+    padding: 10,
     paddingLeft: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: styleConsts.light_blue
   },
   username: {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   homebar: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     padding: 20,
@@ -120,32 +120,32 @@ class MyProfile extends React.Component {
         {user.isFetching || !user.current ? (
           <ActivityIndicator size="small" color="#FECB45" />
         ) : (
-            [
-              <View style={styles.header}>
-                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-                  <Image source={HomeIcon} />
-                </TouchableOpacity>
-                <Image source={DefaultAvatar} />
-                <Text style={styles.username}>@{user.current.name}</Text>
-                <HeaderButtons />
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>My Scores</Text>
-                <Scores
-                  score={user.current.team_score}
-                  rating={user.current.mod_score_sum}
-                  numberofratings={user.current.num_of_recordings}
-                />
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>Team opnames</Text>
-                <TeamRecordingsRow />
-                <TeamRecordingsRow />
-                <TeamRecordingsRow />
-                <TeamRecordingsRow />
-              </View>
-            ]
-          )}
+          [
+          <View style={styles.header}>
+            <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+              <Image source={HomeIcon} />
+            </TouchableOpacity>
+            <Image source={DefaultAvatar} />
+            <Text style={styles.username}>@{user.current.name}</Text>
+            <HeaderButtons />
+          </View>,
+          <View style={styles.table}>
+            <Text style={styles.table_header}>My Scores</Text>
+            <Scores
+              score={user.current.team_score}
+              rating={user.current.mod_score_sum}
+              numberofratings={user.current.num_of_recordings}
+            />
+          </View>,
+          <View style={styles.table}>
+            <Text style={styles.table_header}>Team opnames</Text>
+            <TeamRecordingsRow />
+            <TeamRecordingsRow />
+            <TeamRecordingsRow />
+            <TeamRecordingsRow />
+          </View>
+          ]
+        )}
       </ScrollView>
     );
   }

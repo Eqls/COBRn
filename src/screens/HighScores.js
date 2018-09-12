@@ -11,11 +11,12 @@ import {
 import config from "../config/config";
 import TeamRow from "../components/highcores/TeamRow";
 import { connect } from "react-redux";
-import { teamActions } from "../actions";
+import { teamActions, userActions } from "../actions";
 import { authHeader } from "../utils";
 import UserRow from "../components/highcores/UserRow";
 import { Actions } from "react-native-router-flux";
 import { HomeIconBlue, HighScoresIcon2, HighScoresGuy } from "../assets/images";
+import styleConsts from "../constants/styles";
 
 const styles = StyleSheet.create({
   container: {
@@ -51,14 +52,14 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "flex-start",
     flexDirection: "column",
-    marginTop: 10,
-    marginBottom: 10
+    marginTop: 10
   },
   table_header: {
     fontSize: 14,
     padding: 10,
+    paddingLeft: 30,
     fontWeight: "bold",
-    color: "#137BD1"
+    color: styleConsts.light_blue
   },
   guy: {
     position: "absolute",
@@ -71,20 +72,19 @@ class HighScores extends React.Component {
   state = {};
 
   componentDidMount() {
-    console.log("hehexdDD");
-    console.log("hehexdDD");
-    console.log("hehexdDD");
-    console.log("hehexdDD");
-    console.log("hehexdDD");
     const { dispatch, auth } = this.props;
     dispatch(teamActions.readAll(auth.token));
+    dispatch(userActions.readAll(auth.token));
   }
 
   render() {
-    const { teams } = this.props;
+    const { teams, users } = this.props;
     return (
-      <View style={styles.container}>
-        {teams.isFetching ? (
+      <ScrollView>
+        {teams.isFetching &&
+        !this.props.teams.all &&
+        users.isFetching &&
+        !this.props.users.all ? (
           <ActivityIndicator size="small" color="#FECB45" />
         ) : (
           [
@@ -94,37 +94,42 @@ class HighScores extends React.Component {
               </TouchableOpacity>
               <Image source={HighScoresIcon2} />
               <Text style={styles.header_title}>High Scores</Text>
-              {/* <ScrollView>
-              {teams.all.map((item, index) => (
-                <Text data={item} key={index} />
-              ))}
-            </ScrollView> */}
             </View>,
             <View style={styles.table}>
               <Image style={styles.guy} source={HighScoresGuy} />
               <Text style={styles.table_header}>Team highscores</Text>
-              <TeamRow />
-              <TeamRow />
-              <TeamRow />
-              <TeamRow />
+              {teams.all &&
+                teams.all.data.map((item, index) => (
+                  <TeamRow
+                    name={item.name}
+                    team_score={item.team_score}
+                    position={index + 1}
+                  />
+                ))}
             </View>,
             <View style={styles.table}>
               <Text style={styles.table_header}>Personal highscores</Text>
-              <UserRow />
-              <UserRow />
-              <UserRow />
-              <UserRow />
+              {users.all &&
+                users.all.data.map((item, index) => (
+                  <UserRow
+                    name={item.name}
+                    mod_score={item.mod_score}
+                    num_of_recordings={item.num_of_recordings}
+                    position={index + 1}
+                  />
+                ))}
             </View>
           ]
         )}
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const mapStateToProps = state => ({
   auth: state.auth.user,
-  teams: state.team
+  teams: state.team,
+  users: state.user
 });
 
 export default connect(mapStateToProps)(HighScores);
