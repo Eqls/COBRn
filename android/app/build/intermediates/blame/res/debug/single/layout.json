@@ -164,12 +164,12 @@
         "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\26.1.0\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
-        "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\26.1.0\\res\\layout\\abc_activity_chooser_view.xml"
-    },
-    {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\tooltip.xml",
         "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\26.1.0\\res\\layout\\tooltip.xml"
+    },
+    {
+        "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\26.1.0\\res\\layout\\abc_activity_chooser_view.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
