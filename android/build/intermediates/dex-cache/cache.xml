@@ -228,6 +228,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Projects\COBRn\android\app\build\intermediates\exploded-aar\COBRn\react-native-audio-toolkit\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="67ebccccbf5d32f2f0b9a3d5c847052b43d2b6cc">
+        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\COBRn-react-native-audio-toolkit-unspecified_4fad67f01d49befe3cc06a04f4098bd7a7bfeeee.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Projects\COBRn\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\26.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"

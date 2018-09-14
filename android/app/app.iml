@@ -144,5 +144,6 @@
     <orderEntry type="library" exported="" name="Gradle: com.facebook.react:react-native-0.56.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.facebook.fresco:imagepipeline-1.9.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: android.arch.lifecycle:runtime-1.0.0" level="project" />
+    <orderEntry type="module" module-name="react-native-audio-toolkit" exported="" />
   </component>
 </module>

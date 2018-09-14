@@ -7,7 +7,9 @@ import {
   Image,
   TouchableOpacity,
   TouchableHighlight,
-  ScrollView
+  ScrollView,
+  Platform,
+  PermissionsAndroid
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import config from "../config/config";
@@ -18,10 +20,10 @@ import HeaderButtons from "../components/myprofile/HeaderButtons";
 import { userActions } from "../actions";
 import { HomeIcon, DefaultAvatar } from "../assets/images";
 // import ImagePicker from "react-native-customized-image-picker";
-import { Player, Recorder, MediaStates } from "react-native-audio-toolkit";
 import axios from "axios";
 import { authHeader } from "../utils";
 import styleConsts from "../constants/styles";
+import { Player, Recorder, MediaStates } from "react-native-audio-toolkit";
 
 const styles = StyleSheet.create({
   container: {
@@ -92,25 +94,64 @@ class MyProfile extends React.Component {
     // });
   };
 
-  // onPress() {
-  //   this.setState({ disabled: true });
+  async checkPermission() {
+    if (Platform.OS !== "android") {
+      return Promise.resolve(true);
+    }
 
-  //   // Start recording
-  //   let rec = new Recorder("filename.mp4").record();
+    let result;
+    try {
+      result = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+        {
+          title: "Microphone Permission",
+          message: "To record audio please allow access to your microphone!"
+        }
+      );
+    } catch (error) {
+      console.error("failed getting permission, result:", result);
+    }
+    console.log("permission result:", result);
+    return result === true || result === PermissionsAndroid.RESULTS.GRANTED;
+  }
 
-  //   // Stop recording after approximately 3 seconds
-  //   setTimeout(() => {
-  //     rec.stop(err => {
-  //       // NOTE: In a real situation, handle possible errors here
+  onPress() {
+    this.checkPermission();
 
-  //       // Play the file after recording has stopped
-  //       new Player("filename.mp4").play().on("ended", () => {
-  //         // Enable button again after playback finishes
-  //         this.setState({ disabled: false });
-  //       });
-  //     });
-  //   }, 3000);
-  // }
+    this.setState({ disabled: true });
+
+    // Start recording
+    let rec = new Recorder("filename.mp4").record();
+
+    // Stop recording after approximately 3 seconds
+    setTimeout(() => {
+      rec.stop(err => {
+        // NOTE: In a real situation, handle possible errors here
+        let data = new FormData();
+        console.log(rec._fsPath);
+        data.append("recording[path_to_recording]", {
+          uri: "file://" + "/data/user/0/com.cobrn/files/filename.mp4",
+          name: "filename.mp4",
+          type: "audio/mp4"
+        });
+        data.append("recording[challenge_id]", 1);
+        data.append("recording[user_id]", 2);
+        console.log(data);
+        axios
+          .post(config.API_URL + "recordings", data, {
+            headers: {
+              Authorization: "Bearer " + this.props.auth.token
+            }
+          })
+          .then(res => res.data);
+        // Play the file after recording has stopped
+        new Player("filename.mp4").play().on("ended", () => {
+          // Enable button again after playback finishes
+          this.setState({ disabled: false });
+        });
+      });
+    }, 3000);
+  }
 
   render() {
     const { user } = this.props;
@@ -121,29 +162,35 @@ class MyProfile extends React.Component {
           <ActivityIndicator size="small" color="#FECB45" />
         ) : (
           [
-          <View style={styles.header}>
-            <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-              <Image source={HomeIcon} />
-            </TouchableOpacity>
-            <Image source={DefaultAvatar} />
-            <Text style={styles.username}>@{user.current.name}</Text>
-            <HeaderButtons />
-          </View>,
-          <View style={styles.table}>
-            <Text style={styles.table_header}>My Scores</Text>
-            <Scores
-              score={user.current.team_score}
-              rating={user.current.mod_score_sum}
-              numberofratings={user.current.num_of_recordings}
-            />
-          </View>,
-          <View style={styles.table}>
-            <Text style={styles.table_header}>Team opnames</Text>
-            <TeamRecordingsRow />
-            <TeamRecordingsRow />
-            <TeamRecordingsRow />
-            <TeamRecordingsRow />
-          </View>
+            <View style={styles.header}>
+              <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                <Image source={HomeIcon} />
+              </TouchableOpacity>
+              <TouchableHighlight
+                disabled={this.state.disabled}
+                onPress={() => this.onPress()}
+              >
+                <Text>Press me!</Text>
+              </TouchableHighlight>
+              <Image source={DefaultAvatar} />
+              <Text style={styles.username}>@{user.current.name}</Text>
+              <HeaderButtons />
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>My Scores</Text>
+              <Scores
+                score={user.current.team_score}
+                rating={user.current.mod_score_sum}
+                numberofratings={user.current.num_of_recordings}
+              />
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>Team opnames</Text>
+              <TeamRecordingsRow />
+              <TeamRecordingsRow />
+              <TeamRecordingsRow />
+              <TeamRecordingsRow />
+            </View>
           ]
         )}
       </ScrollView>

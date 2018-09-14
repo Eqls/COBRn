@@ -1,5 +1,5 @@
 import React from "react";
-import { Actions } from 'react-native-router-flux'
+import { Actions } from "react-native-router-flux";
 import {
   View,
   Text,
@@ -11,16 +11,16 @@ import {
   Dimensions,
   TouchableOpacity
 } from "react-native";
-import { connect } from 'react-redux'
-import { auth } from '../actions'
-import styleConsts from '../constants/styles'
-import { Illustration } from '../assets/images/login'
-import { CheckinIcon } from '../assets/images'
+import { connect } from "react-redux";
+import { auth } from "../actions";
+import styleConsts from "../constants/styles";
+import { Illustration } from "../assets/images/login";
+import { CheckinIcon } from "../assets/images";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: 'flex',
+    display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 10,
     zIndex: 1,
-    color: 'darkblue'
+    color: "darkblue"
   },
   header: {
     flex: 1,
@@ -43,15 +43,15 @@ const styles = StyleSheet.create({
     color: styleConsts.login_font_color
   },
   illustration: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 140,
     left: 0,
-    resizeMode: 'contain',
-    width: Dimensions.get('window').width,
+    resizeMode: "contain",
+    width: Dimensions.get("window").width
   },
   button: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     borderRadius: 50,
     padding: 12,
     zIndex: 2,
@@ -59,37 +59,37 @@ const styles = StyleSheet.create({
   },
   form: {
     flex: 1,
-    width: '100%',
+    width: "100%",
     padding: 10
   },
   checkin: {
-    position: 'absolute',
+    position: "absolute",
     right: 30,
-    bottom: -23,
+    bottom: -23
   },
   checkin_icon: {
-    aspectRatio: .25,
-    resizeMode: 'contain',
+    aspectRatio: 0.25,
+    resizeMode: "contain"
   }
 });
 
 class Login extends React.Component {
   state = {
     user: {
-      name: '',
-      password: ''
+      name: "",
+      password: ""
     }
-  }
+  };
 
   componentDidMount() {
-    if (this.props.isLogged) Actions.home()
+    if (this.props.isLogged) Actions.home();
   }
 
   sendLoginRequest = () => {
-    const { dispatch } = this.props
-    const { user } = this.state
-    dispatch(auth.login(user))
-  }
+    const { dispatch } = this.props;
+    const { user } = this.state;
+    dispatch(auth.login(user));
+  };
 
   handleChange = data => {
     this.setState({
@@ -102,8 +102,8 @@ class Login extends React.Component {
   };
 
   render() {
-    const { user } = this.state
-    const { isLogged, error } = this.props
+    const { user } = this.state;
+    const { isLogged, error } = this.props;
     if (isLogged) {
       Actions.home();
     }
@@ -137,14 +137,17 @@ class Login extends React.Component {
           />
           <TouchableOpacity
             onPress={this.sendLoginRequest}
-            style={styles.button}>
+            style={styles.button}
+          >
             <View style={styles.checkin}>
               <Image style={styles.checkin_icon} source={CheckinIcon} />
             </View>
-            <Text style={{ fontSize: 16, color: 'white', fontWeight: 'bold' }}>Login</Text>
+            <Text style={{ fontSize: 16, color: "white", fontWeight: "bold" }}>
+              Login
+            </Text>
           </TouchableOpacity>
         </View>
-      </View >
+      </View>
     );
   }
 }
@@ -153,6 +156,6 @@ const mapStateToProps = state => ({
   isFetching: state.auth.isFetching,
   error: state.auth.error,
   isLogged: state.auth.isLogged
-})
+});
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)(Login);
