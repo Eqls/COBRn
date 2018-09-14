@@ -28,13 +28,18 @@ function readAll(token) {
   };
 }
 
-function uploadAvatar(user, file) {
+function uploadAvatar(user, file, token) {
   let fd = new FormData();
   user.avatar = {
-    ...file[0],
-    type: file[0].mime
+    uri: file.path,
+    type: file.mime,
+    name: "test.jpg"
   };
-  fd.append("user", user);
+  fd.append("user[avatar]", {
+    uri: file.path,
+    name: "test.jpg",
+    type: file.mime
+  });
   fd.append("id", user.id);
 
   return {
@@ -43,7 +48,12 @@ function uploadAvatar(user, file) {
       userConstants.UPLOAD_AVATAR_SUCCESS,
       userConstants.UPLOAD_AVATAR_FAILURE
     ],
-    callAPI: () => axios.put(config.API_URL + "user", fd).then(res => res.data)
+    callAPI: () =>
+      axios
+        .put(config.API_URL + "user", fd, {
+          headers: { Authorization: "Bearer " + token }
+        })
+        .then(res => res.data)
   };
 }
 

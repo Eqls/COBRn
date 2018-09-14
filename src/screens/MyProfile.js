@@ -19,11 +19,11 @@ import TeamRecordingsRow from "../components/myteam/TeamRecordingsRow";
 import HeaderButtons from "../components/myprofile/HeaderButtons";
 import { userActions } from "../actions";
 import { HomeIcon, DefaultAvatar } from "../assets/images";
-// import ImagePicker from "react-native-customized-image-picker";
 import axios from "axios";
 import { authHeader } from "../utils";
 import styleConsts from "../constants/styles";
 import { Player, Recorder, MediaStates } from "react-native-audio-toolkit";
+import ImagePicker from "react-native-image-crop-picker";
 
 const styles = StyleSheet.create({
   container: {
@@ -86,12 +86,13 @@ class MyProfile extends React.Component {
 
   selectPicture = () => {
     const { dispatch, user } = this.props;
-    // ImagePicker.openPicker({
-    //   cropping: true
-    // }).then(image => {
-
-    //   dispatch(userActions.uploadAvatar(user.current, image));
-    // });
+    ImagePicker.openPicker({
+      cropping: true
+    }).then(image => {
+      dispatch(
+        userActions.uploadAvatar(user.current, image, this.props.auth.token)
+      );
+    });
   };
 
   async checkPermission() {
@@ -174,7 +175,7 @@ class MyProfile extends React.Component {
               </TouchableHighlight>
               <Image source={DefaultAvatar} />
               <Text style={styles.username}>@{user.current.name}</Text>
-              <HeaderButtons />
+              <HeaderButtons selectPicture={this.selectPicture} />
             </View>,
             <View style={styles.table}>
               <Text style={styles.table_header}>My Scores</Text>
