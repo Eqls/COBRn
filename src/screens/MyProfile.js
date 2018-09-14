@@ -130,7 +130,7 @@ class MyProfile extends React.Component {
         let data = new FormData();
         console.log(rec._fsPath);
         data.append("recording[path_to_recording]", {
-          uri: "file://" + "/data/user/0/com.cobrn/files/filename.mp4",
+          uri: "file://" + rec._fsPath,
           name: "filename.mp4",
           type: "audio/mp4"
         });
