@@ -8,6 +8,8 @@ import {
   Image
 } from "react-native";
 import { CommentIcon, PlayIcon } from "../../assets/images";
+import config from "./../../config/config";
+import { Player, MediaStates } from "react-native-audio-toolkit";
 
 const styles = StyleSheet.create({
   container: {
@@ -42,18 +44,26 @@ const styles = StyleSheet.create({
   }
 });
 
-const TeamRecordingsRow = ({ name, num_of_comments }) => (
-  <View style={styles.container}>
-    <Text style={styles.title}>{name}</Text>
-    <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
-      <ImageBackground style={styles.comment_icon} source={CommentIcon}>
-        <Text style={{ fontSize: 12 }}>{num_of_comments}</Text>
-      </ImageBackground>
-    </TouchableOpacity>
-    <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
-      <Image style={styles.play_icon} source={PlayIcon} />
-    </TouchableOpacity>
-  </View>
-);
+const TeamRecordingsRow = ({ name, num_of_comments, path_to_recording }) => {
+  playAudio = () => {
+    new Player(config.PHOTO_URL + path_to_recording).play();
+  };
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{name}</Text>
+      <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
+        <ImageBackground style={styles.comment_icon} source={CommentIcon}>
+          <Text style={{ fontSize: 12 }}>{num_of_comments}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{ paddingRight: 10, paddingLeft: 10 }}
+        onPress={playAudio}
+      >
+        <Image style={styles.play_icon} source={PlayIcon} />
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 export default TeamRecordingsRow;
