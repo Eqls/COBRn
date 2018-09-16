@@ -110,7 +110,7 @@ class Login extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Klantgericht Omroepen</Text>
-        <Text>{error}</Text>
+        {error && <Text>{error.error}</Text>}
         <View style={styles.form}>
           <Image style={styles.illustration} source={Illustration} />
           <TextInput
