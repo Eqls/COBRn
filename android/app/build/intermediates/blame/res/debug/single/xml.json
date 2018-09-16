@@ -1,10 +1,10 @@
 [
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\provider_paths.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\COBRn\\react-native-image-crop-picker\\unspecified\\res\\xml\\provider_paths.xml"
+        "source": "C:\\Projects\\COBRn\\node_modules\\react-native-image-crop-picker\\android\\build\\intermediates\\bundles\\default\\res\\xml\\provider_paths.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.56.1\\res\\xml\\preferences.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d3a97ae178431f68a2becd3412485e4d382c13d4\\output\\res\\xml\\preferences.xml"
     }
 ]

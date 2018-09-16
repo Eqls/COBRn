@@ -1,18 +1,18 @@
 [
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\support-compat\\27.1.0\\res\\layout-v21\\notification_action_tombstone.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\22c005c72458670bd33501a924199d17c4fea9f8\\output\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\support-compat\\27.1.0\\res\\layout-v21\\notification_template_custom_big.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\22c005c72458670bd33501a924199d17c4fea9f8\\output\\res\\layout-v21\\notification_template_custom_big.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\support-compat\\27.1.0\\res\\layout-v21\\notification_template_icon_group.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\22c005c72458670bd33501a924199d17c4fea9f8\\output\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\support-compat\\27.1.0\\res\\layout-v21\\notification_action.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\22c005c72458670bd33501a924199d17c4fea9f8\\output\\res\\layout-v21\\notification_action.xml"
     }
 ]

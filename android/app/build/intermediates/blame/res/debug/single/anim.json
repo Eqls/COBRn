@@ -1,90 +1,82 @@
 [
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_fade_out.xml"
-    },
-    {
-        "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\tooltip_enter.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\26.1.0\\res\\anim\\tooltip_enter.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_fade_out.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\catalyst_slide_up.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.56.1\\res\\anim\\catalyst_slide_up.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d3a97ae178431f68a2becd3412485e4d382c13d4\\output\\res\\anim\\catalyst_slide_up.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\catalyst_push_up_in.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.56.1\\res\\anim\\catalyst_push_up_in.xml"
-    },
-    {
-        "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_slide_in_bottom.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d3a97ae178431f68a2becd3412485e4d382c13d4\\output\\res\\anim\\catalyst_push_up_in.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_tooltip_enter.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_tooltip_enter.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_tooltip_enter.xml"
+    },
+    {
+        "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\catalyst_fade_in.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.56.1\\res\\anim\\catalyst_fade_in.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d3a97ae178431f68a2becd3412485e4d382c13d4\\output\\res\\anim\\catalyst_fade_in.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_fade_in.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_fade_in.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\catalyst_slide_down.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.56.1\\res\\anim\\catalyst_slide_down.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d3a97ae178431f68a2becd3412485e4d382c13d4\\output\\res\\anim\\catalyst_slide_down.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\catalyst_fade_out.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.56.1\\res\\anim\\catalyst_fade_out.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d3a97ae178431f68a2becd3412485e4d382c13d4\\output\\res\\anim\\catalyst_fade_out.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_tooltip_exit.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_tooltip_exit.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_tooltip_exit.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\catalyst_push_up_out.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.56.1\\res\\anim\\catalyst_push_up_out.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d3a97ae178431f68a2becd3412485e4d382c13d4\\output\\res\\anim\\catalyst_push_up_out.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\ucrop_loader_circle_scale.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.github.yalantis\\ucrop\\2.2.2-native\\res\\anim\\ucrop_loader_circle_scale.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\6c424a55fcdd08b72a4afc46c9c2b6b09a0ded82\\output\\res\\anim\\ucrop_loader_circle_scale.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_slide_in_top.xml"
-    },
-    {
-        "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\tooltip_exit.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\26.1.0\\res\\anim\\tooltip_exit.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_slide_in_top.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_slide_out_bottom.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_slide_out_bottom.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_popup_enter.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_popup_enter.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_popup_exit.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_popup_exit.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.0\\res\\anim\\abc_slide_out_top.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\d34a44f7642ff8a3703ee6fa474bb833bef5715e\\output\\res\\anim\\abc_slide_out_top.xml"
     },
     {
         "merged": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim\\ucrop_loader_circle_path.xml",
-        "source": "C:\\Projects\\COBRn\\android\\app\\build\\intermediates\\exploded-aar\\com.github.yalantis\\ucrop\\2.2.2-native\\res\\anim\\ucrop_loader_circle_path.xml"
+        "source": "C:\\Users\\holo\\.android\\build-cache\\6c424a55fcdd08b72a4afc46c9c2b6b09a0ded82\\output\\res\\anim\\ucrop_loader_circle_path.xml"
     }
 ]
