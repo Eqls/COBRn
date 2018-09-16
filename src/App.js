@@ -14,6 +14,7 @@ import EditProfile from './screens/EditProfile';
 import { connect } from 'react-redux'
 import { auth } from './actions/'
 import AllTeams from './screens/AllTeams';
+import ChallengeCard from './screens/ChallengeCard';
 
 class App extends React.Component {
 
@@ -66,6 +67,12 @@ class App extends React.Component {
               key="challenges"
               component={Challenges}
               title="Challenges"
+              swipeEnabled
+            />
+            <Scene
+              key="challengecard"
+              component={ChallengeCard}
+              title="Challenge Card"
               swipeEnabled
             />
             <Scene

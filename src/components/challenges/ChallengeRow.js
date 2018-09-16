@@ -6,12 +6,18 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import styleConsts from '../../constants/styles'
-import { RightArrow } from '../../assets/images'
+import {
+  RightArrow,
+  BandFrame,
+  DefaultChallengeIcon
+} from '../../assets/images'
+import config from '../../config/config'
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     paddingRight: 20,
@@ -28,27 +34,62 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: styleConsts.cream_blue,
-    padding: 7
+    padding: 7,
+    paddingRight: 10,
+    paddingLeft: 10
   },
   button_text: {
-    fontWeight: 'bold',
     color: styleConsts.gold,
     marginRight: 5
   },
   arrow: {
-    padding: 3,
     resizeMode: 'contain',
     aspectRatio: 1.25
-
+  },
+  img_frame: {
+    width: 45,
+    height: 35,
+    marginRight: 25,
+  },
+  icon_wrapper: {
+    position: 'absolute',
+    top: 1,
+    left: 6,
+  },
+  icon: {
+    borderWidth: 1,
+    borderColor: '#000065',
+    height: 33,
+    width: 33,
+  },
+  info: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  info_text: {
+    color: 'black',
+    fontSize: 15
   }
 })
-
+const avatar = null
 const ChallengeRow = ({ challenge }) => (
   <View style={styles.container}>
-    <Text style={{ flex: 1 }}>Icon</Text>
-    <Text style={{ flex: 2 }}>{challenge.name ? challenge.name : 'No title'}</Text>
+    <View>
+      <Image style={styles.img_frame} source={BandFrame} />
+      <View style={styles.icon_wrapper}>
+        <Image style={styles.icon} borderRadius={50} source={challenge.avatar ? { uri: config.PHOTO_URL + challenge.avatar } : DefaultChallengeIcon} />
+      </View>
+    </View>
+    <View style={styles.info}>
+      <Text style={styles.info_text}>{challenge.name ? challenge.name : 'No title'}</Text>
+    </View>
     <TouchableOpacity style={styles.button}>
-      <Text style={styles.button_text}>Bekijk</Text>
+      <Text
+        style={styles.button_text}
+        onPress={() => Actions.challengecard({ challenge })}
+      >
+        Bekijk
+      </Text>
       <Image style={styles.arrow} source={RightArrow} />
     </TouchableOpacity>
   </View >

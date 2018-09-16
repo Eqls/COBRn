@@ -42,17 +42,21 @@ const styles = StyleSheet.create({
   }
 });
 
-const TeamRecordingsRow = ({ name, num_of_comments }) => (
+const TeamRecordingsRow = ({ name, num_of_comments, empty }) => (
   <View style={styles.container}>
-    <Text style={styles.title}>{name}</Text>
-    <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
-      <ImageBackground style={styles.comment_icon} source={CommentIcon}>
-        <Text style={{ fontSize: 12 }}>{num_of_comments}</Text>
-      </ImageBackground>
-    </TouchableOpacity>
-    <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
-      <Image style={styles.play_icon} source={PlayIcon} />
-    </TouchableOpacity>
+    {empty ? <Text style={styles.title}>No results found.</Text> :
+      [
+        <Text style={styles.title}>{name}</Text>,
+        <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
+          <ImageBackground style={styles.comment_icon} source={CommentIcon}>
+            <Text style={{ fontSize: 12 }}>{num_of_comments}</Text>
+          </ImageBackground>
+        </TouchableOpacity>,
+        <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
+          <Image style={styles.play_icon} source={PlayIcon} />
+        </TouchableOpacity>
+      ]
+    }
   </View>
 );
 

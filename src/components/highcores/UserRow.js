@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { StarRatingDisplay } from "./../star_ratings/Star_Rating_Display";
+import { StarRatingDisplay } from "../StarRatingDisplay";
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "stretch",
-    justifyContent: "flex-start",
+    alignItems: "center",
+    justifyContent: "center",
     paddingRight: 20,
     paddingLeft: 20,
     paddingTop: 15,
@@ -27,8 +27,8 @@ const UserRow = ({ name, position, mod_score, num_of_recordings }) => (
   <View style={styles.container}>
     <Text style={{ flex: 1, color: "#137BD1" }}>{position}</Text>
     <Text style={styles.title}>{name}</Text>
-    <Text>{"(" + num_of_recordings + ")"}</Text>
-    <StarRatingDisplay size={30} rating={mod_score} />
+    <Text style={{ paddingRight: 5 }}>{"(" + num_of_recordings + ")"}</Text>
+    <StarRatingDisplay starSize={30} rating={mod_score} />
   </View>
 );
 
