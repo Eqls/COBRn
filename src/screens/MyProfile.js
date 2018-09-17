@@ -24,14 +24,81 @@ import { authHeader } from "../utils";
 import styleConsts from "../constants/styles";
 import ImagePicker from "react-native-image-crop-picker";
 
+class MyProfile extends React.Component {
+  state = {
+    disabled: false
+  };
+
+  componentDidMount() {
+    const { dispatch, auth } = this.props;
+    dispatch(userActions.read(auth.id, auth.token));
+  }
+
+  selectPicture = () => {
+    const { dispatch, user } = this.props;
+    ImagePicker.openPicker({
+      cropping: true
+    }).then(image => {
+      dispatch(
+        userActions.uploadAvatar(user.current, image, this.props.auth.token)
+      );
+    });
+  };
+
+  render() {
+    const { user } = this.props;
+    const { showUploadDialog } = this.state;
+    return (
+      <ScrollView contentContainerStyle={styles.container}>
+        {user.isFetching || !user.current ? (
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <ActivityIndicator size="large" color="#FECB45" />
+          </View>
+        ) : (
+            [
+              <View style={styles.header}>
+                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                  <Image source={HomeIcon} />
+                </TouchableOpacity>
+                {console.log(config.PHOTO_URL + user.current.avatar)}
+                <Image style={styles.avatar_img} source={user.current.avatar ? { uri: config.PHOTO_URL + user.current.avatar } : DefaultAvatar} />
+                <Text style={styles.username}>@{user.current.name}</Text>
+                <HeaderButtons selectPicture={this.selectPicture} />
+              </View>,
+              <View style={styles.table}>
+                <Text style={styles.table_header}>Punten</Text>
+                {console.log(user.current)}
+                <Scores
+                  score={user.current.team_score}
+                  rating={user.current.mod_score_sum}
+                  numberofratings={user.current.num_of_recordings}
+                />
+              </View>,
+              <View style={styles.table}>
+                <Text style={styles.table_header}>Team opnames</Text>
+                {user.current &&
+                  user.current.recording_list.map((item, index) => (
+                    <TeamRecordingsRow
+                      name={item.recording_name.file_name}
+                      num_of_comments={item.number_of_comments}
+                      path_to_recording={item.path_to_recording}
+                    />
+                  ))}
+              </View>
+            ]
+          )}
+      </ScrollView>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "flex-start",
     backgroundColor: "#f2f2f2",
-    height: "100%"
   },
   header_title: {
     fontSize: 24,
@@ -77,78 +144,6 @@ const styles = StyleSheet.create({
     borderRadius: 100
   }
 });
-
-class MyProfile extends React.Component {
-  state = {
-    disabled: false
-  };
-
-  componentDidMount() {
-    const { dispatch, auth } = this.props;
-    dispatch(userActions.read(auth.id, auth.token));
-  }
-
-  selectPicture = () => {
-    const { dispatch, user } = this.props;
-    ImagePicker.openPicker({
-      cropping: true
-    }).then(image => {
-      dispatch(
-        userActions.uploadAvatar(user.current, image, this.props.auth.token)
-      );
-    });
-  };
-
-  render() {
-    const { user } = this.props;
-    const { showUploadDialog } = this.state;
-    return (
-      <ScrollView>
-        {user.isFetching || !user.current ? (
-          <ActivityIndicator size="small" color="#FECB45" />
-        ) : (
-            [
-              <View style={styles.header}>
-                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-                  <Image source={HomeIcon} />
-                </TouchableOpacity>
-                {console.log(config.PHOTO_URL + user.current.avatar)}
-                <TouchableHighlight
-                  disabled={this.state.disabled}
-                  onPress={() => this.onPress()}
-                >
-                  <Text>Press me!</Text>
-                </TouchableHighlight>
-                <Image style={styles.avatar_img} source={user.current.avatar ? { uri: config.PHOTO_URL + user.current.avatar } : DefaultAvatar} />
-                <Text style={styles.username}>@{user.current.name}</Text>
-                <HeaderButtons selectPicture={this.selectPicture} />
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>My Scores</Text>
-                {console.log(user.current)}
-                <Scores
-                  score={user.current.team_score}
-                  rating={user.current.mod_score_sum}
-                  numberofratings={user.current.num_of_recordings}
-                />
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>Team opnames</Text>
-                {user.current &&
-                  user.current.recording_list.map((item, index) => (
-                    <TeamRecordingsRow
-                      name={item.recording_name.file_name}
-                      num_of_comments={item.number_of_comments}
-                      path_to_recording={item.path_to_recording}
-                    />
-                  ))}
-              </View>
-            ]
-          )}
-      </ScrollView>
-    );
-  }
-}
 
 const mapStateToProps = state => ({
   auth: state.auth.user,

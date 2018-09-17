@@ -23,12 +23,16 @@ const styles = StyleSheet.create({
   }
 });
 
-const UserRow = ({ name, position, mod_score, num_of_recordings }) => (
+const UserRow = ({ name, position, mod_score, num_of_recordings, empty }) => (
   <View style={styles.container}>
-    <Text style={{ flex: 1, color: "#137BD1" }}>{position}</Text>
-    <Text style={styles.title}>{name}</Text>
-    <Text style={{ paddingRight: 5 }}>{"(" + num_of_recordings + ")"}</Text>
-    <StarRatingDisplay starSize={30} rating={mod_score} />
+    {empty ? <Text style={styles.title}>No results found.</Text> :
+      [
+        <Text style={{ flex: 1, color: "#137BD1" }}>{position}</Text>,
+        <Text style={styles.title}>{name}</Text>,
+        <Text style={{ paddingRight: 5 }}>{"(" + num_of_recordings + ")"}</Text>,
+        <StarRatingDisplay starSize={20} rating={mod_score} />
+      ]
+    }
   </View>
 );
 

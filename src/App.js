@@ -15,6 +15,7 @@ import { connect } from 'react-redux'
 import { auth } from './actions/'
 import AllTeams from './screens/AllTeams';
 import ChallengeCard from './screens/ChallengeCard';
+import Success from './screens/Success';
 
 class App extends React.Component {
 
@@ -73,6 +74,12 @@ class App extends React.Component {
               key="challengecard"
               component={ChallengeCard}
               title="Challenge Card"
+              swipeEnabled
+            />
+            <Scene
+              key="success"
+              component={Success}
+              title="Success"
               swipeEnabled
             />
             <Scene

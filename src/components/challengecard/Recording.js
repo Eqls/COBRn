@@ -41,7 +41,7 @@ class Recording extends React.Component {
     dispatch(recordingActions.create(auth.id, challenge, this.recorder._fsPath, auth.token))
     this._reloadPlayer()
     this._reloadRecorder()
-    Actions.home()
+    Actions.success()
   }
 
   _reloadPlayer() {

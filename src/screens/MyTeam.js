@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "flex-start",
     backgroundColor: "#f2f2f2",
     height: "100%"
@@ -93,9 +93,11 @@ class MyTeam extends React.Component {
   render() {
     const { team } = this.props;
     return (
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.container}>
         {team.isFetching || !team.current ? (
-          <ActivityIndicator size="small" color="#FECB45" />
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <ActivityIndicator size="large" color="#FECB45" />
+          </View>
         ) : (
             [
               <View style={styles.header}>
@@ -126,7 +128,7 @@ class MyTeam extends React.Component {
                 <View style={styles.guy}>
                   <Image style={styles.guy_icon} source={TeamGuy} />
                 </View>
-                <Text style={styles.table_header}>Team opnames</Text>
+                <Text style={styles.table_header}>Team Opnames</Text>
                 {team.current && team.current.team_recordings.length > 0 ?
                   team.current.team_recordings.map((item, index) => (
                     <TeamRecordingsRow
