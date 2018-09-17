@@ -1,50 +1,40 @@
-import React from 'react'
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
-import { Provider } from 'react-redux'
-import { store } from './utils'
-import { Router, Scene, Actions } from 'react-native-router-flux'
-import Login from './screens/Login'
-import Home from './screens/Home'
-import HighScores from './screens/HighScores';
-import Challenges from './screens/Challenges';
-import MyTeam from './screens/MyTeam';
-import Comments from './screens/Comments';
-import MyProfile from './screens/MyProfile';
-import EditProfile from './screens/EditProfile';
-import { connect } from 'react-redux'
-import { auth } from './actions/'
-import AllTeams from './screens/AllTeams';
-import ChallengeCard from './screens/ChallengeCard';
+import React from "react";
+import { StyleSheet, Text, View, AsyncStorage } from "react-native";
+import { Provider } from "react-redux";
+import { store } from "./utils";
+import { Router, Scene, Actions } from "react-native-router-flux";
+import Login from "./screens/Login";
+import Home from "./screens/Home";
+import HighScores from "./screens/HighScores";
+import Challenges from "./screens/Challenges";
+import MyTeam from "./screens/MyTeam";
+import Comments from "./screens/Comments";
+import MyProfile from "./screens/MyProfile";
+import EditProfile from "./screens/EditProfile";
+import { connect } from "react-redux";
+import { auth } from "./actions/";
+import AllTeams from "./screens/AllTeams";
+import ChallengeCard from "./screens/ChallengeCard";
+import AddComment from "./screens/AddComment";
 
 class App extends React.Component {
-
   componentDidMount() {
-    AsyncStorage.getItem('jwt').then(token => {
-      if (token) {
-        store.dispatch(auth.validate(token))
-      }
-    })
-      .catch(error => console.log(error))
+    AsyncStorage.getItem("jwt")
+      .then(token => {
+        if (token) {
+          store.dispatch(auth.validate(token));
+        }
+      })
+      .catch(error => console.log(error));
   }
 
   render() {
     return (
       <Provider store={store}>
         <Router>
-          <Scene
-            hideNavBar
-            key="root">
-            <Scene
-              key="main"
-              component={Login}
-              title="Login"
-              initial
-            />
-            <Scene
-              key="home"
-              component={Home}
-              title="Home"
-            />
+          <Scene hideNavBar key="root">
+            <Scene key="main" component={Login} title="Login" initial />
+            <Scene key="home" component={Home} title="Home" />
             <Scene
               key="highscores"
               component={HighScores}
@@ -88,6 +78,12 @@ class App extends React.Component {
               swipeEnabled
             />
             <Scene
+              key="addcomment"
+              component={AddComment}
+              title="Add Comment"
+              swipeEnabled
+            />
+            <Scene
               key="allteams"
               component={AllTeams}
               title="All Teams"
@@ -103,10 +99,10 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});
 
-export default App
+export default App;

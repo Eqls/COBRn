@@ -1,8 +1,8 @@
-import React from "react"
-import { View, Text, StyleSheet, Image } from "react-native"
-import { StarRatingDisplay } from "../StarRatingDisplay"
-import config from "./../../config/config"
-import { DefaultAvatar } from '../../assets/images'
+import React from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
+import { StarRatingDisplay } from "../StarRatingDisplay";
+import config from "./../../config/config";
+import { DefaultAvatar } from "../../assets/images";
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   user_scores: {
     flex: 1,
     flexDirection: "row",
-    alignItems: 'center'
+    alignItems: "center"
   },
   name: {
     color: "darkblue"
@@ -36,15 +36,18 @@ const styles = StyleSheet.create({
   },
   avatar: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: "row",
+    alignItems: "center"
   }
 });
 
 const TeammateRow = ({ name, mod_score, num_of_recordings, avatar }) => (
   <View style={styles.container}>
     <View style={styles.avatar}>
-      <Image style={styles.avatar_img} source={avatar ? { uri: config.PHOTO_URL + avatar } : DefaultAvatar} />
+      <Image
+        style={styles.avatar_img}
+        source={avatar ? { uri: config.PHOTO_URL + avatar } : DefaultAvatar}
+      />
     </View>
     <View style={styles.user_details}>
       <Text style={styles.name}>{name}</Text>

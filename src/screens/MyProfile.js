@@ -191,9 +191,11 @@ class MyProfile extends React.Component {
             {user.current &&
               user.current.recording_list.map((item, index) => (
                 <TeamRecordingsRow
+                  id={item.id}
                   name={item.recording_name.file_name}
                   num_of_comments={item.number_of_comments}
                   path_to_recording={item.path_to_recording}
+                  comments={item.recording_comments}
                 />
               ))}
           </View>
