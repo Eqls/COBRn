@@ -30,11 +30,6 @@ function readAll(token) {
 
 function uploadAvatar(user, file, token) {
   let fd = new FormData();
-  user.avatar = {
-    uri: file.path,
-    type: file.mime,
-    name: "test.jpg"
-  };
   fd.append("user[avatar]", {
     uri: file.path,
     name: "test.jpg",

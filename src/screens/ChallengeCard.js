@@ -86,9 +86,6 @@ class ChallengeCard extends React.Component {
     dim: false
   }
 
-  componentDidMount() {
-  }
-
   toggleDimmer = () => this.setState({ dim: !this.state.dim })
 
   render() {
@@ -112,7 +109,7 @@ class ChallengeCard extends React.Component {
         <Text style={styles.description}>{challenge.description}</Text>
         <RatingRow rating={challenge.difficulty} />
         <TeamProgress progress={70} />
-        <Recording toggleDimmer={this.toggleDimmer} />
+        <Recording challenge={challenge} toggleDimmer={this.toggleDimmer} />
       </View>
     )
   }
