@@ -109,6 +109,7 @@ class HighScores extends React.Component {
             </View>,
             <View style={styles.table}>
               <Text style={styles.table_header}>Personal highscores</Text>
+              {console.log(users)}
               {users.all &&
                 users.all.data.map((item, index) => (
                   <UserRow

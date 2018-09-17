@@ -3,10 +3,10 @@ import { recordingConstants } from "../constants";
 import config from "../config/config";
 
 export const recordingActions = {
-  create
+  create,
+  readAll
   // update,
   // read,
-  // readAll,
   // remove,
   // uploadAvatar
 };
@@ -20,7 +20,7 @@ function readAll(token) {
     ],
     callAPI: () =>
       axios
-        .get(config.API_URL + "users", {
+        .get(config.API_URL + "recordings", {
           headers: { Authorization: "Bearer " + token }
         })
         .then(res => res.data)
@@ -36,7 +36,9 @@ function read(id, token) {
     ],
     callAPI: () =>
       axios
-        .get(config.API_URL + "user", { headers: { Authorization: "Bearer " + token } })
+        .get(config.API_URL + "user", {
+          headers: { Authorization: "Bearer " + token }
+        })
         .then(res => res.data)
   };
 }
@@ -59,7 +61,7 @@ function create(user_id, challenge, path, token) {
   let fd = new FormData();
   fd.append("recording[path_to_recording]", {
     uri: "file://" + path,
-    name: user_id + '' + challenge.id + '_' + challenge.name + '.mp4',
+    name: user_id + "" + challenge.id + "_" + challenge.name + ".mp4",
     type: "audio/mp4"
   });
   fd.append("recording[challenge_id]", challenge.id);
@@ -79,7 +81,7 @@ function create(user_id, challenge, path, token) {
           }
         })
         .then(res => res.data)
-  }
+  };
 }
 
 function update(user, token) {

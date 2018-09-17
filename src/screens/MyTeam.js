@@ -99,6 +99,7 @@ class MyTeam extends React.Component {
         ) : (
           [
           <View style={styles.header}>
+            {console.log(team)}
             <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
               <Image source={HomeIconBlue} />
             </TouchableOpacity>

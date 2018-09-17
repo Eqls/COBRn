@@ -9,7 +9,8 @@ import {
   TouchableHighlight,
   ScrollView,
   Platform,
-  PermissionsAndroid
+  PermissionsAndroid,
+  Button
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import config from "../config/config";
@@ -112,46 +113,40 @@ class MyProfile extends React.Component {
             <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
               <Image source={HomeIcon} />
             </TouchableOpacity>
-            {console.log(config.PHOTO_URL + user.current.avatar)}
-            <TouchableHighlight
-              disabled={this.state.disabled}
-              onPress={() => this.onPress()}
-            >
-              <Text>Press me!</Text>
-            </TouchableHighlight>
+            <Button title="Scoring" onPress={() => Actions.ratingpage()} />
             <Image
               style={styles.avatar_img}
               source={
                   user.current.avatar
                     ? { uri: config.PHOTO_URL + user.current.avatar }
                     : DefaultAvatar
-              }
-            />
-            <Text style={styles.username}>@{user.current.name}</Text>
-            <HeaderButtons selectPicture={this.selectPicture} />
-          </View>,
-          <View style={styles.table}>
-            <Text style={styles.table_header}>My Scores</Text>
-            {console.log(user.current)}
-            <Scores
-              score={user.current.team_score}
-              rating={user.current.mod_score_sum}
-              numberofratings={user.current.num_of_recordings}
-            />
-          </View>,
-          <View style={styles.table}>
-            <Text style={styles.table_header}>Team opnames</Text>
-            {user.current &&
-              user.current.recording_list.map((item, index) => (
-                <TeamRecordingsRow
-                  id={item.id}
-                  name={item.recording_name.file_name}
-                  num_of_comments={item.number_of_comments}
-                  path_to_recording={item.path_to_recording}
-                  comments={item.recording_comments}
-                />
-              ))}
-          </View>
+                }
+              />
+              <Text style={styles.username}>@{user.current.name}</Text>
+              <HeaderButtons selectPicture={this.selectPicture} />
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>My Scores</Text>
+              {console.log(user.current)}
+              <Scores
+                score={user.current.team_score}
+                rating={user.current.mod_score_sum}
+                numberofratings={user.current.num_of_recordings}
+              />
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>Team opnames</Text>
+              {user.current &&
+                user.current.recording_list.map((item, index) => (
+                  <TeamRecordingsRow
+                    id={item.id}
+                    name={item.recording_name.file_name}
+                    num_of_comments={item.number_of_comments}
+                    path_to_recording={item.path_to_recording}
+                    comments={item.recording_comments}
+                  />
+                ))}
+            </View>
           ]
         )}
       </ScrollView>

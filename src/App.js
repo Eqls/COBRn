@@ -16,6 +16,7 @@ import { auth } from "./actions/";
 import AllTeams from "./screens/AllTeams";
 import ChallengeCard from "./screens/ChallengeCard";
 import AddComment from "./screens/AddComment";
+import RatingPage from "./screens/RatingPage";
 
 class App extends React.Component {
   componentDidMount() {
@@ -87,6 +88,12 @@ class App extends React.Component {
               key="allteams"
               component={AllTeams}
               title="All Teams"
+              swipeEnabled
+            />
+            <Scene
+              key="ratingpage"
+              component={RatingPage}
+              title="Rating Page"
               swipeEnabled
             />
           </Scene>
