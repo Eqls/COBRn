@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     backgroundColor: '#f2f2f2',
     height: '100%'
   },
@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   table: {
-    flex: 1,
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     flexDirection: 'column',
@@ -70,6 +69,10 @@ const styles = StyleSheet.create({
     aspectRatio: .3,
     resizeMode: 'contain',
   },
+  icon: {
+    aspectRatio: 0.5,
+    resizeMode: 'contain'
+  }
 });
 
 class Challenges extends React.Component {
@@ -82,40 +85,44 @@ class Challenges extends React.Component {
 
   render() {
     const { challengeIsFetching, allChallenges, teamIsFetching, teams } = this.props
-    let elements = <ActivityIndicator size="small" color="#FECB45" />
-    if (!challengeIsFetching && !teamIsFetching) elements = (
-      <ScrollView>
-        <View style={styles.header}>
-          <TouchableOpacity
-            onPress={Actions.pop}
-            style={styles.homebar}>
-            <Image source={HomeIconBlue} />
-          </TouchableOpacity>
-          <Image style={styles.icon} source={ChallengesIcon2} />
-          <Text style={styles.header_title}>Challenges</Text>
-        </View>
-        <View style={styles.table}>
-          <View style={styles.guy}>
-            <Image style={styles.guy_icon} source={ChallengesGuy} />
+    return (<ScrollView contentContainerStyle={styles.container} >
+      {(challengeIsFetching || teamIsFetching) ?
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <ActivityIndicator size="large" color="#FECB45" />
+        </View> :
+        [
+          <View style={styles.header}>
+            <TouchableOpacity
+              onPress={Actions.pop}
+              style={styles.homebar}>
+              <Image source={HomeIconBlue} />
+            </TouchableOpacity>
+            <Image style={styles.icon} source={ChallengesIcon2} />
+            <Text style={styles.header_title}>Challenges</Text>
+          </View>,
+          <View style={styles.table}>
+            <View style={styles.guy}>
+              <Image style={styles.guy_icon} source={ChallengesGuy} />
+            </View>
+            <Text style={styles.table_header}></Text>
+            {allChallenges &&
+              allChallenges.map(x => <ChallengeRow challenge={x} />)}
+          </View>,
+          <View style={styles.table}>
+            <Text style={styles.table_header}>Teams Highscore</Text>
+            {teams &&
+              teams.data.map((item, index) => (
+                <TeamRow
+                  key={item.id}
+                  name={item.name}
+                  team_score={item.team_score}
+                  position={index + 1}
+                />
+              ))}
           </View>
-          <Text style={styles.table_header}></Text>
-          {allChallenges &&
-            allChallenges.map(x => <ChallengeRow challenge={x} />)}
-        </View>
-        <View style={styles.table}>
-          <Text style={styles.table_header}>Team highscores</Text>
-          {teams &&
-            teams.data.map((item, index) => (
-              <TeamRow
-                key={item.id}
-                name={item.name}
-                team_score={item.team_score}
-                position={index + 1}
-              />
-            ))}
-        </View>
-      </ScrollView>
-    )
+        ]
+      }
+    </ScrollView>)
     return elements
   }
 }

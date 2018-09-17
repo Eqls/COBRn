@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
 
 const Scores = ({ score, rating, numberofratings }) => [
   <View style={styles.container}>
-    <Text style={styles.title}>My Feedback</Text>
+    <Text style={styles.title}>Mijn Waardering</Text>
     <Text>{"(" + numberofratings + ")"}</Text>
     <StarRatingDisplay starSize={30} rating={rating} />
   </View>,
   <View style={styles.container}>
-    <Text style={styles.title}>My Team Score</Text>
+    <Text style={styles.title}>Mijn Team Score</Text>
     <Text style={styles.team_score}>{score}</Text>
   </View>
 ];

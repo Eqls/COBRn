@@ -9,7 +9,8 @@ import {
   Platform,
   StyleSheet,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground
 } from "react-native";
 import { connect } from "react-redux";
 import { auth } from "../actions";
@@ -24,31 +25,17 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "white"
+    justifyContent: "flex-end",
+    backgroundColor: "transparent"
   },
   formField: {
     height: 50,
     backgroundColor: "#f2f2f2",
     borderRadius: 50,
     width: "100%",
-    marginBottom: 10,
+    marginBottom: 15,
     zIndex: 1,
     color: "darkblue"
-  },
-  header: {
-    flex: 1,
-    paddingTop: 30,
-    fontSize: 38,
-    zIndex: 1,
-    color: styleConsts.login_font_color
-  },
-  illustration: {
-    position: "absolute",
-    bottom: 140,
-    left: 0,
-    resizeMode: "contain",
-    width: Dimensions.get("window").width
   },
   button: {
     display: "flex",
@@ -59,14 +46,15 @@ const styles = StyleSheet.create({
     backgroundColor: styleConsts.login_font_color
   },
   form: {
-    flex: 1,
     width: "100%",
-    padding: 10
+    padding: 10,
+    marginBottom: 30
   },
   checkin: {
     position: "absolute",
-    right: 30,
-    bottom: -23
+    right: 40,
+    bottom: -12,
+    zIndex: 999,
   },
   checkin_icon: {
     aspectRatio: 0.25,
@@ -109,45 +97,51 @@ class Login extends React.Component {
       Actions.home();
     }
     return (
-      <View style={styles.container}>
-        <Text style={styles.header}>Klantgericht Omroepen</Text>
-        {error && <Text>{error.error}</Text>}
-        <View style={styles.form}>
-          <Image style={styles.illustration} source={Illustration} />
-          <TextInput
-            style={styles.formField}
-            placeholderTextColor="darkblue"
-            onChangeText={name => this.handleChange({ name: name })}
-            value={user.name}
-            placeholder="Enter Your username"
-            autoCapitalize="none"
-            underlineColorAndroid="transparent"
-            textAlign={"center"}
-          />
-          <TextInput
-            style={styles.formField}
-            placeholderTextColor="darkblue"
-            onChangeText={password => this.handleChange({ password: password })}
-            value={user.password}
-            type="password"
-            placeholder="Enter Your password"
-            autoCapitalize="none"
-            underlineColorAndroid="transparent"
-            textAlign={"center"}
-            secureTextEntry
-          />
-          <TouchableOpacity
-            onPress={this.sendLoginRequest}
-            style={styles.button}
-          >
-            <View style={styles.checkin}>
-              <Image style={styles.checkin_icon} source={CheckinIcon} />
+      <View style={{ flex: 1 }}>
+        <ImageBackground
+          resizeMode={'cover'} // or cover
+          style={{ flex: 1 }} // must be passed from the parent, the number may vary depending upon your screen size
+          source={Illustration}
+        >
+          <View style={styles.container}>
+            {error && <Text>{error.error}</Text>}
+            <View style={styles.form}>
+              <TextInput
+                style={styles.formField}
+                placeholderTextColor="darkblue"
+                onChangeText={name => this.handleChange({ name: name })}
+                value={user.name}
+                placeholder="Enter Your username"
+                autoCapitalize="none"
+                underlineColorAndroid="transparent"
+                textAlign={"center"}
+              />
+              <TextInput
+                style={styles.formField}
+                placeholderTextColor="darkblue"
+                onChangeText={password => this.handleChange({ password: password })}
+                value={user.password}
+                type="password"
+                placeholder="Enter Your password"
+                autoCapitalize="none"
+                underlineColorAndroid="transparent"
+                textAlign={"center"}
+                secureTextEntry
+              />
+              <TouchableOpacity
+                onPress={this.sendLoginRequest}
+                style={styles.button}
+              >
+                <Text style={{ fontSize: 16, color: "white", fontWeight: "bold" }}>
+                  Login
+                </Text>
+              </TouchableOpacity>
+              <View style={styles.checkin}>
+                <Image style={styles.checkin_icon} source={CheckinIcon} />
+              </View>
             </View>
-            <Text style={{ fontSize: 16, color: "white", fontWeight: "bold" }}>
-              Login
-            </Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </ImageBackground>
       </View>
     );
   }

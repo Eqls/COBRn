@@ -6,7 +6,6 @@ import { DefaultAvatar } from "../../assets/images";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     display: "flex",
     flexDirection: "row",
     alignItems: "stretch",
@@ -28,7 +27,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   name: {
-    color: "darkblue"
+    color: "darkblue",
+    fontSize: 14
   },
   avatar_img: {
     height: 50,
@@ -36,26 +36,31 @@ const styles = StyleSheet.create({
   },
   avatar: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center"
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  title: {
+    flex: 3,
+    color: "#010763",
+    fontWeight: "bold"
   }
 });
 
-const TeammateRow = ({ name, mod_score, num_of_recordings, avatar }) => (
+const TeammateRow = ({ name, mod_score, num_of_recordings, avatar, empty }) => (
   <View style={styles.container}>
-    <View style={styles.avatar}>
-      <Image
-        style={styles.avatar_img}
-        source={avatar ? { uri: config.PHOTO_URL + avatar } : DefaultAvatar}
-      />
-    </View>
-    <View style={styles.user_details}>
-      <Text style={styles.name}>{name}</Text>
-      <View style={styles.user_scores}>
-        <StarRatingDisplay starSize={30} rating={mod_score} />
-        <Text style={{ marginLeft: 10 }}>{"(" + num_of_recordings + ")"}</Text>
-      </View>
-    </View>
+    {empty ? <Text style={styles.title}>No results found.</Text> :
+      [
+        <View style={styles.avatar}>
+          <Image style={styles.avatar_img} source={avatar ? { uri: config.PHOTO_URL + avatar } : DefaultAvatar} />
+        </View>,
+        <View style={styles.user_details}>
+          <Text style={styles.name}>{name}</Text>
+          <View style={styles.user_scores}>
+            <StarRatingDisplay starSize={20} rating={mod_score} />
+            <Text style={{ marginLeft: 10 }}>{"(" + num_of_recordings + ")"}</Text>
+          </View>
+        </View>
+      ]}
   </View>
 );
 

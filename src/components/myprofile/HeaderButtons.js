@@ -28,13 +28,13 @@ const HeaderButtons = ({ selectPicture }) => (
     <TouchableOpacity
       style={styles.button}
       onPress={selectPicture}>
-      <Text style={{ color: "#010763" }}>Upload Photo</Text>
+      <Text style={{ color: "#010763" }}>Upload Foto</Text>
       <Image style={styles.button_icon} source={CameraIcon} />
     </TouchableOpacity>
     <TouchableOpacity
       style={styles.button}
       onPress={Actions.editprofile}>
-      <Text style={{ color: "#010763" }}>Edit Profile</Text>
+      <Text style={{ color: "#010763" }}>Wijzig Naam</Text>
       <Image style={styles.button_icon} source={WriteIcon} />
     </TouchableOpacity>
   </View>

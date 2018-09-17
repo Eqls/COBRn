@@ -17,7 +17,6 @@ import config from '../../config/config'
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     paddingRight: 20,
@@ -83,10 +82,11 @@ const ChallengeRow = ({ challenge }) => (
     <View style={styles.info}>
       <Text style={styles.info_text}>{challenge.name ? challenge.name : 'No title'}</Text>
     </View>
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity
+      onPress={() => Actions.challengecard({ challenge })}
+      style={styles.button}>
       <Text
         style={styles.button_text}
-        onPress={() => Actions.challengecard({ challenge })}
       >
         Bekijk
       </Text>

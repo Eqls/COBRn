@@ -26,11 +26,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const TeamRow = ({ name, team_score, position }) => (
+const TeamRow = ({ name, team_score, position, empty }) => (
   <View style={styles.container}>
-    <Text style={{ flex: 1, color: "#137BD1" }}>{position}</Text>
-    <Text style={styles.title}>{name}</Text>
-    <Text style={styles.team_score}>{team_score}</Text>
+    {empty ? <Text style={styles.title}>No results found.</Text> :
+      [<Text style={{ flex: 1, color: "#137BD1" }}>{position}</Text>,
+      <Text style={styles.title}>{name}</Text>,
+      <Text style={styles.team_score}>{team_score}</Text>]}
   </View>
 );
 

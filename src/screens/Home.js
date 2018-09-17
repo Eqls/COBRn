@@ -15,9 +15,57 @@ import {
   HighScoresIcon,
   TeamListIcon,
   MyTeamIcon,
-  ChallengesIcon
+  ChallengesIcon,
+  HomePeople
 } from '../assets/images'
 import styleConsts from '../constants/styles'
+
+
+export class Home extends React.Component {
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.bg_wrapper}>
+          <Image style={styles.bg} source={HomeBackground} />
+        </View>
+        <View style={styles.home_people_wrapper}>
+          <Image style={styles.home_people} source={HomePeople} />
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => Actions.myprofile()} style={styles.box}>
+            <Image style={styles.img} source={MyProfileIcon} />
+            <Text style={styles.box_text}>Mijn Profiel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => Actions.highscores()} style={styles.box}>
+            <Image style={styles.img} source={HighScoresIcon} />
+            <Text style={styles.box_text}>Score Lijst</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => Actions.allteams()} style={styles.box}>
+            <Image style={styles.img} source={TeamListIcon} />
+            <Text style={styles.box_text}>Alle Teams</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => Actions.myteam()} style={styles.box}>
+            <Image style={styles.img} source={MyTeamIcon} />
+            <Text style={styles.box_text}>Mijn Team</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => Actions.challenges()} style={styles.box}>
+            <Image style={styles.img} source={ChallengesIcon} />
+            <Text style={styles.box_text}>Challenges</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.trademark_container}>
+          <Text style={styles.trademark}><Text style={{ color: styleConsts.dark_blue }}>by</Text> YellowStorm</Text>
+        </View>
+      </View>
+    )
+  }
+}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -47,48 +95,43 @@ const styles = StyleSheet.create({
     color: styleConsts.dark_blue,
     fontSize: 15
   },
-  bg: {
+  bg_wrapper: {
     position: 'absolute',
-    resizeMode: 'cover',
-    width: Dimensions.get('window').width,
-    bottom: 0,
+    top: -505,
     left: 0
+  },
+  bg: {
+    aspectRatio: .28,
+    resizeMode: 'contain',
+  },
+  home_people_wrapper: {
+    position: 'absolute',
+    bottom: -46,
+    right: 0,
+  },
+  home_people: {
+    aspectRatio: 0.5,
+    resizeMode: 'contain'
+  },
+  trademark_container: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    backgroundColor: '#f2f2f2',
+    borderRadius: 40,
+    padding: 3,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  trademark: {
+    color: styleConsts.gold,
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  img: {
+    height: 83,
+    width: 83,
+    resizeMode: 'contain'
   }
 });
 
-export default class Home extends React.Component {
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Image style={styles.bg} source={HomeBackground} />
-        <View style={styles.row}>
-          <TouchableOpacity onPress={() => Actions.myprofile()} style={styles.box}>
-            <Image source={MyProfileIcon} />
-            <Text style={styles.box_text}>My Profile</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.highscores()} style={styles.box}>
-            <Image source={HighScoresIcon} />
-            <Text style={styles.box_text}>High Scores</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.row}>
-          <TouchableOpacity onPress={() => Actions.allteams()} style={styles.box}>
-            <Image source={TeamListIcon} />
-            <Text style={styles.box_text}>All Teams</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.myteam()} style={styles.box}>
-            <Image source={MyTeamIcon} />
-            <Text style={styles.box_text}>My Team</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.row}>
-          <TouchableOpacity onPress={() => Actions.challenges()} style={styles.box}>
-            <Image source={ChallengesIcon} />
-            <Text style={styles.box_text}>Challenges</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    )
-  }
-}
+export default Home

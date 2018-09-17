@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "flex-start",
     backgroundColor: "#f2f2f2",
     height: "100%"
@@ -93,51 +93,55 @@ class MyTeam extends React.Component {
   render() {
     const { team } = this.props;
     return (
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.container}>
         {team.isFetching || !team.current ? (
-          <ActivityIndicator size="small" color="#FECB45" />
+          <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+          >
+            <ActivityIndicator size="large" color="#FECB45" />
+          </View>
         ) : (
           [
-          <View style={styles.header}>
-            {console.log(team)}
-            <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-              <Image source={HomeIconBlue} />
-            </TouchableOpacity>
-            <Image style={styles.icon} source={TeamIcon} />
-            <Text style={styles.header_title}>
-              Team{" "}
-              <Text style={{ fontWeight: "bold" }}>{team.current.name}</Text>
-            </Text>
-            <Text style={styles.score}>{team.current.team_score}</Text>
-            <Text style={styles.score_text}>punten</Text>
-          </View>,
-          <View style={styles.table}>
-            {team.current &&
-              team.current.team_members.map((item, index) => (
-                <TeammateRow
-                  name={item.name}
-                  mod_score={item.mod_score}
-                  num_of_recordings={item.num_of_recordings}
-                  avatar={item.avatar}
-                />
-              ))}
-          </View>,
-          <View style={styles.table}>
-            <View style={styles.guy}>
-              <Image style={styles.guy_icon} source={TeamGuy} />
+            <View style={styles.header}>
+              <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                <Image source={HomeIconBlue} />
+              </TouchableOpacity>
+              <Image style={styles.icon} source={TeamIcon} />
+              <Text style={styles.header_title}>
+                Team{" "}
+                <Text style={{ fontWeight: "bold" }}>{team.current.name}</Text>
+              </Text>
+              {console.log(team.current)}
+              <Text style={styles.score}>{team.current.team_score}</Text>
+              <Text style={styles.score_text}>punten</Text>
+            </View>,
+            <View style={styles.table}>
+              {team.current &&
+                team.current.team_members.map((item, index) => (
+                  <TeammateRow
+                    name={item.name}
+                    mod_score={item.mod_score}
+                    num_of_recordings={item.num_of_recordings}
+                    avatar={item.avatar}
+                  />
+                ))}
+            </View>,
+            <View style={styles.table}>
+              <View style={styles.guy}>
+                <Image style={styles.guy_icon} source={TeamGuy} />
+              </View>
+              <Text style={styles.table_header}>Team Opnames</Text>
+              {team.current && team.current.team_recordings.length > 0 ? (
+                team.current.team_recordings.map((item, index) => (
+                  <TeamRecordingsRow
+                    name={item.path_to_recording}
+                    num_of_comments={item.number_of_comments}
+                  />
+                ))
+              ) : (
+                <TeamRecordingsRow empty />
+              )}
             </View>
-            <Text style={styles.table_header}>Team opnames</Text>
-            {team.current && team.current.team_recordings.length > 0 ? (
-              team.current.team_recordings.map((item, index) => (
-                <TeamRecordingsRow
-                  name={item.path_to_recording}
-                  num_of_comments={item.number_of_comments}
-                />
-              ))
-            ) : (
-              <TeamRecordingsRow empty />
-            )}
-          </View>
           ]
         )}
       </ScrollView>
