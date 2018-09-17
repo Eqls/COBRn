@@ -22,7 +22,6 @@ import { HomeIcon, DefaultAvatar } from "../assets/images";
 import axios from "axios";
 import { authHeader } from "../utils";
 import styleConsts from "../constants/styles";
-import { Player, Recorder, MediaStates } from "react-native-audio-toolkit";
 import ImagePicker from "react-native-image-crop-picker";
 
 const styles = StyleSheet.create({
@@ -71,6 +70,11 @@ const styles = StyleSheet.create({
     left: 0,
     padding: 20,
     width: "100%"
+  },
+  avatar_img: {
+    height: 112,
+    width: 112,
+    borderRadius: 100
   }
 });
 
@@ -95,65 +99,6 @@ class MyProfile extends React.Component {
     });
   };
 
-  async checkPermission() {
-    if (Platform.OS !== "android") {
-      return Promise.resolve(true);
-    }
-
-    let result;
-    try {
-      result = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
-        {
-          title: "Microphone Permission",
-          message: "To record audio please allow access to your microphone!"
-        }
-      );
-    } catch (error) {
-      console.error("failed getting permission, result:", result);
-    }
-    console.log("permission result:", result);
-    return result === true || result === PermissionsAndroid.RESULTS.GRANTED;
-  }
-
-  onPress() {
-    this.checkPermission();
-
-    this.setState({ disabled: true });
-
-    // Start recording
-    let rec = new Recorder("filename.mp4").record();
-
-    // Stop recording after approximately 3 seconds
-    setTimeout(() => {
-      rec.stop(err => {
-        // NOTE: In a real situation, handle possible errors here
-        let data = new FormData();
-        console.log(rec._fsPath);
-        data.append("recording[path_to_recording]", {
-          uri: "file://" + rec._fsPath,
-          name: "filename.mp4",
-          type: "audio/mp4"
-        });
-        data.append("recording[challenge_id]", 1);
-        data.append("recording[user_id]", 1);
-        console.log(data);
-        axios
-          .post(config.API_URL + "recordings", data, {
-            headers: {
-              Authorization: "Bearer " + this.props.auth.token
-            }
-          })
-          .then(res => res.data);
-        // Play the file after recording has stopped
-        new Player("filename.mp4").play().on("ended", () => {
-          // Enable button again after playback finishes
-          this.setState({ disabled: false });
-        });
-      });
-    }, 3000);
-  }
-
   render() {
     const { user } = this.props;
     const { showUploadDialog } = this.state;
@@ -167,13 +112,21 @@ class MyProfile extends React.Component {
             <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
               <Image source={HomeIcon} />
             </TouchableOpacity>
+            {console.log(config.PHOTO_URL + user.current.avatar)}
             <TouchableHighlight
               disabled={this.state.disabled}
               onPress={() => this.onPress()}
             >
               <Text>Press me!</Text>
             </TouchableHighlight>
-            <Image source={DefaultAvatar} />
+            <Image
+              style={styles.avatar_img}
+              source={
+                  user.current.avatar
+                    ? { uri: config.PHOTO_URL + user.current.avatar }
+                    : DefaultAvatar
+              }
+            />
             <Text style={styles.username}>@{user.current.name}</Text>
             <HeaderButtons selectPicture={this.selectPicture} />
           </View>,
