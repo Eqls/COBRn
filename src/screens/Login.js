@@ -16,6 +16,7 @@ import { auth } from "../actions";
 import styleConsts from "../constants/styles";
 import { Illustration } from "../assets/images/login";
 import { CheckinIcon } from "../assets/images";
+import ProgressBar from "../components/challengecard/ProgressBar";
 
 const styles = StyleSheet.create({
   container: {

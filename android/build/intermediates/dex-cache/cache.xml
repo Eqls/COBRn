@@ -3,201 +3,318 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\22c005c72458670bd33501a924199d17c4fea9f8\output\jars\classes.jar"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.0/edf3f7bfb84a7521d0599efa3b0113a0ee90f85/common-1.1.0.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="3d46095629eedbd5b79b4d129428fc499473a73b">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_2ddcafb74174c28c794b84b4b16d417b66b6b086.jar" />
+        sha1="0edf3f7bfb84a7521d0599efa3b0113a0ee90f85">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/common-1.1.0_60398be6fb909404b20cd5c0e51bf68431037021.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\81a3fc28d041570d291a1db2a474be4b84dc3ac9\output\jars\classes.jar"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/android.arch.lifecycle/livedata-core/1.1.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="f80a752d1333efd4fb9b87da63e73909acb151af">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_b3f2f8b991345b1b9343a1457aa8a8a4bc43727b.jar" />
+        sha1="8a9fd7c97f1d13f97f3b52f9d2e54cd857d5acf9">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-livedata-core-1.1.0_34051024b995473c66d40b1c227230296531ee63.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\4d4700a7196a72bfe59830d4188315ba41ebbd16\output\jars\classes.jar"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.10.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="da59c80e4a1c8df62d2b4188ef3efddab8afa236">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_9594e8edf85bbd24c9cb2dd3b7c25948815a83ab.jar" />
+        sha1="df777c6b52d3e1840381b41615b99f290201638d">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.10.0_b3aaecf4509c596646ad0134908bbef0fcc6cdf6.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Projects\COBRn\node_modules\react-native-image-crop-picker\android\build\intermediates\bundles\default\classes.jar"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/COBRn/react-native-audio-toolkit/unspecified/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="1b9afe36a10a6f5576b494113cda4a30d09baac3">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_5f6d46040cb11e710a22047e244db6381c9bce87.jar" />
+        sha1="b83fe0fde493a61ff19294f9db0aa40eb32960a9">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/COBRn-react-native-audio-toolkit-unspecified_6309a7b840b79a391dddb6ffbdc9177618f7b649.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\833afd7ae3880d0d7a8b9d0b343b1cc6591c05a0\output\jars\classes.jar"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.10.0/ec614c05825ddd2267677a99f585d3913474b125/okhttp-urlconnection-3.10.0.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="dc6c0959ecc7b21932675183573b2bcecf2687b9">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_b18c26de7553092eae7bbfcfb1c3fffa0de52d70.jar" />
+        sha1="ec614c05825ddd2267677a99f585d3913474b125">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.10.0_510a3cb0f7c233b26d1ee59a1e26b3512af7e3fe.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\e2539e6d1316f9d2032f5e09f281d9d99df27936\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="ae15c560bc6685007440d8a70686f8348bafd791">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_76f73001cfd5c6b61e4f0f0f79b96fbf62bd043b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\190429661ca0a5fa30e17aa0cdc631ffa3b37ac1\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="6f209b73a488f358673f39317df394bd7a99c05e">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_7cdb44bd8bba11ed7f0b72d6f6c4c91c6afcc3d9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\d3a97ae178431f68a2becd3412485e4d382c13d4\output\jars\libs\infer-annotations-4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_977e57236d473356afc96cb748cd881f2a0ea70e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\51a934abca98d21600a727daa3604e67a75b7f48\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="1c9837ec75b2273699379c2ba0ae63d669b4f08c">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_9142a81ea5f1dc2d0f1eb7fb72db0585960fd33e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\holo\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.0\5871fb60dc68d67da54a663c3fd636a10a532948\jsr305-3.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\jsr305-3.0.0_b4a27cc96e998e4d3510b82688c03dc3dc792cb8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\5b8da1ac6ca4a6b07cb6b460f83190454db5e75d\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="705378853cb9f264315d7a0a8edb6743d72efe9b">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_4a9bbf8cb778363e9d48e11f36e7314dcb379610.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\e1e3d825d982787a7d13f7421db0f2e42c65fe96\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="755c70a5a4e439030f67311dbafaa67b111377a6">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_53e393a36f1af77b3f55c3136ecced2c58414904.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\holo\.gradle\caches\modules-2\files-2.1\com.facebook.fbui.textlayoutbuilder\staticlayout-proxy\1.0\f162442a19fff13995fbd51ba414d9ee05579080\staticlayout-proxy-1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_ea33c18f17e387ab1922b24da44e9ebfd4723bde.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\0b85f6d1abb435f68d497e5d2380a54563bf867a\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="fe6c8fbfeeb1454c3eb605c9b66662991681fd55">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_8c211f12ce77068a8b4fe0658525b18523db5130.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\holo\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\27.1.0\39ded76b5e1ce1c5b2688e1d25cdc20ecee32007\support-annotations-27.1.0.jar"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.1.1/39ded76b5e1ce1c5b2688e1d25cdc20ecee32007/support-annotations-27.1.1.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
         sha1="39ded76b5e1ce1c5b2688e1d25cdc20ecee32007">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\support-annotations-27.1.0_ecf55b2bbc6f064c6d71a580d3fc97fd77a2929e.jar" />
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/support-annotations-27.1.1_ecceb711c9cf2178408b0e6d758d3c34bee55581.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\57819c0449edd3b5a6ff08a9ccfc760468d7301d\output\jars\classes.jar"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="9a2ea9818b2f556b6663c0e7376bd664ee6c7550">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_ea479bfb7cc66d3751542f8328dcadb0f9b0b638.jar" />
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_3eb4716e38c36af994cfeb934b15309b535ed112.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\ec0382d9a85fdf8615f80d9a4b60d2f7d6e5aafc\output\jars\classes.jar"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.10.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_e305a633a0d9a69d70075ee29d7e95a60b605120.jar" />
+        sha1="e3b76ad3c1f40d13f12aa2458deaca8d6820a5e7">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.10.0_72252080bdf90656d118a6b5619c29a4f345d9d4.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\d34a44f7642ff8a3703ee6fa474bb833bef5715e\output\jars\classes.jar"
+        jar="/Users/admin/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="5c66801c7ac6def4ffef7859925b12ce7940438e">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_d3a9fe921da999878fd9251fd9d0b34bd6aaa710.jar" />
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_98241566bdda763af4e2e72379b8e1a3dde54971.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\d3a97ae178431f68a2becd3412485e4d382c13d4\output\jars\classes.jar"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/27.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="e7a850c25a7efbd533c496ab482c980fdafac58d">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_373fc37cd3ccdc787415b2aa893e5210c1e035eb.jar" />
+        sha1="c9a721adcd7dbae7a197b0ef81102336539f63ff">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-27.1.1_81f2678c223fc4b743677e25c52b994fe6e834c7.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\05a6f65d7793b60e5df0c95551d085d010993373\output\jars\classes.jar"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.facebook.infer.annotation/infer-annotation/0.11.2/f514ff4ca022a579d9cf7524846988b646ae4491/infer-annotation-0.11.2.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="9803a14716e9f462afb5742811f3456c39f3be3a">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_f02ad25b67834a57f50915a0085f90193be7d746.jar" />
+        sha1="f514ff4ca022a579d9cf7524846988b646ae4491">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/infer-annotation-0.11.2_db5c4ddd287c491148b9d848cad5925d2b3e58b0.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\holo\.android\build-cache\1e0a2c45180c41d38690185453ce454e332c29d5\output\jars\classes.jar"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.10.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="87382214d92be4e3c931cb6aa7aa4e827bc179b7">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_19f863c5d789fd50d7f2c661a2bd72b2c828bb01.jar" />
+        sha1="2648a2080054daa5ff07cbce9fded91153be4b11">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.10.0_5bd8df6a5b960062ff6e6f6c3bce6bfb447610dc.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Projects\COBRn\node_modules\react-native-audio-toolkit\android\lib\build\intermediates\bundles\default\classes.jar"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/27.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="67ebccccbf5d32f2f0b9a3d5c847052b43d2b6cc">
-        <dex dex="C:\Projects\COBRn\android\app\build\intermediates\pre-dexed\debug\classes_f44576bb7fab9f2bb0e348389fcb35cf2bf48a1d.jar" />
+        sha1="2feadd535770271ca57b7b431f42151aa4af324a">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-27.1.1_7b6285d8059d7c5d3448fd920abd5ffe4b3d17bf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/COBRn/react-native-image-crop-picker/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a432bf13b1a75796fa9946676c1d450dd98c77a1">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/COBRn-react-native-image-crop-picker-unspecified_f00834e8ecec213087aea51a4fa84afc5b20a6a6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.0/8007981f7d7540d89cd18471b8e5dcd2b4f99167/common-1.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8007981f7d7540d89cd18471b8e5dcd2b4f99167">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/common-1.1.0_6073fb3aa8134401e2030eb7d3f2119a4b809223.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/id.zelory/compressor/2.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="6b1555196d65ffa1174f6f49efb2f278905f537a">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/id.zelory-compressor-2.1.0_659ea8000d02394cf218a65311e91954345eded1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/android.arch.lifecycle/viewmodel/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="1fd3ceac7f415975323d52c6c6057db409a907f6">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_c57cf78b8b1cef11ebaeae28905524c91edda915.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.10.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="26e08c73415d43f2fa1cca5212d2e4d650503ddd">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.10.0_3576ca94081c4f2b0a96d7b823f8d94331cc58cb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.10.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="bf98d9bbac6d175c40d9a3d1d8da77fbbcf0a81c">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.10.0_d2d1b6274cc652f1a167c450d5fa388eace222a6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d968b9bd0011800e0d333d1571b8d34bcb8a0b6e">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-27.1.1_4645dd48c788bf8e2b876d0b24d14602f2cb2ed3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.14.0/102d7be47241d781ef95f1581d414b0943053130/okio-1.14.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="102d7be47241d781ef95f1581d414b0943053130">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/okio-1.14.0_fed0d64ad82147a04cf2903c12fb481910593d9f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/reactive-streams-1.0.0_debc19650c2611248f049832fbb0f5a88461b26e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.android.support/support-compat/27.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="23dcb4803d3103bde3f3f5db978a726338fe49ae">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.1_c58067ee5c0a2eb944dcea0f117365f9c8dd0b37.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/27.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="ec657bb192b20229696216bf233779b16bf75a54">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_417d82889c69e2c5fcf690810b24578711cee4d3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/android.arch.lifecycle/runtime/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="e2bbe48deed35056023eed2cdc0cc92e5c7d3617">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_455a8161186b25bdd4b66d9eebb33eeb4f93deb7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.0/2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1/rxjava-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/rxjava-2.1.0_59fe761751e706804bd5dee28e434f3186aa71e7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.10.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="61741c492af29679431ed009915fe0538dd6b1ce">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.10.0_33a2bb2a6a36be29c6a0ea335bb3c3b91a372ba7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.5.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="cc5b65162cf57363b4a924805f16947660918cdf">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.5.1_b4665833e9ba31e27fe26ce9e85807b19acb536f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.android.support/support-fragment/27.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3304d33470ff64cf83bce9189ff3648a42eb2aa7">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_995e5c248be6f2301ca79739089844627f94f97f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/27.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="874f1143c11f5d38533efe512bf913e3e847e7df">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_ffbb83d3af671b61c80b6ab981bf6185d57fa10d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.github.yalantis/ucrop/2.2.2-native/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3bed41dc3164f618b7c22f37116f60b2017046e7">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.github.yalantis-ucrop-2.2.2-native_20c0118964d0f2cda87dc2822ecdfe7b5254dd28.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/android.arch.core/runtime/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="71d380aeac037e63bab7bda2ba211777e16a2f42">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_cb08eac2054d3259cd45e371bb802b3260622c81.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="25ea2e8b0c338a877313bd4672d3fe056ea78f0d">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.2_188ae4d1b2875efb2893737e296c7526a0e3c6f2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.57.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="ea7fe0eaf7b6007b2e5260aeaf75bf24c7c75795">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.57.0_be8215bf3b68e70ec0f7a5bb9a4cb4d45efccea6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/admin/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.10.0/7ef0f1d95bf4c0b3ba30bbae25e0e562b05cf75e/okhttp-3.10.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="7ef0f1d95bf4c0b3ba30bbae25e0e562b05cf75e">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/okhttp-3.10.0_1d1fc367bb8de28ae143fabeb4efb5fa5c680a4a.jar" />
     </item>
 
 </items>

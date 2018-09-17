@@ -18,26 +18,16 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    color: "#010763",
-    fontWeight: "bold"
+    fontSize: 16,
+    color: 'black'
   },
-  team_score: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#137BD1"
-  }
 });
 
-const Scores = ({ score, rating, numberofratings }) => [
+const RatingRow = ({ rating }) => (
   <View style={styles.container}>
-    <Text style={styles.title}>My Feedback</Text>
-    <Text>{"(" + numberofratings + ")"}</Text>
-    <StarRatingDisplay starSize={30} rating={rating} />
-  </View>,
-  <View style={styles.container}>
-    <Text style={styles.title}>My Team Score</Text>
-    <Text style={styles.team_score}>{score}</Text>
+    <Text style={styles.title}>Uitdaging</Text>
+    <StarRatingDisplay starSize={30} chilli {...{ rating }} />
   </View>
-];
+)
 
-export default Scores;
+export default RatingRow;

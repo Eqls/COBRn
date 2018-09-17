@@ -41,7 +41,6 @@ const callAPIMiddleware = ({ dispatch, getState }) => {
 
     return callAPI().then(
       response => {
-
         if (exec) exec(response)
         dispatch(
           Object.assign({}, payload, {

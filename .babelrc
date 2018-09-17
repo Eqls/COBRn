@@ -1,11 +1,17 @@
 {
-  presets: ["react-native"],
-  env: {
-    development: {
-      plugins: ["@babel/plugin-proposal-export-default-from"]
+  "presets": [
+    "react-native"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "@babel/plugin-proposal-export-default-from"
+      ]
     },
-    production: {
-      plugins: ["@babel/plugin-proposal-export-default-from"]
+    "production": {
+      "plugins": [
+        "@babel/plugin-proposal-export-default-from"
+      ]
     }
   }
 }

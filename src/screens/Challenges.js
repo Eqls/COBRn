@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
   },
   table: {
     flex: 1,
-    display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     flexDirection: 'column',
@@ -108,6 +107,7 @@ class Challenges extends React.Component {
           {teams &&
             teams.data.map((item, index) => (
               <TeamRow
+                key={item.id}
                 name={item.name}
                 team_score={item.team_score}
                 position={index + 1}
