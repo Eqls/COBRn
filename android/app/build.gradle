@@ -96,9 +96,10 @@ def enableProguardInReleaseBuilds = false
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
+
     defaultConfig {
         applicationId "com.cobrn"
-        minSdkVersion 23
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         vectorDrawables.useSupportLibrary = true
@@ -146,9 +147,6 @@ android {
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
         }
-    }
-    lintOptions {
-        abortOnError false
     }
 }
 

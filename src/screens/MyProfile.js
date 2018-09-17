@@ -55,38 +55,52 @@ class MyProfile extends React.Component {
             <ActivityIndicator size="large" color="#FECB45" />
           </View>
         ) : (
-            [
-              <View style={styles.header}>
-                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-                  <Image source={HomeIcon} />
-                </TouchableOpacity>
-                {console.log(config.PHOTO_URL + user.current.avatar)}
-                <Image style={styles.avatar_img} source={user.current.avatar ? { uri: config.PHOTO_URL + user.current.avatar } : DefaultAvatar} />
-                <Text style={styles.username}>@{user.current.name}</Text>
-                <HeaderButtons selectPicture={this.selectPicture} />
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>Punten</Text>
-                {console.log(user.current)}
-                <Scores
-                  score={user.current.team_score}
-                  rating={user.current.mod_score_sum}
-                  numberofratings={user.current.num_of_recordings}
+          [
+          <View style={styles.header}>
+            <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+              <Image source={HomeIcon} />
+            </TouchableOpacity>
+            {console.log(config.PHOTO_URL + user.current.avatar)}
+            <TouchableHighlight
+              disabled={this.state.disabled}
+              onPress={() => this.onPress()}
+            >
+              <Text>Press me!</Text>
+            </TouchableHighlight>
+            <Image
+              style={styles.avatar_img}
+              source={
+                  user.current.avatar
+                    ? { uri: config.PHOTO_URL + user.current.avatar }
+                    : DefaultAvatar
+              }
+            />
+            <Text style={styles.username}>@{user.current.name}</Text>
+            <HeaderButtons selectPicture={this.selectPicture} />
+          </View>,
+          <View style={styles.table}>
+            <Text style={styles.table_header}>Mijn Scores</Text>
+            <Scores
+              score={user.current.team_score}
+              rating={user.current.mod_score_sum}
+              numberofratings={user.current.num_of_recordings}
+            />
+          </View>,
+          <View style={styles.table}>
+            <Text style={styles.table_header}>Opnames</Text>
+            {user.current &&
+              user.current.recording_list.map((item, index) => (
+                <TeamRecordingsRow
+                  id={item.id}
+                  name={item.recording_name.file_name}
+                  num_of_comments={item.number_of_comments}
+                  path_to_recording={item.path_to_recording}
+                  comments={item.recording_comments}
                 />
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>Team opnames</Text>
-                {user.current &&
-                  user.current.recording_list.map((item, index) => (
-                    <TeamRecordingsRow
-                      name={item.recording_name.file_name}
-                      num_of_comments={item.number_of_comments}
-                      path_to_recording={item.path_to_recording}
-                    />
-                  ))}
-              </View>
-            ]
-          )}
+              ))}
+          </View>
+          ]
+        )}
       </ScrollView>
     );
   }

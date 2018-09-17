@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { CommentIcon, PlayIcon } from "../../assets/images";
 import config from "./../../config/config";
+import { Actions } from "react-native-router-flux";
 import { Player, MediaStates } from "react-native-audio-toolkit";
 
 const styles = StyleSheet.create({
@@ -44,16 +45,30 @@ const styles = StyleSheet.create({
   }
 });
 
-const TeamRecordingsRow = ({ name, num_of_comments, path_to_recording, empty }) => {
+const TeamRecordingsRow = ({
+  id,
+  name,
+  num_of_comments,
+  path_to_recording,
+  comments,
+  empty
+}) => {
   playAudio = () => {
     new Player(config.PHOTO_URL + path_to_recording).play();
   };
   return (
     <View style={styles.container}>
-      {empty ? <Text style={styles.title}>No results found.</Text> :
+      {empty ? (
+        <Text style={styles.title}>No results found.</Text>
+      ) : (
         [
-          <Text style={styles.title}>{name}</Text>,
-          <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
+        <Text style={styles.title}>{name}</Text>,
+        <TouchableOpacity
+          style={{ paddingRight: 10, paddingLeft: 10 }}
+          onPress={() =>
+            Actions.comments({ id, name, comments, path_to_recording })
+          }
+          >
             <ImageBackground style={styles.comment_icon} source={CommentIcon}>
               <Text style={{ fontSize: 12 }}>{num_of_comments}</Text>
             </ImageBackground>
@@ -64,7 +79,8 @@ const TeamRecordingsRow = ({ name, num_of_comments, path_to_recording, empty }) 
           >
             <Image style={styles.play_icon} source={PlayIcon} />
           </TouchableOpacity>
-        ]}
+        ]
+      )}
     </View>
   );
 };

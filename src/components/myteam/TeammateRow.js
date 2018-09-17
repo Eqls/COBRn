@@ -1,8 +1,8 @@
-import React from "react"
-import { View, Text, StyleSheet, Image } from "react-native"
-import { StarRatingDisplay } from "../StarRatingDisplay"
-import config from "./../../config/config"
-import { DefaultAvatar } from '../../assets/images'
+import React from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
+import { StarRatingDisplay } from "../StarRatingDisplay";
+import config from "./../../config/config";
+import { DefaultAvatar } from "../../assets/images";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   user_scores: {
     flex: 1,
     flexDirection: "row",
-    alignItems: 'center'
+    alignItems: "center"
   },
   name: {
     color: "darkblue",
