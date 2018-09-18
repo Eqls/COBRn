@@ -64,15 +64,15 @@ const styles = StyleSheet.create({
   guy_wrapper: {
     position: "absolute",
     bottom: -20,
-    right: 10,
+    right: 10
   },
   guy: {
     aspectRatio: 0.5,
-    resizeMode: 'contain'
+    resizeMode: "contain"
   },
   icon: {
     aspectRatio: 1,
-    resizeMode: 'contain'
+    resizeMode: "contain"
   }
 });
 
@@ -93,46 +93,54 @@ class HighScores extends React.Component {
           !this.props.teams.all &&
           users.isFetching &&
           !this.props.users.all ? (
-            <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <View
+              style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+            >
               <ActivityIndicator size="large" color="#FECB45" />
             </View>
           ) : (
             [
-              <View style={styles.header}>
-                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-                  <Image source={HomeIconBlue} />
-                </TouchableOpacity>
-                <Image style={styles.icon} source={HighScoresIcon2} />
-                <Text style={styles.header_title}>Score Lijst</Text>
-              </View>,
-              <View style={styles.table}>
-                <View style={styles.guy_wrapper}>
-                  <Image style={styles.guy} source={HighScoresGuy} />
-                </View>
-                <Text style={styles.table_header}>Team Punten</Text>
-                {teams.all ?
-                  teams.all.data.map((item, index) => (
-                    <TeamRow
-                      name={item.name}
-                      team_score={item.team_score}
-                      position={index + 1}
-                    />
-                  )) : <TeamRow empty />}
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>HC Waarderingen</Text>
-                {users.all ?
-                  users.all.data.map((item, index) => (
-                    <UserRow
-                      name={item.name}
-                      mod_score={item.mod_score}
-                      num_of_recordings={item.num_of_recordings}
-                      position={index + 1}
-                    />
-                  )) : <UserRow empty />}
+            <View style={styles.header}>
+              <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                <Image source={HomeIconBlue} />
+              </TouchableOpacity>
+              <Image style={styles.icon} source={HighScoresIcon2} />
+              <Text style={styles.header_title}>Score Lijst</Text>
+            </View>,
+            <View style={styles.table}>
+              <View style={styles.guy_wrapper}>
+                <Image style={styles.guy} source={HighScoresGuy} />
               </View>
-            ]
-          )}
+              <Text style={styles.table_header}>Team Punten</Text>
+              {teams.all ? (
+                teams.all.data.map((item, index) => (
+                  <TeamRow
+                    name={item.name}
+                    team_score={item.team_score}
+                    position={index + 1}
+                  />
+                ))
+              ) : (
+                <TeamRow empty />
+              )}
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>HC Waarderingen</Text>
+              {users.all ? (
+                users.all.data.map((item, index) => (
+                  <UserRow
+                    name={item.name}
+                    mod_score={item.mod_score}
+                    num_of_recordings={item.num_of_recordings}
+                    position={index + 1}
+                  />
+                ))
+              ) : (
+                <UserRow empty />
+              )}
+            </View>
+          ]
+        )}
       </ScrollView>
     );
   }

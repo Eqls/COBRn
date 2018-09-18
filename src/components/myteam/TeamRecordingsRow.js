@@ -62,12 +62,12 @@ const TeamRecordingsRow = ({
         <Text style={styles.title}>No results found.</Text>
       ) : (
         [
-        <Text style={styles.title}>{name}</Text>,
-        <TouchableOpacity
-          style={{ paddingRight: 10, paddingLeft: 10 }}
-          onPress={() =>
-            Actions.comments({ id, name, comments, path_to_recording })
-          }
+          <Text style={styles.title}>{name}</Text>,
+          <TouchableOpacity
+            style={{ paddingRight: 10, paddingLeft: 10 }}
+            onPress={() =>
+              Actions.comments({ id, name, comments, path_to_recording })
+            }
           >
             <ImageBackground style={styles.comment_icon} source={CommentIcon}>
               <Text style={{ fontSize: 12 }}>{num_of_comments}</Text>

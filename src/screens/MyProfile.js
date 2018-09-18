@@ -51,7 +51,9 @@ class MyProfile extends React.Component {
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {user.isFetching || !user.current ? (
-          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+          >
             <ActivityIndicator size="large" color="#FECB45" />
           </View>
         ) : (
@@ -60,45 +62,39 @@ class MyProfile extends React.Component {
             <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
               <Image source={HomeIcon} />
             </TouchableOpacity>
-            {console.log(config.PHOTO_URL + user.current.avatar)}
-            <TouchableHighlight
-              disabled={this.state.disabled}
-              onPress={() => this.onPress()}
-            >
-              <Text>Press me!</Text>
-            </TouchableHighlight>
+            
             <Image
               style={styles.avatar_img}
               source={
                   user.current.avatar
                     ? { uri: config.PHOTO_URL + user.current.avatar }
                     : DefaultAvatar
-              }
-            />
-            <Text style={styles.username}>@{user.current.name}</Text>
-            <HeaderButtons selectPicture={this.selectPicture} />
-          </View>,
-          <View style={styles.table}>
-            <Text style={styles.table_header}>Mijn Scores</Text>
-            <Scores
-              score={user.current.team_score}
-              rating={user.current.mod_score_sum}
-              numberofratings={user.current.num_of_recordings}
-            />
-          </View>,
-          <View style={styles.table}>
-            <Text style={styles.table_header}>Opnames</Text>
-            {user.current &&
-              user.current.recording_list.map((item, index) => (
-                <TeamRecordingsRow
-                  id={item.id}
-                  name={item.recording_name.file_name}
-                  num_of_comments={item.number_of_comments}
-                  path_to_recording={item.path_to_recording}
-                  comments={item.recording_comments}
-                />
-              ))}
-          </View>
+                }
+              />
+              <Text style={styles.username}>@{user.current.name}</Text>
+              <HeaderButtons selectPicture={this.selectPicture} />
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>Mijn Scores</Text>
+              <Scores
+                score={user.current.team_score}
+                rating={user.current.mod_score_sum}
+                numberofratings={user.current.num_of_recordings}
+              />
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>Opnames</Text>
+              {user.current &&
+                user.current.recording_list.map((item, index) => (
+                  <TeamRecordingsRow
+                    id={item.id}
+                    name={item.recording_name.file_name}
+                    num_of_comments={item.number_of_comments}
+                    path_to_recording={item.path_to_recording}
+                    comments={item.recording_comments}
+                  />
+                ))}
+            </View>
           ]
         )}
       </ScrollView>
@@ -112,7 +108,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "#f2f2f2"
   },
   header_title: {
     fontSize: 24,
