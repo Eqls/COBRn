@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { StarRatingDisplay } from "../StarRatingDisplay";
+import StarRatingDisplay from "../StarRatingDisplay";
 import { Actions } from 'react-native-router-flux'
 
 const styles = StyleSheet.create({

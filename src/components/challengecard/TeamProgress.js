@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { StarRatingDisplay } from "../StarRatingDisplay";
+import StarRatingDisplay from "../StarRatingDisplay";
 import ProgressBar from "./ProgressBar";
 
 const styles = StyleSheet.create({

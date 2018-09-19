@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import StarRating from "react-native-star-rating";
 import {
   FullStarIcon,
@@ -9,26 +9,47 @@ import {
   EmptyChiliIcon
 } from '../assets/images'
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 5,
-    alignItems: "center"
-  }
-});
+class StarRatingDisplay extends React.Component {
 
-export const StarRatingDisplay = ({ rating, starSize, chilli, editing, handleChange }) => (
-  <View style={styles.container}>
-    <StarRating
-      disabled={editing ? false : true}
-      maxStars={5}
-      selectedStar={handleChange}
-      fullStar={chilli ? FullChiliIcon : FullStarIcon}
-      emptyStar={chilli ? EmptyChiliIcon : EmptyStarIcon}
-      halfStar={HalfStarIcon}
-      {...{
-        rating,
-        starSize
-      }}
-    />
-  </View>
-);
+  state = {
+    selection: 1
+  }
+
+  changeRating = selection => {
+    let { handleChange } = this.props
+    this.setState({ selection })
+    Alert.alert(
+      'Confirmation',
+      `Are you sure you want to rate this recording ${selection} stars?`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'OK', onPress: () => handleChange(selection) },
+      ],
+      { cancelable: true }
+    )
+  }
+
+  componentDidMount() {
+    let { rating } = this.props
+    if (rating) this.setState({ selection: rating })
+  }
+
+  render() {
+    let { rating, starSize, chilli, editing, handleChange } = this.props
+    let { selection } = this.state
+    return (
+      <StarRating
+        disabled={editing ? false : true}
+        maxStars={5}
+        selectedStar={this.changeRating}
+        fullStar={chilli ? FullChiliIcon : FullStarIcon}
+        emptyStar={chilli ? EmptyChiliIcon : EmptyStarIcon}
+        halfStar={HalfStarIcon}
+        rating={selection}
+        {...{ starSize }}
+      />
+    )
+  }
+}
+
+export default StarRatingDisplay

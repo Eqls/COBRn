@@ -11,7 +11,7 @@ import { CommentIcon, PlayIcon } from "../../assets/images";
 import config from "./../../config/config";
 import { Actions } from "react-native-router-flux";
 import { Player, MediaStates } from "react-native-audio-toolkit";
-import { StarRatingDisplay } from "../StarRatingDisplay";
+import StarRatingDisplay from "../StarRatingDisplay";
 
 const styles = StyleSheet.create({
   container: {
@@ -31,12 +31,6 @@ const styles = StyleSheet.create({
     flex: 3,
     color: "#010763",
     fontWeight: "bold"
-  },
-  comment_icon: {
-    aspectRatio: 1.25,
-    paddingBottom: 2,
-    resizeMode: "contain",
-    alignItems: "center"
   },
   play_icon: {
     marginTop: -10,
@@ -69,9 +63,8 @@ const RateRecordingsRow = ({
         [
           <Text style={styles.title}>{rec_name}</Text>,
           <StarRatingDisplay
-            starSize={20}
+            starSize={30}
             editing
-            rating={1}
             handleChange={attachUIDBeforeSubmit} />,
           <TouchableOpacity
             style={{ paddingRight: 10, paddingLeft: 10 }}

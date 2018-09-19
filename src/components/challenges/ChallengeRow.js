@@ -55,12 +55,17 @@ const ChallengeRow = ({ challenge }) => {
           </Text>
           <Image style={styles.arrow} source={RightArrow} />
         </TouchableOpacity>
-        :
-        <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
-          <Text style={[styles.button_text, { color: '#838383' }]}>
-            Verlopen
+        : completed ?
+          <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
+            <Text style={[styles.button_text, { color: '#838383' }]}>
+              Afgetikt
           </Text>
-        </View >}
+          </View >
+          : <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
+            <Text style={[styles.button_text, { color: '#838383' }]}>
+              Verlopen
+          </Text>
+          </View >}
     </View >
   )
 }

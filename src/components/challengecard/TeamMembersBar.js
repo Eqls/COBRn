@@ -37,7 +37,6 @@ isDone = done => done && { borderColor: 'lightgreen' }
 
 const TeamMembersBar = ({ users }) => (
   <View style={styles.container}>
-    {console.log(users)}
     {users.map(user =>
       <TouchableOpacity onPress={() => Actions.myprofile({ uid: user.id })} style={styles.avatar}>
         <Image

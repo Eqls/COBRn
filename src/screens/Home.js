@@ -69,12 +69,12 @@ export class Home extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.footer}>
-          <TouchableOpacity style={[styles.box, { backgroundColor: '#19408B' }]} onPress={this.logout}>
-            <Text style={styles.logout_text}>Logout</Text>
+          <TouchableOpacity style={styles.logout_button} onPress={this.logout}>
+            <Text style={styles.logout_text}>Uitloggen</Text>
           </TouchableOpacity>
           {auth.role_id === 2 &&
-            <TouchableOpacity style={[styles.box, { backgroundColor: styleConsts.gold }]} onPress={Actions.ratingpage}>
-              <Text style={[styles.logout_text, { color: styleConsts.dark_blue, }]}>Give ratings</Text>
+            <TouchableOpacity style={styles.logout_button} onPress={Actions.ratingpage}>
+              <Text style={styles.logout_text}>Give ratings</Text>
             </TouchableOpacity>}
         </View>
       </View >
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'flex-start'
   },
   box: {
@@ -112,8 +112,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
+  logout_button: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   logout_text: {
-    color: 'white',
+    color: styleConsts.dark_blue,
     fontSize: 15
   },
   box_text: {

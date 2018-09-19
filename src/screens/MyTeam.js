@@ -118,6 +118,7 @@ class MyTeam extends React.Component {
               team.current.team_members.map((item, index) => (
                 <TeammateRow
                   id={item.id}
+                  tl={item.role_id === 2}
                   name={item.name}
                   mod_score={item.mod_score_sum}
                   num_of_recordings={item.num_of_recordings}

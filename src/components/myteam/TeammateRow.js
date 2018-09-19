@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { StarRatingDisplay } from "../StarRatingDisplay";
+import StarRatingDisplay from "../StarRatingDisplay";
 import config from "./../../config/config";
 import { DefaultAvatar } from "../../assets/images";
 import { Actions } from 'react-native-router-flux'
+import Avatar from "../Avatar";
 
 const styles = StyleSheet.create({
   container: {
@@ -48,12 +49,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const TeammateRow = ({ id, name, mod_score, num_of_recordings, avatar, empty }) => (
+const TeammateRow = ({ id, tl, name, mod_score, num_of_recordings, avatar, empty }) => (
   <TouchableOpacity onPress={() => id && Actions.myprofile({ uid: id })} style={styles.container}>
     {empty ? <Text style={styles.title}>No results found.</Text> :
       [
         <View style={styles.avatar}>
-          <Image style={styles.avatar_img} source={avatar ? { uri: config.PHOTO_URL + avatar } : DefaultAvatar} />
+          <Avatar {...{ avatar, tl }} />
         </View>,
         <View style={styles.user_details}>
           <Text style={styles.name}>{name}</Text>

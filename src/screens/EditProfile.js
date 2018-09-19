@@ -88,7 +88,6 @@ class EditProfile extends React.Component {
 
   render() {
     const { user } = this.state;
-    console.log()
     return (
       <View style={styles.container}>
         <View style={styles.header}>

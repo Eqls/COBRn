@@ -20,8 +20,8 @@ class AddComment extends React.Component {
     if (text) {
       this.setState({ text: undefined, submitted: true })
       dispatch(commentActions.create(auth.token, auth.id, id, text))
-      dispatch(userActions.read(user.current.id, auth.token))
       Actions.pop()
+      dispatch(userActions.read(user.current.id, auth.token))
     } else {
       alert("Please enter your comment first");
     }

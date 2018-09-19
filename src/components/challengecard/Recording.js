@@ -8,7 +8,7 @@ import {
   Platform,
   PermissionsAndroid
 } from "react-native";
-import { StarRatingDisplay } from "../StarRatingDisplay";
+import StarRatingDisplay from "../StarRatingDisplay";
 import ProgressBar from "./ProgressBar";
 import { MicIcon, CancelIcon } from '../../assets/images'
 import styleConsts from '../../constants/styles'
@@ -38,7 +38,7 @@ class Recording extends React.Component {
 
   submit = () => {
     const { dispatch, auth, challenge } = this.props
-    dispatch(recordingActions.create(auth, challenge, this.recorder._fsPath, auth.token))
+    dispatch(recordingActions.create(auth.id, challenge, this.recorder._fsPath, auth.token))
     this._reloadPlayer()
     this._reloadRecorder()
     Actions.success()
@@ -158,7 +158,6 @@ class Recording extends React.Component {
   playback = () => {
     this.setState({ ...this.state, elapsed: 0, start: new Date() }, () =>
       this.player.playPause((err, playing) => {
-        console.log(playing)
         if (err) return console.log(err)
         return this.timer = setInterval(this.tick, 50)
       })

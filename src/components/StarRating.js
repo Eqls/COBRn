@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
 
 export const StarRatingRow = props => (
   <View style={styles.container}>
-    {console.log("props", props)}
     <StarRating
       half={false}
       disabled={false}

@@ -51,8 +51,6 @@ class RatingPage extends React.Component {
                 <Text style={styles.header_title}>Rate your teammates</Text>
               </View>,
               <View style={styles.table}>
-                {console.log(recording)
-                }
                 {recording.all.data.length > 0 ?
                   recording.all.data.map(item =>
                     <RateRecordingsRow
