@@ -6,6 +6,28 @@ const initialState = {
 
 const team = (state = initialState, action) => {
   switch (action.type) {
+    case teamConstants.PROGRESS_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+        error: undefined,
+        team_progress: undefined
+      };
+    case teamConstants.PROGRESS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        error: undefined,
+        team_progress: action.response
+      };
+    case teamConstants.PROGRESS_FAILURE:
+    case teamConstants.READALL_FAILURE:
+    case teamConstants.READ_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error
+      };
     case teamConstants.READALL_REQUEST:
       return {
         ...state,

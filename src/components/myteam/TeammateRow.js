@@ -1,8 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { StarRatingDisplay } from "../StarRatingDisplay";
 import config from "./../../config/config";
 import { DefaultAvatar } from "../../assets/images";
+import { Actions } from 'react-native-router-flux'
 
 const styles = StyleSheet.create({
   container: {
@@ -32,7 +33,8 @@ const styles = StyleSheet.create({
   },
   avatar_img: {
     height: 50,
-    width: 50
+    width: 50,
+    borderRadius: 100
   },
   avatar: {
     flex: 1,
@@ -46,8 +48,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const TeammateRow = ({ name, mod_score, num_of_recordings, avatar, empty }) => (
-  <View style={styles.container}>
+const TeammateRow = ({ id, name, mod_score, num_of_recordings, avatar, empty }) => (
+  <TouchableOpacity onPress={() => id && Actions.myprofile({ uid: id })} style={styles.container}>
     {empty ? <Text style={styles.title}>No results found.</Text> :
       [
         <View style={styles.avatar}>
@@ -61,7 +63,7 @@ const TeammateRow = ({ name, mod_score, num_of_recordings, avatar, empty }) => (
           </View>
         </View>
       ]}
-  </View>
+  </TouchableOpacity>
 );
 
 export default TeammateRow;

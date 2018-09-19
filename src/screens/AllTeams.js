@@ -119,6 +119,7 @@ class AllTeams extends React.Component {
                 {teams.all &&
                   teams.all.data.map((item, index) => (
                     <TeamRow
+                      id={item.id}
                       name={item.name}
                       team_score={item.team_score}
                       position={index + 1}

@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from "react-native";
 import config from '../config/config';
 import { Actions } from 'react-native-router-flux'
@@ -21,10 +22,12 @@ import {
 } from '../assets/images'
 import styleConsts from '../constants/styles'
 import { connect } from 'react-redux'
-import { } from '../actions'
+import { teamActions } from '../actions'
 import RatingRow from '../components/challengecard/RatingRow';
 import TeamProgress from '../components/challengecard/TeamProgress';
 import Recording from '../components/challengecard/Recording';
+import team from '../reducers/team';
+import TeamMembersBar from '../components/challengecard/TeamMembersBar';
 
 const styles = StyleSheet.create({
   container: {
@@ -37,19 +40,26 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   homebar: {
-    padding: 15,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    padding: 20,
     width: "100%"
   },
   header_title: {
     fontSize: 24,
     color: '#010763',
-    marginBottom: 15
+    marginBottom: 15,
+    marginTop: 15
   },
   description: {
-    fontSize: 18,
+    fontSize: 15,
     color: '#010763',
     marginBottom: 20,
-    color: styleConsts.light_blue
+    color: styleConsts.light_blue,
+    textAlign: 'center',
+    paddingLeft: 5,
+    paddingRight: 5,
   },
   img_frame: {
     height: 121,
@@ -83,40 +93,63 @@ const styles = StyleSheet.create({
 class ChallengeCard extends React.Component {
 
   state = {
-    dim: false
+    dim: false,
+    loaded: false
+  }
+
+  componentDidMount() {
+    const { dispatch, token, challenge } = this.props
+    dispatch(teamActions.teamProgress(challenge.id, token))
   }
 
   toggleDimmer = () => this.setState({ dim: !this.state.dim })
 
   render() {
-    const { challenge } = this.props
+    const { challenge, team_progress, teamIsFetching, error } = this.props
     const { dim } = this.state
     return (
       <View style={styles.container}>
-        {dim && <View style={styles.dim} />}
-        <TouchableOpacity
-          onPress={Actions.pop}
-          style={styles.homebar}>
-          <Image source={HomeIconBlue} />
-        </TouchableOpacity>
-        <Text style={styles.header_title}>test</Text>
-        <View style={styles.image_container}>
-          <Image style={styles.img_frame} source={BandFrame} />
-          <View style={styles.icon_wrapper}>
-            <Image style={styles.icon} borderRadius={100} source={challenge.avatar ? { uri: config.PHOTO_URL + challenge.avatar } : DefaultChallengeIcon} />
-          </View>
-        </View>
-        <Text style={styles.description}>{challenge.description}</Text>
-        <RatingRow rating={challenge.difficulty} />
-        <TeamProgress progress={70} />
-        <Recording challenge={challenge} toggleDimmer={this.toggleDimmer} />
+        {[
+          dim && <View style={styles.dim} />,
+          error &&
+          Alert.alert(
+            'Something happened!',
+            error,
+            { cancelable: true }
+          )]}
+        {teamIsFetching || !team_progress ?
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <ActivityIndicator size="large" color="#FECB45" />
+          </View> :
+          [
+            <TouchableOpacity
+              onPress={Actions.pop}
+              style={styles.homebar}>
+              <Image source={HomeIconBlue} />
+            </TouchableOpacity>,
+            <Text style={styles.header_title}>{challenge.name}</Text>,
+            <View style={styles.image_container}>
+              <Image style={styles.img_frame} source={BandFrame} />
+              <View style={styles.icon_wrapper}>
+                <Image style={styles.icon} borderRadius={100} source={challenge.avatar ? { uri: config.PHOTO_URL + challenge.avatar } : DefaultChallengeIcon} />
+              </View>
+            </View>,
+            <Text style={styles.description}>{challenge.description}</Text>,
+            <RatingRow rating={challenge.difficulty} />,
+            <TeamProgress progress={Math.round(team_progress.team_progress_percentage)} />,
+            <TeamMembersBar users={team_progress.users} />,
+            <Recording challenge={challenge} toggleDimmer={this.toggleDimmer} />
+          ]}
       </View>
     )
   }
 }
 
 const mapStateToProps = state => ({
-
+  team_progress: state.team.team_progress,
+  teamIsFetching: state.team.isFetching,
+  token: state.auth.user.token,
+  error: state.team.error
 });
 
 

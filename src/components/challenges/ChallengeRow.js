@@ -11,9 +11,59 @@ import styleConsts from '../../constants/styles'
 import {
   RightArrow,
   BandFrame,
-  DefaultChallengeIcon
+  DefaultChallengeIcon,
+  ChallengeSuccess,
+  ChallengeFailure,
+  AlarmClock
 } from '../../assets/images'
 import config from '../../config/config'
+
+const ChallengeRow = ({ challenge }) => {
+  let available = !challenge.done_by_user && challenge.days_left >= 0
+    , completed = challenge.done_by_user
+  return (
+    <View style={styles.container}>
+      {available ?
+        <View>
+          <Image style={styles.img_frame} source={BandFrame} />
+          <View style={styles.icon_wrapper}>
+            <Image style={styles.icon} borderRadius={50} source={challenge.avatar ? { uri: config.PHOTO_URL + challenge.avatar } : DefaultChallengeIcon} />
+          </View>
+        </View>
+        : completed ?
+          <Image style={styles.img_frame} source={ChallengeSuccess} />
+          : <Image style={styles.img_frame} source={ChallengeFailure} />
+      }
+      <View style={styles.info}>
+        <Text style={styles.info_text}>{challenge.name ? challenge.name : 'No title'}</Text>
+        <View style={styles.expiration}>
+          {available ?
+            [
+              <Image style={styles.clock} source={AlarmClock} />,
+              <Text style={{ color: '#4765FF' }}>Nog {challenge.days_left + ' ' + (challenge.days_left === 1 ? 'Dag' : 'Dagen')}</Text>
+            ] : completed ?
+              <Text style={{ color: '#71E84C' }}>Afgetikt!</Text>
+              : <Text style={{ color: '#FF8373' }}>Niet Gedaan...</Text>}
+        </View>
+      </View>
+      {available ?
+        <TouchableOpacity
+          onPress={() => Actions.challengecard({ challenge })}
+          style={styles.button}>
+          <Text style={styles.button_text}>
+            Bekijk
+          </Text>
+          <Image style={styles.arrow} source={RightArrow} />
+        </TouchableOpacity>
+        :
+        <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
+          <Text style={[styles.button_text, { color: '#838383' }]}>
+            Verlopen
+          </Text>
+        </View >}
+    </View >
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -68,31 +118,17 @@ const styles = StyleSheet.create({
   info_text: {
     color: 'black',
     fontSize: 15
+  },
+  clock: {
+    width: 15,
+    height: 15,
+    marginRight: 3
+  },
+  expiration: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 })
-const avatar = null
-const ChallengeRow = ({ challenge }) => (
-  <View style={styles.container}>
-    <View>
-      <Image style={styles.img_frame} source={BandFrame} />
-      <View style={styles.icon_wrapper}>
-        <Image style={styles.icon} borderRadius={50} source={challenge.avatar ? { uri: config.PHOTO_URL + challenge.avatar } : DefaultChallengeIcon} />
-      </View>
-    </View>
-    <View style={styles.info}>
-      <Text style={styles.info_text}>{challenge.name ? challenge.name : 'No title'}</Text>
-    </View>
-    <TouchableOpacity
-      onPress={() => Actions.challengecard({ challenge })}
-      style={styles.button}>
-      <Text
-        style={styles.button_text}
-      >
-        Bekijk
-      </Text>
-      <Image style={styles.arrow} source={RightArrow} />
-    </TouchableOpacity>
-  </View >
-)
 
 export default ChallengeRow

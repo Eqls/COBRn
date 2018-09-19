@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Actions } from 'react-native-router-flux'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,13 +27,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const TeamRow = ({ name, team_score, position, empty }) => (
-  <View style={styles.container}>
+const TeamRow = ({ id, name, team_score, position, empty }) => (
+  <TouchableOpacity onPress={() => id && Actions.myteam({ tid: id })} style={styles.container}>
     {empty ? <Text style={styles.title}>No results found.</Text> :
       [<Text style={{ flex: 1, color: "#137BD1" }}>{position}</Text>,
       <Text style={styles.title}>{name}</Text>,
       <Text style={styles.team_score}>{team_score}</Text>]}
-  </View>
+  </TouchableOpacity>
 );
 
 export default TeamRow;

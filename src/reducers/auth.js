@@ -12,7 +12,8 @@ const auth = (state = initialState, action) => {
     case userConstants.LOGIN_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        error: undefined
       }
     case userConstants.LOGIN_SUCCESS:
       return {

@@ -5,7 +5,8 @@ import { authHeader } from "../utils";
 
 export const teamActions = {
   read,
-  readAll
+  readAll,
+  teamProgress
 };
 
 function readAll(token) {
@@ -23,7 +24,7 @@ function readAll(token) {
         .then(res => res.data)
   };
 }
-function read(token) {
+function read(id, token) {
   return {
     types: [
       teamConstants.READ_REQUEST,
@@ -32,9 +33,29 @@ function read(token) {
     ],
     callAPI: () =>
       axios
-        .get(config.API_URL + "team", {
-          headers: { Authorization: "Bearer " + token }
-        })
+        .post(config.API_URL + "get_team_by_id",
+          { id },
+          {
+            headers: { Authorization: "Bearer " + token }
+          })
+        .then(res => res.data)
+  };
+}
+
+function teamProgress(challenge_id, token) {
+  return {
+    types: [
+      teamConstants.PROGRESS_REQUEST,
+      teamConstants.PROGRESS_SUCCESS,
+      teamConstants.PROGRESS_FAILURE
+    ],
+    callAPI: () =>
+      axios
+        .post(config.API_URL + "team_progress",
+          { challenge_id },
+          {
+            headers: { Authorization: "Bearer " + token }
+          })
         .then(res => res.data)
   };
 }

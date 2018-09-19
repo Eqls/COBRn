@@ -10,7 +10,8 @@
     "gulp-babel": "8.0.0",
     "jest": "23.6.0",
     "react-test-renderer": "16.3.1",
-    "redux-devtools-extension": "2.13.5"
+    "redux-devtools-extension": "2.13.5",
+    "remote-redux-devtools": "^0.5.13"
   },
   "scripts": {
     "start": "react-native start",

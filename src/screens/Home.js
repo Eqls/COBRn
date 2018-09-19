@@ -19,11 +19,21 @@ import {
   HomePeople
 } from '../assets/images'
 import styleConsts from '../constants/styles'
+import { connect } from 'react-redux'
+import { auth } from '../actions'
 
 
 export class Home extends React.Component {
 
+  logout = () => {
+    const { dispatch } = this.props;
+    dispatch(auth.logout())
+    Actions.main()
+  }
+
   render() {
+    const { auth } = this.props
+
     return (
       <View style={styles.container}>
         <View style={styles.bg_wrapper}>
@@ -33,7 +43,7 @@ export class Home extends React.Component {
           <Image style={styles.home_people} source={HomePeople} />
         </View>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => Actions.myprofile()} style={styles.box}>
+          <TouchableOpacity onPress={() => Actions.myprofile({ uid: auth.id })} style={styles.box}>
             <Image style={styles.img} source={MyProfileIcon} />
             <Text style={styles.box_text}>Mijn Profiel</Text>
           </TouchableOpacity>
@@ -47,7 +57,7 @@ export class Home extends React.Component {
             <Image style={styles.img} source={TeamListIcon} />
             <Text style={styles.box_text}>Alle Teams</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.myteam()} style={styles.box}>
+          <TouchableOpacity onPress={() => Actions.myteam({ tid: auth.team_id })} style={styles.box}>
             <Image style={styles.img} source={MyTeamIcon} />
             <Text style={styles.box_text}>Mijn Team</Text>
           </TouchableOpacity>
@@ -58,10 +68,16 @@ export class Home extends React.Component {
             <Text style={styles.box_text}>Challenges</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.trademark_container}>
-          <Text style={styles.trademark}><Text style={{ color: styleConsts.dark_blue }}>by</Text> YellowStorm</Text>
+        <View style={styles.footer}>
+          <TouchableOpacity style={[styles.box, { backgroundColor: '#19408B' }]} onPress={this.logout}>
+            <Text style={styles.logout_text}>Logout</Text>
+          </TouchableOpacity>
+          {auth.role_id === 2 &&
+            <TouchableOpacity style={[styles.box, { backgroundColor: styleConsts.gold }]} onPress={this.logout}>
+              <Text style={[styles.logout_text, { color: styleConsts.dark_blue, }]}>Give ratings</Text>
+            </TouchableOpacity>}
         </View>
-      </View>
+      </View >
     )
   }
 }
@@ -81,6 +97,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row'
   },
+  footer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start'
+  },
   box: {
     borderRadius: 10,
     flex: 1,
@@ -89,6 +111,10 @@ const styles = StyleSheet.create({
     margin: 7,
     alignItems: 'center',
     backgroundColor: 'white',
+  },
+  logout_text: {
+    color: 'white',
+    fontSize: 15
   },
   box_text: {
     marginTop: 10,
@@ -113,20 +139,6 @@ const styles = StyleSheet.create({
     aspectRatio: 0.5,
     resizeMode: 'contain'
   },
-  trademark_container: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    backgroundColor: '#f2f2f2',
-    borderRadius: 40,
-    padding: 3,
-    paddingLeft: 10,
-    paddingRight: 10
-  },
-  trademark: {
-    color: styleConsts.gold,
-    fontSize: 16,
-    fontWeight: 'bold'
-  },
   img: {
     height: 83,
     width: 83,
@@ -134,4 +146,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home
+const mapStateToProps = state => ({
+  auth: state.auth.user
+});
+
+export default connect(mapStateToProps)(Home);

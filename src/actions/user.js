@@ -61,9 +61,11 @@ function read(id, token) {
     ],
     callAPI: () =>
       axios
-        .get(config.API_URL + "user", {
-          headers: { Authorization: "Bearer " + token }
-        })
+        .post(config.API_URL + "user_by_id",
+          { id },
+          {
+            headers: { Authorization: "Bearer " + token }
+          })
         .then(res => res.data)
   };
 }

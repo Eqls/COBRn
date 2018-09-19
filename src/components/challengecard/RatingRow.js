@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     alignContent: "space-between",
     paddingRight: 20,
     paddingLeft: 20,
-    paddingTop: 15,
-    paddingBottom: 15,
+    paddingTop: 5,
+    paddingBottom: 5,
     backgroundColor: "white",
     borderBottomWidth: 1,
     borderBottomColor: "#f2f2f2"
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 const RatingRow = ({ rating }) => (
   <View style={styles.container}>
     <Text style={styles.title}>Uitdaging</Text>
-    <StarRatingDisplay starSize={30} chilli {...{ rating }} />
+    <StarRatingDisplay starSize={25} chilli {...{ rating }} />
   </View>
 )
 

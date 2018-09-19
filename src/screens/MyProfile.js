@@ -30,8 +30,9 @@ class MyProfile extends React.Component {
   };
 
   componentDidMount() {
-    const { dispatch, auth } = this.props;
-    dispatch(userActions.read(auth.id, auth.token));
+    const { dispatch, auth, uid } = this.props;
+    console.log(uid)
+    dispatch(userActions.read(uid, auth.token));
   }
 
   selectPicture = () => {
@@ -46,7 +47,7 @@ class MyProfile extends React.Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, auth } = this.props;
     const { showUploadDialog } = this.state;
     return (
       <ScrollView contentContainerStyle={styles.container}>
@@ -57,46 +58,48 @@ class MyProfile extends React.Component {
             <ActivityIndicator size="large" color="#FECB45" />
           </View>
         ) : (
-          [
-          <View style={styles.header}>
-            <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-              <Image source={HomeIcon} />
-            </TouchableOpacity>
-            
-            <Image
-              style={styles.avatar_img}
-              source={
-                  user.current.avatar
-                    ? { uri: config.PHOTO_URL + user.current.avatar }
-                    : DefaultAvatar
-                }
-              />
-              <Text style={styles.username}>@{user.current.name}</Text>
-              <HeaderButtons selectPicture={this.selectPicture} />
-            </View>,
-            <View style={styles.table}>
-              <Text style={styles.table_header}>Mijn Scores</Text>
-              <Scores
-                score={user.current.team_score}
-                rating={user.current.mod_score_sum}
-                numberofratings={user.current.num_of_recordings}
-              />
-            </View>,
-            <View style={styles.table}>
-              <Text style={styles.table_header}>Opnames</Text>
-              {user.current &&
-                user.current.recording_list.map((item, index) => (
-                  <TeamRecordingsRow
-                    id={item.id}
-                    name={item.recording_name.file_name}
-                    num_of_comments={item.number_of_comments}
-                    path_to_recording={item.path_to_recording}
-                    comments={item.recording_comments}
-                  />
-                ))}
-            </View>
-          ]
-        )}
+            [
+              <View style={styles.header}>
+                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                  <Image source={HomeIcon} />
+                </TouchableOpacity>
+
+                <Image
+                  style={styles.avatar_img}
+                  source={
+                    user.current.avatar
+                      ? { uri: config.PHOTO_URL + user.current.avatar }
+                      : DefaultAvatar
+                  }
+                />
+                <Text style={styles.username}>@{user.current.name}</Text>
+                {user.current.id === auth.id &&
+                  <HeaderButtons selectPicture={this.selectPicture} />}
+              </View>,
+              <View style={styles.table}>
+                <Text style={styles.table_header}>Mijn Scores</Text>
+                <Scores
+                  score={user.current.team_score}
+                  rating={user.current.mod_score_sum}
+                  numberofratings={user.current.num_of_recordings}
+                />
+              </View>,
+              <View style={styles.table}>
+                <Text style={styles.table_header}>Opnames</Text>
+                {user.current && user.current.recording_list.length > 0 ?
+                  user.current.recording_list.map((item, index) => (
+                    <TeamRecordingsRow
+                      id={item.id}
+                      rec_name={item.recording_name.file_name}
+                      num_of_comments={item.number_of_comments}
+                      path_to_recording={item.path_to_recording}
+                      comments={item.recording_comments}
+                    />
+                  )) :
+                  <TeamRecordingsRow empty />}
+              </View>
+            ]
+          )}
       </ScrollView>
     );
   }
@@ -122,7 +125,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FECB45"
   },
   table: {
-    flex: 1,
     alignItems: "flex-start",
     justifyContent: "flex-start",
     flexDirection: "column",

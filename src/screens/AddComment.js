@@ -2,31 +2,33 @@ import React from "react";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { connect } from "react-redux";
 import config from "../config/config";
-import { commentActions } from "../actions";
+import { commentActions, userActions } from "../actions";
+import { Actions } from 'react-native-router-flux'
 
 class AddComment extends React.Component {
   state = {
-    text: undefined // user's input
+    text: undefined
   };
 
   onChangeText = text => this.setState({ text });
 
   submit = id => {
     const { dispatch, auth, user } = this.props;
-    console.log(user);
     const { text } = this.state;
     if (text) {
-      this.setState({ text: undefined }, () =>
-        dispatch(commentActions.create(auth.token, user.current.id, id, text))
-      );
+      this.setState({ text: undefined, submitted: true })
+      dispatch(commentActions.create(auth.token, auth.id, id, text))
+      dispatch(userActions.read(user.current.id, auth.token))
+      Actions.pop()
     } else {
       alert("Please enter your comment first");
     }
   };
 
+  setDone = () => this.setState({ ...this.state, done: true })
+
   render() {
     const { id } = this.props;
-    console.log(id);
     return (
       <View>
         <TextInput

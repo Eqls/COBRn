@@ -28,7 +28,8 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        error: undefined
+        error: undefined,
+        current: undefined
       };
     case userConstants.CREATE_SUCCESS:
     case userConstants.UPDATE_SUCCESS:

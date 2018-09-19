@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 
 const TeamRecordingsRow = ({
   id,
-  name,
+  rec_name,
   num_of_comments,
   path_to_recording,
   comments,
@@ -56,31 +56,32 @@ const TeamRecordingsRow = ({
   playAudio = () => {
     new Player(config.PHOTO_URL + path_to_recording).play();
   };
+
   return (
     <View style={styles.container}>
       {empty ? (
         <Text style={styles.title}>No results found.</Text>
       ) : (
-        [
-          <Text style={styles.title}>{name}</Text>,
-          <TouchableOpacity
-            style={{ paddingRight: 10, paddingLeft: 10 }}
-            onPress={() =>
-              Actions.comments({ id, name, comments, path_to_recording })
-            }
-          >
-            <ImageBackground style={styles.comment_icon} source={CommentIcon}>
-              <Text style={{ fontSize: 12 }}>{num_of_comments}</Text>
-            </ImageBackground>
-          </TouchableOpacity>,
-          <TouchableOpacity
-            style={{ paddingRight: 10, paddingLeft: 10 }}
-            onPress={playAudio}
-          >
-            <Image style={styles.play_icon} source={PlayIcon} />
-          </TouchableOpacity>
-        ]
-      )}
+          [
+            <Text style={styles.title}>{rec_name}</Text>,
+            <TouchableOpacity
+              style={{ paddingRight: 10, paddingLeft: 10 }}
+              onPress={() =>
+                Actions.comments({ id, rec_name, comments, path_to_recording })
+              }
+            >
+              <ImageBackground style={styles.comment_icon} source={CommentIcon}>
+                <Text style={{ fontSize: 12 }}>{num_of_comments}</Text>
+              </ImageBackground>
+            </TouchableOpacity>,
+            <TouchableOpacity
+              style={{ paddingRight: 10, paddingLeft: 10 }}
+              onPress={playAudio}
+            >
+              <Image style={styles.play_icon} source={PlayIcon} />
+            </TouchableOpacity>
+          ]
+        )}
     </View>
   );
 };

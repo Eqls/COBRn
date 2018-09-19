@@ -101,12 +101,13 @@ class Challenges extends React.Component {
             <Text style={styles.header_title}>Challenges</Text>
           </View>,
           <View style={styles.table}>
+            {console.log(allChallenges)}
             <View style={styles.guy}>
               <Image style={styles.guy_icon} source={ChallengesGuy} />
             </View>
             <Text style={styles.table_header}></Text>
             {allChallenges &&
-              allChallenges.map(x => <ChallengeRow challenge={x} />)}
+              allChallenges.sort((a, b) => b - a).map(x => <ChallengeRow challenge={x} />)}
           </View>,
           <View style={styles.table}>
             <Text style={styles.table_header}>Teams Highscore</Text>

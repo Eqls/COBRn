@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   table: {
-    flex: 1,
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
   },
   guy_wrapper: {
     position: "absolute",
-    bottom: -20,
+    top: 30,
     right: 10
   },
   guy: {
@@ -100,47 +99,49 @@ class HighScores extends React.Component {
             </View>
           ) : (
             [
-            <View style={styles.header}>
-              <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-                <Image source={HomeIconBlue} />
-              </TouchableOpacity>
-              <Image style={styles.icon} source={HighScoresIcon2} />
-              <Text style={styles.header_title}>Score Lijst</Text>
-            </View>,
-            <View style={styles.table}>
+              <View style={styles.header}>
+                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                  <Image source={HomeIconBlue} />
+                </TouchableOpacity>
+                <Image style={styles.icon} source={HighScoresIcon2} />
+                <Text style={styles.header_title}>Score Lijst</Text>
+              </View>,
               <View style={styles.guy_wrapper}>
                 <Image style={styles.guy} source={HighScoresGuy} />
+              </View>,
+              <View style={styles.table}>
+                <Text style={styles.table_header}>Team Punten</Text>
+                {teams.all ? (
+                  teams.all.data.map((item, index) => (
+                    <TeamRow
+                      id={item.id}
+                      name={item.name}
+                      team_score={item.team_score}
+                      position={index + 1}
+                    />
+                  ))
+                ) : (
+                    <TeamRow empty />
+                  )}
+              </View>,
+              <View style={styles.table}>
+                <Text style={styles.table_header}>HC Waarderingen</Text>
+                {users.all ? (
+                  users.all.data.map((item, index) => (
+                    <UserRow
+                      id={item.id}
+                      name={item.name}
+                      mod_score={item.mod_score}
+                      num_of_recordings={item.num_of_recordings}
+                      position={index + 1}
+                    />
+                  ))
+                ) : (
+                    <UserRow empty />
+                  )}
               </View>
-              <Text style={styles.table_header}>Team Punten</Text>
-              {teams.all ? (
-                teams.all.data.map((item, index) => (
-                  <TeamRow
-                    name={item.name}
-                    team_score={item.team_score}
-                    position={index + 1}
-                  />
-                ))
-              ) : (
-                <TeamRow empty />
-              )}
-            </View>,
-            <View style={styles.table}>
-              <Text style={styles.table_header}>HC Waarderingen</Text>
-              {users.all ? (
-                users.all.data.map((item, index) => (
-                  <UserRow
-                    name={item.name}
-                    mod_score={item.mod_score}
-                    num_of_recordings={item.num_of_recordings}
-                    position={index + 1}
-                  />
-                ))
-              ) : (
-                <UserRow empty />
-              )}
-            </View>
-          ]
-        )}
+            ]
+          )}
       </ScrollView>
     );
   }

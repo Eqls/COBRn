@@ -19,49 +19,6 @@ import { Illustration } from "../assets/images/login";
 import { CheckinIcon } from "../assets/images";
 import ProgressBar from "../components/challengecard/ProgressBar";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    backgroundColor: "transparent"
-  },
-  formField: {
-    height: 50,
-    backgroundColor: "#f2f2f2",
-    borderRadius: 50,
-    width: "100%",
-    marginBottom: 15,
-    zIndex: 1,
-    color: "darkblue"
-  },
-  button: {
-    display: "flex",
-    alignItems: "center",
-    borderRadius: 50,
-    padding: 12,
-    zIndex: 2,
-    backgroundColor: styleConsts.login_font_color
-  },
-  form: {
-    width: "100%",
-    padding: 10,
-    marginBottom: 30
-  },
-  checkin: {
-    position: "absolute",
-    right: 40,
-    bottom: -12,
-    zIndex: 999,
-  },
-  checkin_icon: {
-    aspectRatio: 0.25,
-    resizeMode: "contain"
-  }
-});
-
 class Login extends React.Component {
   state = {
     user: {
@@ -104,7 +61,7 @@ class Login extends React.Component {
           source={Illustration}
         >
           <View style={styles.container}>
-            {error && <Text>{error.error}</Text>}
+            {error && <Text style={styles.error}>{error.error ? error.error : 'Something went wrong! Please try again later.'}</Text>}
             <View style={styles.form}>
               <TextInput
                 style={styles.formField}
@@ -140,12 +97,79 @@ class Login extends React.Component {
                 <Image style={styles.checkin_icon} source={CheckinIcon} />
               </View>
             </View>
+            <View style={styles.trademark_container}>
+              <Text style={styles.trademark}><Text style={{ color: styleConsts.dark_blue }}>by</Text> YellowStorm<Text style={{ color: styleConsts.dark_blue }}>.nl</Text></Text>
+            </View>
           </View>
         </ImageBackground>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    backgroundColor: "transparent"
+  },
+  formField: {
+    height: 50,
+    backgroundColor: "#f2f2f2",
+    borderRadius: 50,
+    width: "100%",
+    marginBottom: 15,
+    zIndex: 1,
+    color: "darkblue"
+  },
+  error: {
+    color: 'red',
+    backgroundColor: '#f2f2f2',
+    padding: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderRadius: 5
+  },
+  button: {
+    display: "flex",
+    alignItems: "center",
+    borderRadius: 50,
+    padding: 12,
+    zIndex: 2,
+    backgroundColor: styleConsts.login_font_color
+  },
+  form: {
+    width: "100%",
+    padding: 10,
+  },
+  checkin: {
+    position: "absolute",
+    right: 40,
+    bottom: -12,
+    zIndex: 999,
+  },
+  checkin_icon: {
+    aspectRatio: 0.25,
+    resizeMode: "contain"
+  },
+  trademark_container: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    borderRadius: 40,
+    padding: 3,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginBottom: 5
+  },
+  trademark: {
+    color: styleConsts.gold,
+    fontSize: 14,
+    fontWeight: 'bold'
+  }
+});
 
 const mapStateToProps = state => ({
   isFetching: state.auth.isFetching,

@@ -22,12 +22,26 @@ const styles = StyleSheet.create({
   }
 });
 
-const ProgressBar = ({ percent }) => (
-  <View style={styles.container}>
-    <View style={[styles.filled, { width: percent + '%' }]}>
-      <Text style={styles.title}>{percent}%</Text>
+const ProgressBar = ({ percent }) => {
+  isVeryLowBar = percent => {
+    if (percent <= 15) {
+      return {
+        width: '100%',
+        backgroundColor: 'transperent'
+      }
+    } else {
+      return {
+        width: percent + '%'
+      }
+    }
+  }
+  return (
+    <View style={styles.container}>
+      <View style={[styles.filled, isVeryLowBar(percent)]}>
+        <Text style={styles.title, isVeryLowBar(percent) && {color: 'white'}}>{percent}%</Text>
     </View>
-  </View>
-)
+    </View >
+  )
+}
 
 export default ProgressBar;

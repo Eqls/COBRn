@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { StarRatingDisplay } from "../StarRatingDisplay";
+import { Actions } from 'react-native-router-flux'
 
 const styles = StyleSheet.create({
   container: {
@@ -23,8 +24,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const UserRow = ({ name, position, mod_score, num_of_recordings, empty }) => (
-  <View style={styles.container}>
+const UserRow = ({ id, name, position, mod_score, num_of_recordings, empty }) => (
+  <TouchableOpacity onPress={() => id && Actions.myprofile({ uid: id })} style={styles.container}>
     {empty ? <Text style={styles.title}>No results found.</Text> :
       [
         <Text style={{ flex: 1, color: "#137BD1" }}>{position}</Text>,
@@ -33,7 +34,7 @@ const UserRow = ({ name, position, mod_score, num_of_recordings, empty }) => (
         <StarRatingDisplay starSize={20} rating={mod_score} />
       ]
     }
-  </View>
+  </TouchableOpacity>
 );
 
 export default UserRow;
