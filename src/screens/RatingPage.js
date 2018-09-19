@@ -14,39 +14,10 @@ import { recordingActions } from "../actions";
 import { StarRatingRow } from "./../components/StarRating";
 import { Player, MediaStates } from "react-native-audio-toolkit";
 import { PlayIcon } from "./../assets/images";
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingRight: 20,
-    paddingLeft: 20,
-    paddingTop: 15,
-    paddingBottom: 15,
-    backgroundColor: "white",
-    borderBottomWidth: 1,
-    borderBottomColor: "#f2f2f2"
-  },
-  title: {
-    flex: 3,
-    color: "#010763",
-    fontWeight: "bold"
-  },
-  comment_icon: {
-    aspectRatio: 1.25,
-    paddingBottom: 2,
-    resizeMode: "contain",
-    alignItems: "center"
-  },
-  play_icon: {
-    marginTop: -10,
-    marginBottom: -10,
-    aspectRatio: 0.5,
-    resizeMode: "contain"
-  }
-});
+import styleConsts from '../constants/styles'
+import { Actions } from 'react-native-router-flux'
+import { HomeIcon } from "../assets/images";
+import RateRecordingsRow from "../components/ratings/RateRecordingsRow";
 
 class RatingPage extends React.Component {
   componentDidMount() {
@@ -54,35 +25,108 @@ class RatingPage extends React.Component {
     dispatch(recordingActions.readAll(auth.token));
   }
 
+  updateRecording = (mod_score, id) => {
+    const { dispatch, auth } = this.props;
+    let rec = { id, mod_score }
+    dispatch(recordingActions.update(rec, auth.token))
+    dispatch(recordingActions.readAll(auth.token));
+  }
+
   render() {
     const { recording } = this.props;
-    playAudio = path_to_recording => {
-      new Player(config.PHOTO_URL + path_to_recording).play();
-    };
+    // onPress = {() => playAudio(item.path_to_recording)
     return (
-      <ScrollView>
-        {recording.isFetching || !recording.all ? (
-          <ActivityIndicator size="small" color="#FECB45" />
-        ) : (
-          [
-          <View>
-            <Text>Scoring page</Text>
-            {recording.all &&
-              recording.all.data.map((item, index) => (
-                <TouchableOpacity
-                  style={{ paddingRight: 10, paddingLeft: 10 }}
-                  onPress={() => playAudio(item.path_to_recording)}
-                >
-                  <Image style={styles.play_icon} source={PlayIcon} />
+      <ScrollView contentContainerStyle={styles.container}>
+        {
+          recording.isFetching || !recording.all ?
+            <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+              <ActivityIndicator size="large" color="#FECB45" />
+            </View>
+            :
+            [
+              <View style={styles.header}>
+                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                  <Image source={HomeIcon} />
                 </TouchableOpacity>
-              ))}
-          </View>
-          ]
-        )}
+                <Text style={styles.header_title}>Rate your teammates</Text>
+              </View>,
+              <View style={styles.table}>
+                {console.log(recording)
+                }
+                {recording.all.data.length > 0 ?
+                  recording.all.data.map(item =>
+                    <RateRecordingsRow
+                      updateRecording={this.updateRecording}
+                      id={item.id}
+                      rec_name={item.recording_name.file_name}
+                      path_to_recording={item.path_to_recording}
+                    />
+                  ) :
+                  <RateRecordingsRow empty />}
+              </View>
+            ]
+        }
       </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    backgroundColor: "#f2f2f2"
+  },
+  header_title: {
+    fontSize: 24,
+    margin: 20
+  },
+  header: {
+    display: "flex",
+    padding: 10,
+    width: "100%",
+    alignItems: "center",
+    backgroundColor: "#FECB45"
+  },
+  table: {
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    marginTop: 10
+  },
+  table_header: {
+    fontSize: 14,
+    padding: 10,
+    paddingLeft: 30,
+    fontWeight: "bold",
+    color: styleConsts.light_blue
+  },
+  username: {
+    margin: 20,
+    fontSize: 18,
+    color: "#010763",
+    fontWeight: "bold"
+  },
+  homebar: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    padding: 20,
+    width: "100%"
+  },
+  avatar_img: {
+    height: 112,
+    width: 112,
+    borderRadius: 100
+  },
+  header_title: {
+    fontSize: 24,
+    margin: 15,
+    color: "#010763"
+  },
+});
 
 const mapStateToProps = state => ({
   auth: state.auth.user,

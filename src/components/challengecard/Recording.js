@@ -38,7 +38,7 @@ class Recording extends React.Component {
 
   submit = () => {
     const { dispatch, auth, challenge } = this.props
-    dispatch(recordingActions.create(auth.id, challenge, this.recorder._fsPath, auth.token))
+    dispatch(recordingActions.create(auth, challenge, this.recorder._fsPath, auth.token))
     this._reloadPlayer()
     this._reloadRecorder()
     Actions.success()

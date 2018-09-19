@@ -20,12 +20,11 @@ import { challengeActions, teamActions } from '../actions'
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: '#f2f2f2',
-    height: '100%'
+    backgroundColor: '#f2f2f2'
   },
   homebar: {
     position: 'absolute',
@@ -112,7 +111,7 @@ class Challenges extends React.Component {
           <View style={styles.table}>
             <Text style={styles.table_header}>Teams Highscore</Text>
             {teams &&
-              teams.data.map((item, index) => (
+              teams.data.sort((a, b) => b.team_score - a.team_score).map((item, index) => (
                 <TeamRow
                   key={item.id}
                   name={item.name}

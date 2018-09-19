@@ -19,12 +19,11 @@ import { HomeIconBlue, TeamIcon, TeamGuy } from "../assets/images";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
     backgroundColor: "#f2f2f2",
-    height: "100%"
   },
   header_title: {
     fontSize: 22,
@@ -95,61 +94,56 @@ class MyTeam extends React.Component {
     const { team } = this.props;
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        {team.isFetching || !team.current ? (
+        {team.isFetching || !team.current ?
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
             <ActivityIndicator size="large" color="#FECB45" />
           </View>
-        ) : (
-            [
-              <View style={styles.header}>
-                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-                  <Image source={HomeIconBlue} />
-                </TouchableOpacity>
-                <Image style={styles.icon} source={TeamIcon} />
-                <Text style={styles.header_title}>
-                  Team{" "}
-                  <Text style={{ fontWeight: "bold" }}>{team.current.name}</Text>
-                </Text>
-                {console.log(team.current)}
-                <Text style={styles.score}>{team.current.team_score}</Text>
-                <Text style={styles.score_text}>punten</Text>
-              </View>,
-              <View style={styles.table}>
-                {team.current &&
-                  team.current.team_members.map((item, index) => (
-                    <TeammateRow
-                      id={item.id}
-                      name={item.name}
-                      mod_score={item.mod_score}
-                      num_of_recordings={item.num_of_recordings}
-                      avatar={item.avatar}
-                    />
-                  ))}
-              </View>,
-              <View style={styles.table}>
-                <View style={styles.guy}>
-                  <Image style={styles.guy_icon} source={TeamGuy} />
-                </View>
-                <Text style={styles.table_header}>Team Opnames</Text>
-                {team.current && team.current.team_recordings.length > 0 ? (
-                  team.current.team_recordings.map((item, index) => (
-                    <TeamRecordingsRow
-                      id={item.id}
-                      rec_name={item.recording_name.file_name}
-                      num_of_comments={item.number_of_comments}
-                      path_to_recording={item.path_to_recording}
-                      comments={item.recording_comments}
-                    />
-                  ))
-                ) : (
-                    <TeamRecordingsRow empty />
-                  )}
-              </View>
-            ]
-          )}
+          :
+          [<View style={styles.header}>
+            <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+              <Image source={HomeIconBlue} />
+            </TouchableOpacity>
+            <Image style={styles.icon} source={TeamIcon} />
+            <Text style={styles.header_title}>
+              Team{" "}
+              <Text style={{ fontWeight: "bold" }}>{team.current.name}</Text>
+            </Text>
+            <Text style={styles.score}>{team.current.team_score}</Text>
+            <Text style={styles.score_text}>punten</Text>
+          </View>,
+          <View style={styles.table}>
+            {team.current &&
+              team.current.team_members.map((item, index) => (
+                <TeammateRow
+                  id={item.id}
+                  name={item.name}
+                  mod_score={item.mod_score_sum}
+                  num_of_recordings={item.num_of_recordings}
+                  avatar={item.avatar}
+                />
+              ))}
+          </View>,
+          <View style={styles.table}>
+            <View style={styles.guy}>
+              <Image style={styles.guy_icon} source={TeamGuy} />
+            </View>
+            <Text style={styles.table_header}>Team Opnames</Text>
+            {team.current && team.current.team_recordings.length > 0 ?
+              team.current.team_recordings.map((item, index) => (
+                <TeamRecordingsRow
+                  id={item.id}
+                  rec_name={item.recording_name.file_name}
+                  num_of_comments={item.number_of_comments}
+                  path_to_recording={item.path_to_recording}
+                  comments={item.recording_comments}
+                />
+              )) : <TeamRecordingsRow empty />}
+          </View>]
+        }
       </ScrollView>
+
     );
   }
 }

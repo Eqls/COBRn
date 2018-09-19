@@ -31,7 +31,6 @@ class MyProfile extends React.Component {
 
   componentDidMount() {
     const { dispatch, auth, uid } = this.props;
-    console.log(uid)
     dispatch(userActions.read(uid, auth.token));
   }
 
@@ -78,6 +77,7 @@ class MyProfile extends React.Component {
               </View>,
               <View style={styles.table}>
                 <Text style={styles.table_header}>Mijn Scores</Text>
+                {console.log(user.current)}
                 <Scores
                   score={user.current.team_score}
                   rating={user.current.mod_score_sum}
@@ -107,7 +107,7 @@ class MyProfile extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",

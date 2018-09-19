@@ -16,11 +16,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export const StarRatingDisplay = ({ rating, starSize, chilli }) => (
+export const StarRatingDisplay = ({ rating, starSize, chilli, editing, handleChange }) => (
   <View style={styles.container}>
     <StarRating
-      disabled={true}
+      disabled={editing ? false : true}
       maxStars={5}
+      selectedStar={handleChange}
       fullStar={chilli ? FullChiliIcon : FullStarIcon}
       emptyStar={chilli ? EmptyChiliIcon : EmptyStarIcon}
       halfStar={HalfStarIcon}

@@ -4,8 +4,8 @@ import config from "../config/config";
 
 export const recordingActions = {
   create,
-  readAll
-  // update,
+  readAll,
+  update
   // read,
   // remove,
   // uploadAvatar
@@ -57,15 +57,15 @@ function remove(id) {
   };
 }
 
-function create(user_id, challenge, path, token) {
+function create(user, challenge, path, token) {
   let fd = new FormData();
   fd.append("recording[path_to_recording]", {
     uri: "file://" + path,
-    name: user_id + "" + challenge.id + "_" + challenge.name + ".mp4",
+    name: challenge.id + '_' + user.name + '_' + challenge.name + ".mp4",
     type: "audio/mp4"
   });
   fd.append("recording[challenge_id]", challenge.id);
-  fd.append("recording[user_id]", user_id);
+  fd.append("recording[user_id]", user.id);
 
   return {
     types: [
@@ -84,7 +84,7 @@ function create(user_id, challenge, path, token) {
   };
 }
 
-function update(user, token) {
+function update(recording, token) {
   return {
     types: [
       recordingConstants.UPDATE_REQUEST,
@@ -94,8 +94,8 @@ function update(user, token) {
     callAPI: () =>
       axios
         .put(
-          config.API_URL + "user",
-          { id: user.id, user },
+          config.API_URL + "recordings",
+          { id: recording.id, recording },
           { headers: { Authorization: "Bearer " + token } }
         )
         .then(res => res.data)

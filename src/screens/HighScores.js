@@ -20,12 +20,8 @@ import styleConsts from "../constants/styles";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
+    flexGrow: 1,
     backgroundColor: "#f2f2f2",
-    height: "100%"
   },
   homebar: {
     position: "absolute",
@@ -112,7 +108,7 @@ class HighScores extends React.Component {
               <View style={styles.table}>
                 <Text style={styles.table_header}>Team Punten</Text>
                 {teams.all ? (
-                  teams.all.data.map((item, index) => (
+                  teams.all.data.sort((a, b) => b.team_score - a.team_score).map((item, index) => (
                     <TeamRow
                       id={item.id}
                       name={item.name}
@@ -127,7 +123,7 @@ class HighScores extends React.Component {
               <View style={styles.table}>
                 <Text style={styles.table_header}>HC Waarderingen</Text>
                 {users.all ? (
-                  users.all.data.map((item, index) => (
+                  users.all.data.sort((a, b) => b.mod_score - a.mod_score).map((item, index) => (
                     <UserRow
                       id={item.id}
                       name={item.name}

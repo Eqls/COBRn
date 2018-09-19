@@ -18,12 +18,10 @@ import { teamActions } from "../actions";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
-    backgroundColor: "#f2f2f2",
-    height: "100%"
   },
   homebar: {
     position: "absolute",
@@ -67,7 +65,8 @@ const styles = StyleSheet.create({
   bg_wrapper: {
     position: 'absolute',
     left: -140,
-    bottom: 0
+    bottom: 0,
+    zIndex: -1
   },
   bg: {
     height: 461,
@@ -77,7 +76,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 60,
     bottom: -55,
-    zIndex: 2
   },
   guy: {
     aspectRatio: 0.5,
@@ -95,40 +93,42 @@ class AllTeams extends React.Component {
   render() {
     const { teams } = this.props;
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-        {teams.isFetching && !this.props.teams.all ? (
-          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <ActivityIndicator size="large" color="#FECB45" />
-          </View>
-        ) : (
-            [
-              <View style={styles.guy_wrapper}>
-                <Image style={styles.guy} source={AllTeamsGuy} />
-              </View>,
-              <View style={styles.bg_wrapper}>
-                <Image style={styles.bg} source={AllTeamsBg} />
-              </View>,
-              <View style={styles.header}>
-                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-                  <Image source={HomeIconBlue} />
-                </TouchableOpacity>
-                <Image style={styles.icon} source={AllTeamsIcon} />
-                <Text style={styles.header_title}>Alle Teams</Text>
-              </View>,
-              <View style={styles.table}>
-                {teams.all &&
-                  teams.all.data.map((item, index) => (
-                    <TeamRow
-                      id={item.id}
-                      name={item.name}
-                      team_score={item.team_score}
-                      position={index + 1}
-                    />
-                  ))}
-              </View>
-            ]
-          )}
-      </ScrollView>
+      <View style={{ flex: 1 }}>
+        <View style={styles.guy_wrapper}>
+          <Image style={styles.guy} source={AllTeamsGuy} />
+        </View>
+        <View style={styles.bg_wrapper}>
+          <Image style={styles.bg} source={AllTeamsBg} />
+        </View>
+        <ScrollView contentContainerStyle={styles.container}>
+          {teams.isFetching && !this.props.teams.all ? (
+            <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+              <ActivityIndicator size="large" color="#FECB45" />
+            </View>
+          ) : (
+              [
+                <View style={styles.header}>
+                  <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                    <Image source={HomeIconBlue} />
+                  </TouchableOpacity>
+                  <Image style={styles.icon} source={AllTeamsIcon} />
+                  <Text style={styles.header_title}>Alle Teams</Text>
+                </View>,
+                <View style={styles.table}>
+                  {teams.all &&
+                    teams.all.data.sort((a, b) => b.team_score - a.team_score).map((item, index) => (
+                      <TeamRow
+                        id={item.id}
+                        name={item.name}
+                        team_score={item.team_score}
+                        position={index + 1}
+                      />
+                    ))}
+                </View>
+              ]
+            )}
+        </ScrollView>
+      </View>
     );
   }
 }

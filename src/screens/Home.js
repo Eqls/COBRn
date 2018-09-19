@@ -47,13 +47,13 @@ export class Home extends React.Component {
             <Image style={styles.img} source={MyProfileIcon} />
             <Text style={styles.box_text}>Mijn Profiel</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.highscores()} style={styles.box}>
+          <TouchableOpacity onPress={Actions.highscores} style={styles.box}>
             <Image style={styles.img} source={HighScoresIcon} />
             <Text style={styles.box_text}>Score Lijst</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => Actions.allteams()} style={styles.box}>
+          <TouchableOpacity onPress={Actions.allteams} style={styles.box}>
             <Image style={styles.img} source={TeamListIcon} />
             <Text style={styles.box_text}>Alle Teams</Text>
           </TouchableOpacity>
@@ -63,7 +63,7 @@ export class Home extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => Actions.challenges()} style={styles.box}>
+          <TouchableOpacity onPress={Actions.challenges} style={styles.box}>
             <Image style={styles.img} source={ChallengesIcon} />
             <Text style={styles.box_text}>Challenges</Text>
           </TouchableOpacity>
@@ -73,7 +73,7 @@ export class Home extends React.Component {
             <Text style={styles.logout_text}>Logout</Text>
           </TouchableOpacity>
           {auth.role_id === 2 &&
-            <TouchableOpacity style={[styles.box, { backgroundColor: styleConsts.gold }]} onPress={this.logout}>
+            <TouchableOpacity style={[styles.box, { backgroundColor: styleConsts.gold }]} onPress={Actions.ratingpage}>
               <Text style={[styles.logout_text, { color: styleConsts.dark_blue, }]}>Give ratings</Text>
             </TouchableOpacity>}
         </View>
