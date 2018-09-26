@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   icon: {
-    aspectRatio: 0.5,
+    aspectRatio: 1,
     resizeMode: 'contain'
   }
 });
@@ -80,6 +80,12 @@ class Challenges extends React.Component {
     const { dispatch, auth } = this.props;
     dispatch(challengeActions.readAll(auth.token));
     dispatch(teamActions.readAll(auth.token));
+  }
+
+  sortChallenges = (challenges) => {
+    let active = challenges.filter(x => x.days_left >= 0 && !x.done_by_user).sort((a, b) => b.days_left - a.days_left)
+      , inactive = challenges.filter(x => x.days_left < 0 || x.done_by_user).sort((a, b) => b.days_left - a.days_left)
+    return active.concat(inactive)
   }
 
   render() {
@@ -105,13 +111,14 @@ class Challenges extends React.Component {
             </View>
             <Text style={styles.table_header}></Text>
             {allChallenges &&
-              allChallenges.sort((a, b) => b - a).map(x => <ChallengeRow challenge={x} />)}
+              this.sortChallenges(allChallenges).map(x => <ChallengeRow challenge={x} />)}
           </View>,
           <View style={styles.table}>
-            <Text style={styles.table_header}>Teams Highscore</Text>
+            <Text style={styles.table_header}>Team Punten</Text>
             {teams &&
               teams.data.sort((a, b) => b.team_score - a.team_score).map((item, index) => (
                 <TeamRow
+                  id={item.id}
                   key={item.id}
                   name={item.name}
                   team_score={item.team_score}

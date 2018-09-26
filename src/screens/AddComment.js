@@ -41,7 +41,7 @@ class AddComment extends React.Component {
         <View style={styles.input_wrapper}>
           <TextInput
             style={{ flex: 1 }}
-            placeholder="Write your message..."
+            placeholder="Schrijf je bericht..."
             autoFocus={true} // focus and show the keyboard
             value={this.state.text}
             onChangeText={this.onChangeText} // handle input changes

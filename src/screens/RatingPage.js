@@ -48,7 +48,7 @@ class RatingPage extends React.Component {
                 <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
                   <Image source={HomeIcon} />
                 </TouchableOpacity>
-                <Text style={styles.header_title}>Rate your teammates</Text>
+                <Text style={styles.header_title}>Beoordeel Je Teamgenoten</Text>
               </View>,
               <View style={styles.table}>
                 {recording.all.data.length > 0 ?

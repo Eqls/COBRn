@@ -19,7 +19,7 @@ import {
 import config from '../../config/config'
 
 const ChallengeRow = ({ challenge }) => {
-  let available = !challenge.done_by_user && challenge.days_left >= 0
+  let available = challenge.days_left >= 0
     , completed = challenge.done_by_user
   return (
     <View style={styles.container}>
@@ -46,7 +46,7 @@ const ChallengeRow = ({ challenge }) => {
               : <Text style={{ color: '#FF8373' }}>Niet Gedaan...</Text>}
         </View>
       </View>
-      {available ?
+      {available || (completed && available) ?
         <TouchableOpacity
           onPress={() => Actions.challengecard({ challenge })}
           style={styles.button}>
@@ -55,17 +55,11 @@ const ChallengeRow = ({ challenge }) => {
           </Text>
           <Image style={styles.arrow} source={RightArrow} />
         </TouchableOpacity>
-        : completed ?
-          <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
-            <Text style={[styles.button_text, { color: '#838383' }]}>
-              Afgetikt
+        : <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
+          <Text style={[styles.button_text, { color: '#838383' }]}>
+            Verlopen
           </Text>
-          </View >
-          : <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
-            <Text style={[styles.button_text, { color: '#838383' }]}>
-              Verlopen
-          </Text>
-          </View >}
+        </View >}
     </View >
   )
 }

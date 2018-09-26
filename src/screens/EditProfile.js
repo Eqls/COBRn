@@ -92,13 +92,13 @@ class EditProfile extends React.Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-            <Text style={styles.back}>Go back</Text>
+            <Text style={styles.back}>Ga terug</Text>
           </TouchableOpacity>
-          <Text style={styles.title}>Change your details</Text>
+          <Text style={styles.title}>Wijzig uw gegevens</Text>
           <View style={{ flex: 1 }} />
         </View>
         <View style={styles.form}>
-          <Text>Name</Text>
+          <Text>Gebruikersnaam</Text>
           <TextInput
             style={{ height: 40, backgroundColor: "white" }}
             onChangeText={name => this.handleChange({ name })}
@@ -107,7 +107,7 @@ class EditProfile extends React.Component {
             style={styles.button}
             onPress={() => this.submitUpdate(user)}
           >
-            <Text style={{ color: "#010763" }}>Save changes</Text>
+            <Text style={{ color: "#010763" }}>Profiel bijwerken</Text>
           </TouchableOpacity>
         </View>
       </View>

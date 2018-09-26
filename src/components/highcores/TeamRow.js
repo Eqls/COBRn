@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
 const TeamRow = ({ id, name, team_score, position, empty }) => (
   <TouchableOpacity onPress={() => id && Actions.myteam({ tid: id })} style={styles.container}>
-    {empty ? <Text style={styles.title}>No results found.</Text> :
+    {empty ? <Text style={styles.title}>Geen data gevonden.</Text> :
       [<Text style={{ flex: 1, color: "#137BD1" }}>{position}</Text>,
       <Text style={styles.title}>{name}</Text>,
       <Text style={styles.team_score}>{team_score}</Text>]}

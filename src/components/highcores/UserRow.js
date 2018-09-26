@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 
 const UserRow = ({ id, name, position, mod_score, num_of_recordings, empty }) => (
   <TouchableOpacity onPress={() => id && Actions.myprofile({ uid: id })} style={styles.container}>
-    {empty ? <Text style={styles.title}>No results found.</Text> :
+    {empty ? <Text style={styles.title}>Geen data gevonden.</Text> :
       [
         <Text style={{ flex: 1, color: "#137BD1" }}>{position}</Text>,
         <Text style={styles.title}>{name}</Text>,

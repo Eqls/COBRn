@@ -58,7 +58,7 @@ const RateRecordingsRow = ({
   return (
     <View style={styles.container}>
       {empty ?
-        <Text style={styles.title}>No results found.</Text>
+        <Text style={styles.title}>Geen data gevonden.</Text>
         :
         [
           <Text style={styles.title}>{rec_name}</Text>,

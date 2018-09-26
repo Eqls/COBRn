@@ -61,14 +61,14 @@ class Login extends React.Component {
           source={Illustration}
         >
           <View style={styles.container}>
-            {error && <Text style={styles.error}>{error.error ? error.error : 'Something went wrong! Please try again later.'}</Text>}
+            {error && <Text style={styles.error}>{error.error ? error.error : 'Er is iets fout gegaan! Probeer het later opnieuw.'}</Text>}
             <View style={styles.form}>
               <TextInput
                 style={styles.formField}
                 placeholderTextColor="darkblue"
                 onChangeText={name => this.handleChange({ name: name })}
                 value={user.name}
-                placeholder="Enter Your username"
+                placeholder="Typ je gebruikersnaam"
                 autoCapitalize="none"
                 underlineColorAndroid="transparent"
                 textAlign={"center"}
@@ -79,7 +79,7 @@ class Login extends React.Component {
                 onChangeText={password => this.handleChange({ password: password })}
                 value={user.password}
                 type="password"
-                placeholder="Enter Your password"
+                placeholder="Voer uw wachtwoord in"
                 autoCapitalize="none"
                 underlineColorAndroid="transparent"
                 textAlign={"center"}
@@ -96,9 +96,6 @@ class Login extends React.Component {
               <View style={styles.checkin}>
                 <Image style={styles.checkin_icon} source={CheckinIcon} />
               </View>
-            </View>
-            <View style={styles.trademark_container}>
-              <Text style={styles.trademark}><Text style={{ color: styleConsts.dark_blue }}>by</Text> YellowStorm<Text style={{ color: styleConsts.dark_blue }}>.nl</Text></Text>
             </View>
           </View>
         </ImageBackground>
@@ -144,6 +141,7 @@ const styles = StyleSheet.create({
   form: {
     width: "100%",
     padding: 10,
+    marginBottom: 20
   },
   checkin: {
     position: "absolute",
@@ -154,20 +152,6 @@ const styles = StyleSheet.create({
   checkin_icon: {
     aspectRatio: 0.25,
     resizeMode: "contain"
-  },
-  trademark_container: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    borderRadius: 40,
-    padding: 3,
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginBottom: 5
-  },
-  trademark: {
-    color: styleConsts.gold,
-    fontSize: 14,
-    fontWeight: 'bold'
   }
 });
 

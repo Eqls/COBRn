@@ -38,7 +38,7 @@ class Recording extends React.Component {
 
   submit = () => {
     const { dispatch, auth, challenge } = this.props
-    dispatch(recordingActions.create(auth.id, challenge, this.recorder._fsPath, auth.token))
+    dispatch(recordingActions.create(auth, challenge, this.recorder._fsPath, auth.token))
     this._reloadPlayer()
     this._reloadRecorder()
     Actions.success()
@@ -166,8 +166,8 @@ class Recording extends React.Component {
 
   getText = (recording, finished) => {
     if (!recording && !finished) return 'En………Actie!'
-    else if (recording) return 'Recording...'
-    else if (finished) return 'Done!'
+    else if (recording) return 'Opname...'
+    else if (finished) return 'Gedaan!'
   }
 
   render() {

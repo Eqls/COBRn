@@ -16,7 +16,8 @@ import {
   TeamListIcon,
   MyTeamIcon,
   ChallengesIcon,
-  HomePeople
+  HomePeople,
+  FullStarIcon
 } from '../assets/images'
 import styleConsts from '../constants/styles'
 import { connect } from 'react-redux'
@@ -64,7 +65,9 @@ export class Home extends React.Component {
         </View>
         <View style={styles.row}>
           <TouchableOpacity onPress={Actions.challenges} style={styles.box}>
-            <Image style={styles.img} source={ChallengesIcon} />
+            <View style={styles.circle}>
+              <Image style={styles.img_new} source={ChallengesIcon} />
+            </View>
             <Text style={styles.box_text}>Challenges</Text>
           </TouchableOpacity>
         </View>
@@ -74,8 +77,12 @@ export class Home extends React.Component {
           </TouchableOpacity>
           {auth.role_id === 2 &&
             <TouchableOpacity style={styles.logout_button} onPress={Actions.ratingpage}>
-              <Text style={styles.logout_text}>Give ratings</Text>
+              <Image source={FullStarIcon} style={styles.star} />
+              <Text style={styles.logout_text}>Waarderen</Text>
             </TouchableOpacity>}
+        </View>
+        <View style={styles.trademark_container}>
+          <Text style={styles.trademark}><Text style={{ color: styleConsts.dark_blue }}>by</Text> YellowStorm<Text style={{ color: styleConsts.dark_blue }}>.nl</Text></Text>
         </View>
       </View >
     )
@@ -92,6 +99,11 @@ const styles = StyleSheet.create({
     padding: 20,
     // backgroundColor: '#f2f2f2',
     height: '100%'
+  },
+  star: {
+    width: 20,
+    height: 20,
+    marginRight: 5
   },
   row: {
     display: 'flex',
@@ -117,7 +129,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 5
   },
   logout_text: {
     color: styleConsts.dark_blue,
@@ -150,7 +163,34 @@ const styles = StyleSheet.create({
     height: 83,
     width: 83,
     resizeMode: 'contain'
-  }
+  },
+  img_new: {
+    aspectRatio: 0.75,
+    resizeMode: 'contain'
+  },
+  circle: {
+    width: 83,
+    height: 83,
+    backgroundColor: '#19408B',
+    borderRadius: 100,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  trademark_container: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    backgroundColor: '#f2f2f2',
+    borderRadius: 40,
+    padding: 3,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  trademark: {
+    color: styleConsts.gold,
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
 });
 
 const mapStateToProps = state => ({

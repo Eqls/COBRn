@@ -180,7 +180,7 @@ class Comments extends React.Component {
           </View>
           <View style={styles.table}>
             {comments.length === 0 ? (
-              <Text>no comments yet</Text>
+              <Text>Nog geen berichten</Text>
             ) : (
                 comments.map((item, index) => <CommentRow comment={item} />)
               )}
@@ -188,7 +188,7 @@ class Comments extends React.Component {
           <TouchableOpacity
             style={styles.button}
             onPress={() => Actions.addcomment({ id })}>
-            <Text style={{ color: "white", fontWeight: 'bold' }}>Write Comment</Text>
+            <Text style={{ color: "white", fontWeight: 'bold' }}>Geef Comentaar</Text>
             <Image style={styles.button_icon} source={CommentCloud} />
           </TouchableOpacity>
         </ScrollView>

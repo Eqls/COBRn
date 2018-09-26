@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 
 const TeamProgress = ({ progress }) => (
   <View style={styles.container}>
-    <Text style={styles.title}>My Team Progress</Text>
+    <Text style={styles.title}>Mijn teamvoortgang</Text>
     <View style={{ flex: 1 }}>
       <ProgressBar percent={progress} />
     </View>

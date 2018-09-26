@@ -113,7 +113,7 @@ class ChallengeCard extends React.Component {
           dim && <View style={styles.dim} />,
           error &&
           Alert.alert(
-            'Something happened!',
+            'Er is iets gebeurd!',
             error,
             { cancelable: true }
           )]}
