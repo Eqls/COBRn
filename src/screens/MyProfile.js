@@ -48,6 +48,7 @@ class MyProfile extends React.Component {
   render() {
     const { user, auth } = this.props;
     const { showUploadDialog } = this.state;
+    console.log(user);
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {user.isFetching || !user.current ? (

@@ -149,7 +149,7 @@ class Comments extends React.Component {
   }
 
   render() {
-    const { id, rec_name, path_to_recording } = this.props;
+    const { id, user_id, rec_name, path_to_recording } = this.props;
     const { comments } = this.state
 
     playAudio = () => {
@@ -187,7 +187,7 @@ class Comments extends React.Component {
           </View>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => Actions.addcomment({ id })}>
+            onPress={() => Actions.addcomment({ id, user_id })}>
             <Text style={{ color: "white", fontWeight: 'bold' }}>Geef Comentaar</Text>
             <Image style={styles.button_icon} source={CommentCloud} />
           </TouchableOpacity>

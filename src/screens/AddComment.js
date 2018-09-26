@@ -14,14 +14,15 @@ class AddComment extends React.Component {
 
   onChangeText = text => this.setState({ text });
 
-  submit = id => {
-    const { dispatch, auth, user } = this.props;
+  submit = (id, user_id) => {
+    const { dispatch, auth } = this.props;
     const { text } = this.state;
     if (text) {
       this.setState({ text: undefined, submitted: true })
       dispatch(commentActions.create(auth.token, auth.id, id, text))
       Actions.pop()
-      dispatch(userActions.read(user.current.id, auth.token))
+      console.log(user_id);
+      dispatch(userActions.read(user_id, auth.token))
     } else {
       alert("Please enter your comment first");
     }
@@ -30,7 +31,7 @@ class AddComment extends React.Component {
   setDone = () => this.setState({ ...this.state, done: true })
 
   render() {
-    const { id } = this.props;
+    const { id, user_id } = this.props;
     return (
       <View style={styles.container}>
         <TouchableOpacity
@@ -49,7 +50,7 @@ class AddComment extends React.Component {
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.submit(id)}>
+          onPress={() => this.submit(id, user_id)}>
           <Text style={{ color: "white", fontWeight: 'bold' }}>Post</Text>
           <Image style={styles.button_icon} source={CommentCloud} />
         </TouchableOpacity>

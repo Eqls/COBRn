@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
 
 const TeamRecordingsRow = ({
   id,
+  user_id,
   rec_name,
   num_of_comments,
   path_to_recording,
@@ -67,7 +68,7 @@ const TeamRecordingsRow = ({
             <TouchableOpacity
               style={{ paddingRight: 10, paddingLeft: 10 }}
               onPress={() =>
-                Actions.comments({ id, rec_name, comments, path_to_recording })
+                Actions.comments({ id, user_id, rec_name, comments, path_to_recording })
               }
             >
               <ImageBackground style={styles.comment_icon} source={CommentIcon}>

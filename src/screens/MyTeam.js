@@ -131,10 +131,12 @@ class MyTeam extends React.Component {
               <Image style={styles.guy_icon} source={TeamGuy} />
             </View>
             <Text style={styles.table_header}>Team Opnames</Text>
+            {console.log(team.current)}
             {team.current && team.current.team_recordings.length > 0 ?
               team.current.team_recordings.map((item, index) => (
                 <TeamRecordingsRow
                   id={item.id}
+                  user_id={item.user_id}
                   rec_name={item.recording_name.file_name}
                   num_of_comments={item.number_of_comments}
                   path_to_recording={item.path_to_recording}

@@ -19,20 +19,22 @@ import {
 import config from '../../config/config'
 
 const ChallengeRow = ({ challenge }) => {
+  console.log(challenge);
   let available = challenge.days_left >= 0
     , completed = challenge.done_by_user
   return (
     <View style={styles.container}>
-      {available ?
+      {completed ?
+          <Image style={styles.img_frame} source={ChallengeSuccess} />
+        :available ?
         <View>
           <Image style={styles.img_frame} source={BandFrame} />
           <View style={styles.icon_wrapper}>
             <Image style={styles.icon} borderRadius={50} source={challenge.avatar ? { uri: config.PHOTO_URL + challenge.avatar } : DefaultChallengeIcon} />
           </View>
         </View>
-        : completed ?
-          <Image style={styles.img_frame} source={ChallengeSuccess} />
-          : <Image style={styles.img_frame} source={ChallengeFailure} />
+        :
+          <Image style={styles.img_frame} source={ChallengeFailure} />
       }
       <View style={styles.info}>
         <Text style={styles.info_text}>{challenge.name ? challenge.name : 'No title'}</Text>
@@ -46,15 +48,23 @@ const ChallengeRow = ({ challenge }) => {
               : <Text style={{ color: '#FF8373' }}>Niet Gedaan...</Text>}
         </View>
       </View>
-      {available || (completed && available) ?
+      {completed && available ?
         <TouchableOpacity
           onPress={() => Actions.challengecard({ challenge })}
-          style={styles.button}>
-          <Text style={styles.button_text}>
-            Bekijk
+          style={[styles.button, , { backgroundColor: '#78ff94' }]}>
+          <Text style={[styles.button_text, { color: '#4765FF' }]}>
+            Opnieuw?
           </Text>
-          <Image style={styles.arrow} source={RightArrow} />
         </TouchableOpacity>
+        : available ?
+          <TouchableOpacity
+            onPress={() => Actions.challengecard({ challenge })}
+            style={styles.button}>
+            <Text style={styles.button_text}>
+              Bekijk
+            </Text>
+            <Image style={styles.arrow} source={RightArrow} />
+          </TouchableOpacity>
         : <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
           <Text style={[styles.button_text, { color: '#838383' }]}>
             Verlopen
