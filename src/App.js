@@ -18,6 +18,7 @@ import ChallengeCard from "./screens/ChallengeCard";
 import Success from "./screens/Success";
 import AddComment from "./screens/AddComment";
 import RatingPage from "./screens/RatingPage";
+import Info from "./screens/Info";
 
 class App extends React.Component {
   componentDidMount() {
@@ -101,6 +102,12 @@ class App extends React.Component {
               key="ratingpage"
               component={RatingPage}
               title="Rating Page"
+              swipeEnabled
+            />
+            <Scene
+              key="infopage"
+              component={Info}
+              title="Info Page"
               swipeEnabled
             />
           </Scene>

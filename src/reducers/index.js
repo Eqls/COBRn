@@ -5,6 +5,7 @@ import team from "./team";
 import challenge from "./challenge";
 import comment from "./comment";
 import recording from "./recording";
+import info from "./info";
 
 export default combineReducers({
   auth,
@@ -12,5 +13,6 @@ export default combineReducers({
   team,
   challenge,
   comment,
-  recording
+  recording,
+  info
 });
