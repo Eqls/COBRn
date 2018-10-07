@@ -19,6 +19,7 @@ import Success from "./screens/Success";
 import AddComment from "./screens/AddComment";
 import RatingPage from "./screens/RatingPage";
 import Info from "./screens/Info";
+import Hint from "./screens/ChallengeHint";
 
 class App extends React.Component {
   componentDidMount() {
@@ -108,6 +109,12 @@ class App extends React.Component {
               key="infopage"
               component={Info}
               title="Info Page"
+              swipeEnabled
+            />
+            <Scene
+              key="hintpage"
+              component={Hint}
+              title="Hint Page"
               swipeEnabled
             />
           </Scene>
