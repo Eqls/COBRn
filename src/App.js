@@ -1,35 +1,35 @@
-import React from "react";
-import { StyleSheet, Text, View, AsyncStorage } from "react-native";
-import { Provider } from "react-redux";
-import { store } from "./utils";
-import { Router, Scene, Actions } from "react-native-router-flux";
-import Login from "./screens/Login";
-import Home from "./screens/Home";
-import HighScores from "./screens/HighScores";
-import Challenges from "./screens/Challenges";
-import MyTeam from "./screens/MyTeam";
-import Comments from "./screens/Comments";
-import MyProfile from "./screens/MyProfile";
-import EditProfile from "./screens/EditProfile";
-import { connect } from "react-redux";
-import { auth } from "./actions/";
-import AllTeams from "./screens/AllTeams";
-import ChallengeCard from "./screens/ChallengeCard";
-import Success from "./screens/Success";
-import AddComment from "./screens/AddComment";
-import RatingPage from "./screens/RatingPage";
-import Info from "./screens/Info";
-import Hint from "./screens/ChallengeHint";
+import React from 'react'
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
+import { Provider } from 'react-redux'
+import { store } from './utils'
+import { Router, Scene, Actions } from 'react-native-router-flux'
+import Login from './screens/Login'
+import Home from './screens/Home'
+import HighScores from './screens/HighScores'
+import GroupCard from './screens/GroupCard'
+import MyTeam from './screens/MyTeam'
+import Comments from './screens/Comments'
+import MyProfile from './screens/MyProfile'
+import EditProfile from './screens/EditProfile'
+import { connect } from 'react-redux'
+import { auth } from './actions/'
+import AllTeams from './screens/AllTeams'
+import ChallengeCard from './screens/ChallengeCard'
+import Success from './screens/Success'
+import AddComment from './screens/AddComment'
+import RatingPage from './screens/RatingPage'
+import Info from './screens/Info'
+import GroupedChallenges from './screens/GroupedChallenges'
 
 class App extends React.Component {
   componentDidMount() {
-    AsyncStorage.getItem("jwt")
+    AsyncStorage.getItem('jwt')
       .then(token => {
         if (token) {
-          store.dispatch(auth.validate(token));
+          store.dispatch(auth.validate(token))
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error))
   }
 
   render() {
@@ -58,9 +58,15 @@ class App extends React.Component {
               swipeEnabled
             />
             <Scene
-              key="challenges"
-              component={Challenges}
-              title="Challenges"
+              key="groupcard"
+              component={GroupCard}
+              title="Group Card"
+              swipeEnabled
+            />
+            <Scene
+              key="groupedchallenges"
+              component={GroupedChallenges}
+              title="Grouped Challenges"
               swipeEnabled
             />
             <Scene
@@ -111,26 +117,20 @@ class App extends React.Component {
               title="Info Page"
               swipeEnabled
             />
-            <Scene
-              key="hintpage"
-              component={Hint}
-              title="Hint Page"
-              swipeEnabled
-            />
           </Scene>
         </Router>
       </Provider>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
-});
+})
 
-export default App;
+export default App
