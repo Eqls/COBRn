@@ -61,9 +61,7 @@ const ChallengeRow = ({ challenge }) => {
             <Text style={{ color: '#FF8373' }}>Niet Gedaan...</Text>
           )}
         </View>
-        <View style={styles.difficulty}>
-          <StarRatingDisplay chilli starSize={20} rating={challenge.rating} />
-        </View>
+        <StarRatingDisplay chilli starSize={20} rating={challenge.rating} />
       </View>
       {completed && available ? (
         <TouchableOpacity
@@ -156,9 +154,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center'
-  },
-  difficulty: {
-    flex: 1
   }
 })
 
