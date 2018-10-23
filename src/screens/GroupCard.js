@@ -13,7 +13,7 @@ import { Actions } from 'react-native-router-flux'
 import TeamRow from '../components/highcores/TeamRow'
 import UserRow from '../components/highcores/UserRow'
 import ChallengeRow from '../components/challenges/ChallengeRow'
-import { HomeIconBlue, ChallengesIcon2, ChallengesGuy } from '../assets/images'
+import { HomeIconBlue, DefaultChallengeIcon, BandFrame } from '../assets/images'
 import styleConsts from '../constants/styles'
 import { connect } from 'react-redux'
 import { challengeActions, teamActions } from '../actions'
@@ -26,24 +26,18 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: '#f2f2f2'
   },
-  homebar: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
+  topbar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
     padding: 15,
-    width: '100%'
+    paddingBottom: 0
   },
   header_title: {
-    fontSize: 22,
-    margin: 10,
-    color: '#010763'
-  },
-  header: {
-    display: 'flex',
-    padding: 10,
-    flexDirection: 'column',
-    width: '100%',
-    alignItems: 'center'
+    fontSize: 20,
+    color: '#010763',
+    marginBottom: 10
   },
   table: {
     alignItems: 'flex-start',
@@ -52,33 +46,34 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10
   },
-  table_header: {
-    fontSize: 14,
-    padding: 10,
-    paddingLeft: 30,
-    fontWeight: 'bold',
-    color: styleConsts.light_blue
-  },
-  guy: {
-    position: 'absolute',
-    top: -120,
-    right: 40
-  },
-  guy_icon: {
-    aspectRatio: 0.3,
-    resizeMode: 'contain'
-  },
   icon: {
     aspectRatio: 1,
     resizeMode: 'contain'
+  },
+  img_frame: {
+    width: 45,
+    height: 35
+  },
+  icon_wrapper: {
+    position: 'absolute',
+    top: 1,
+    left: 6
+  },
+  icon: {
+    borderWidth: 1,
+    borderColor: '#000065',
+    height: 33,
+    width: 33
+  },
+  image_container: {
+    marginBottom: 15
   }
 })
 
 class GroupCard extends React.Component {
   componentDidMount() {
-    const { dispatch, auth, id } = this.props
-    console.log(id)
-    dispatch(challengeActions.readAll(id, auth.token))
+    const { dispatch, auth, group } = this.props
+    dispatch(challengeActions.readAll(group.id, auth.token))
     dispatch(teamActions.readAll(auth.token))
   }
 
@@ -97,7 +92,8 @@ class GroupCard extends React.Component {
       challengeIsFetching,
       allChallenges,
       teamIsFetching,
-      teams
+      teams,
+      group
     } = this.props
     return (
       <ScrollView contentContainerStyle={styles.container}>
@@ -108,40 +104,34 @@ class GroupCard extends React.Component {
             <ActivityIndicator size="large" color="#FECB45" />
           </View>
         ) : (
-          [
-            <View style={styles.header}>
-              <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+          <>
+            <View style={styles.topbar}>
+              <TouchableOpacity onPress={Actions.pop}>
                 <Image source={HomeIconBlue} />
               </TouchableOpacity>
-              <Image style={styles.icon} source={ChallengesIcon2} />
-              <Text style={styles.header_title}>Challenges</Text>
-            </View>,
-            <View style={styles.table}>
-              <View style={styles.guy}>
-                <Image style={styles.guy_icon} source={ChallengesGuy} />
+            </View>
+            <View style={styles.image_container}>
+              <Image style={styles.img_frame} source={BandFrame} />
+              <View style={styles.icon_wrapper}>
+                <Image
+                  style={styles.icon}
+                  borderRadius={100}
+                  source={
+                    group.avatar
+                      ? { uri: config.PHOTO_URL + group.avatar }
+                      : DefaultChallengeIcon
+                  }
+                />
               </View>
-              <Text style={styles.table_header} />
+            </View>
+            <Text style={styles.header_title}>{group.name}</Text>
+            <View style={styles.table}>
               {allChallenges &&
                 this.sortChallenges(allChallenges).map(x => (
                   <ChallengeRow challenge={x} />
                 ))}
-            </View>,
-            <View style={styles.table}>
-              <Text style={styles.table_header}>Team Punten</Text>
-              {teams &&
-                teams.data
-                  .sort((a, b) => b.team_score - a.team_score)
-                  .map((item, index) => (
-                    <TeamRow
-                      id={item.id}
-                      key={item.id}
-                      name={item.name}
-                      team_score={item.team_score}
-                      position={index + 1}
-                    />
-                  ))}
             </View>
-          ]
+          </>
         )}
       </ScrollView>
     )

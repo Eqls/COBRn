@@ -64,7 +64,7 @@ const GroupedChallengesRow = ({ group }) => {
         </TouchableOpacity>
       ) : !group.expired ? (
         <TouchableOpacity
-          onPress={() => Actions.groupcard({ id: group.id })}
+          onPress={() => Actions.groupcard({ group })}
           style={styles.button}
         >
           <Text style={styles.button_text}>Bekijk</Text>

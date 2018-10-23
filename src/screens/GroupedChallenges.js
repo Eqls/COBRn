@@ -83,7 +83,7 @@ class GroupedChallenges extends React.Component {
   }
 
   sortChallenges = groups => {
-    let active = groups.filter(x => !x.done),
+    let active = groups.filter(x => !x.done && !x.expired),
       doneinactive = groups.filter(x => x.done && x.expired)
     inactive = groups.filter(x => !x.done && x.expired)
     return active.concat(doneinactive.concat(inactive))
