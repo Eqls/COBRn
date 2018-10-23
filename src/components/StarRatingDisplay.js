@@ -1,6 +1,6 @@
-import React from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
-import StarRating from "react-native-star-rating";
+import React from 'react'
+import { View, Text, StyleSheet, Alert } from 'react-native'
+import StarRating from 'react-native-star-rating'
 import {
   FullStarIcon,
   EmptyStarIcon,
@@ -10,7 +10,6 @@ import {
 } from '../assets/images'
 
 class StarRatingDisplay extends React.Component {
-
   state = {
     selection: 1
   }
@@ -23,7 +22,7 @@ class StarRatingDisplay extends React.Component {
       `Are you sure you want to rate this recording ${selection} stars?`,
       [
         { text: 'Cancel', style: 'cancel' },
-        { text: 'OK', onPress: () => handleChange(selection) },
+        { text: 'OK', onPress: () => handleChange(selection) }
       ],
       { cancelable: true }
     )
@@ -39,6 +38,7 @@ class StarRatingDisplay extends React.Component {
     let { selection } = this.state
     return (
       <StarRating
+        containerStyle={{ justifyContent: 'flex-start' }}
         disabled={editing ? false : true}
         maxStars={5}
         selectedStar={this.changeRating}

@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity
-} from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import styleConsts from '../../constants/styles'
 import {
@@ -17,60 +11,85 @@ import {
   AlarmClock
 } from '../../assets/images'
 import config from '../../config/config'
+import RatingRow from '../challengecard/RatingRow'
+import StarRatingDisplay from '../StarRatingDisplay'
 
 const ChallengeRow = ({ challenge }) => {
-  console.log(challenge);
-  let available = challenge.days_left >= 0
-    , completed = challenge.done_by_user
+  console.log(challenge)
+  let available = challenge.days_left >= 0,
+    completed = challenge.done_by_user
   return (
     <View style={styles.container}>
-      {completed ?
-          <Image style={styles.img_frame} source={ChallengeSuccess} />
-        :available ?
+      {completed ? (
+        <Image style={styles.img_frame} source={ChallengeSuccess} />
+      ) : available ? (
         <View>
           <Image style={styles.img_frame} source={BandFrame} />
           <View style={styles.icon_wrapper}>
-            <Image style={styles.icon} borderRadius={50} source={challenge.avatar ? { uri: config.PHOTO_URL + challenge.avatar } : DefaultChallengeIcon} />
+            <Image
+              style={styles.icon}
+              borderRadius={50}
+              source={
+                challenge.avatar
+                  ? { uri: config.PHOTO_URL + challenge.avatar }
+                  : DefaultChallengeIcon
+              }
+            />
           </View>
         </View>
-        :
-          <Image style={styles.img_frame} source={ChallengeFailure} />
-      }
+      ) : (
+        <Image style={styles.img_frame} source={ChallengeFailure} />
+      )}
       <View style={styles.info}>
-        <Text style={styles.info_text}>{challenge.name ? challenge.name : 'No title'}</Text>
+        <Text style={styles.info_text}>
+          {challenge.name ? challenge.name : 'No title'}
+        </Text>
         <View style={styles.expiration}>
-          {available ?
+          {available ? (
             [
               <Image style={styles.clock} source={AlarmClock} />,
-              <Text style={{ color: '#4765FF' }}>Nog {challenge.days_left + ' ' + (challenge.days_left === 1 ? 'Dag' : 'Dagen')}</Text>
-            ] : completed ?
-              <Text style={{ color: '#71E84C' }}>Afgetikt!</Text>
-              : <Text style={{ color: '#FF8373' }}>Niet Gedaan...</Text>}
+              <Text style={{ color: '#4765FF' }}>
+                Nog{' '}
+                {challenge.days_left +
+                  ' ' +
+                  (challenge.days_left === 1 ? 'Dag' : 'Dagen')}
+              </Text>
+            ]
+          ) : completed ? (
+            <Text style={{ color: '#71E84C' }}>Afgetikt!</Text>
+          ) : (
+            <Text style={{ color: '#FF8373' }}>Niet Gedaan...</Text>
+          )}
+        </View>
+        <View style={styles.difficulty}>
+          <StarRatingDisplay chilli starSize={20} rating={challenge.rating} />
         </View>
       </View>
-      {completed && available ?
+      {completed && available ? (
         <TouchableOpacity
           onPress={() => Actions.challengecard({ challenge })}
-          style={[styles.button, , { backgroundColor: '#78ff94' }]}>
+          style={[styles.button, , { backgroundColor: '#78ff94' }]}
+        >
           <Text style={[styles.button_text, { color: '#4765FF' }]}>
             Opnieuw?
           </Text>
         </TouchableOpacity>
-        : available ?
-          <TouchableOpacity
-            onPress={() => Actions.challengecard({ challenge })}
-            style={styles.button}>
-            <Text style={styles.button_text}>
-              Bekijk
-            </Text>
-            <Image style={styles.arrow} source={RightArrow} />
-          </TouchableOpacity>
-        : <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
+      ) : available ? (
+        <TouchableOpacity
+          onPress={() => Actions.challengecard({ challenge })}
+          style={styles.button}
+        >
+          <Text style={styles.button_text}>Bekijk</Text>
+          <Image style={styles.arrow} source={RightArrow} />
+        </TouchableOpacity>
+      ) : (
+        <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
           <Text style={[styles.button_text, { color: '#838383' }]}>
             Verlopen
           </Text>
-        </View >}
-    </View >
+        </View>
+      )}
+    </View>
   )
 }
 
@@ -107,18 +126,18 @@ const styles = StyleSheet.create({
   img_frame: {
     width: 45,
     height: 35,
-    marginRight: 25,
+    marginRight: 25
   },
   icon_wrapper: {
     position: 'absolute',
     top: 1,
-    left: 6,
+    left: 6
   },
   icon: {
     borderWidth: 1,
     borderColor: '#000065',
     height: 33,
-    width: 33,
+    width: 33
   },
   info: {
     flex: 1,
@@ -137,6 +156,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  difficulty: {
+    flex: 1
   }
 })
 
