@@ -46,24 +46,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10
   },
-  icon: {
-    aspectRatio: 1,
-    resizeMode: 'contain'
-  },
   img_frame: {
-    width: 45,
-    height: 35
+    height: 101,
+    width: 142,
+    resizeMode: 'contain'
   },
   icon_wrapper: {
     position: 'absolute',
-    top: 1,
-    left: 6
+    top: 3,
+    left: 25
   },
   icon: {
-    borderWidth: 1,
-    borderColor: '#000065',
-    height: 33,
-    width: 33
+    height: 95,
+    width: 92
   },
   image_container: {
     marginBottom: 15
@@ -74,7 +69,6 @@ class GroupCard extends React.Component {
   componentDidMount() {
     const { dispatch, auth, group } = this.props
     dispatch(challengeActions.readAll(group.id, auth.token))
-    dispatch(teamActions.readAll(auth.token))
   }
 
   sortChallenges = challenges => {
@@ -88,16 +82,10 @@ class GroupCard extends React.Component {
   }
 
   render() {
-    const {
-      challengeIsFetching,
-      allChallenges,
-      teamIsFetching,
-      teams,
-      group
-    } = this.props
+    const { challengeIsFetching, allChallenges, group } = this.props
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        {challengeIsFetching || teamIsFetching ? (
+        {challengeIsFetching ? (
           <View
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
           >
@@ -141,8 +129,6 @@ class GroupCard extends React.Component {
 
 const mapStateToProps = state => ({
   auth: state.auth.user,
-  teams: state.team.all,
-  teamIsFetching: state.team.isFetching,
   allChallenges: state.challenge.all,
   challengeIsFetching: state.challenge.isFetching
 })

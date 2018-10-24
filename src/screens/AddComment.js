@@ -1,42 +1,68 @@
-import React from "react";
-import { View, Text, StyleSheet, Button, TextInput, Image, TouchableOpacity } from "react-native";
-import { PlayIcon, CommentsBg, CommentsGuy, HomeIcon, CommentsIcon, CommentCloud, CloseIcon } from "./../assets/images";
-import { connect } from "react-redux";
-import config from "../config/config";
-import { commentActions, userActions } from "../actions";
+import React from 'react'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  TextInput,
+  Image,
+  TouchableOpacity
+} from 'react-native'
+import {
+  PlayIcon,
+  CommentsBg,
+  CommentsGuy,
+  HomeIcon,
+  CommentsIcon,
+  CommentCloud,
+  CloseIcon
+} from './../assets/images'
+import { connect } from 'react-redux'
+import config from '../config/config'
+import { commentActions, userActions } from '../actions'
 import { Actions } from 'react-native-router-flux'
 import styleConsts from '../constants/styles'
 
 class AddComment extends React.Component {
   state = {
     text: undefined
-  };
+  }
 
-  onChangeText = text => this.setState({ text });
+  onChangeText = text => this.setState({ text })
 
   submit = (id, user_id) => {
-    const { dispatch, auth } = this.props;
-    const { text } = this.state;
+    const { dispatch, auth } = this.props
+    const { text } = this.state
     if (text) {
       this.setState({ text: undefined, submitted: true })
       dispatch(commentActions.create(auth.token, auth.id, id, text))
       Actions.pop()
-      console.log(user_id);
       dispatch(userActions.read(user_id, auth.token))
     } else {
-      alert("Please enter your comment first");
+      alert('Please enter your comment first')
     }
-  };
+  }
+
+  submitChallenge = () => {
+    const { submitChallenge } = this.props
+    const { text } = this.state
+    if (text) {
+      submitChallenge(text)
+    } else {
+      alert('Please enter your submission first!')
+    }
+  }
 
   setDone = () => this.setState({ ...this.state, done: true })
 
   render() {
-    const { id, user_id } = this.props;
+    const { id, user_id, submitChallenge, reset } = this.props
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={Actions.pop}
-          style={styles.close_wrapper}>
+          onPress={() => [Actions.pop(), reset()]}
+          style={styles.close_wrapper}
+        >
           <Image style={styles.close} source={CloseIcon} />
         </TouchableOpacity>
         <View style={styles.input_wrapper}>
@@ -50,12 +76,17 @@ class AddComment extends React.Component {
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.submit(id, user_id)}>
-          <Text style={{ color: "white", fontWeight: 'bold' }}>Post</Text>
+          onPress={() =>
+            submitChallenge ? this.submitChallenge() : this.submit(id, user_id)
+          }
+        >
+          <Text style={{ color: 'white', fontWeight: 'bold' }}>
+            {submitChallenge ? 'Submit' : 'Post'}
+          </Text>
           <Image style={styles.button_icon} source={CommentCloud} />
         </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 
@@ -74,13 +105,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    alignItems: 'flex-start'
   },
   button: {
     display: 'flex',
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 20,
     backgroundColor: styleConsts.cream_blue,
     padding: 10,
@@ -103,11 +134,10 @@ const styles = StyleSheet.create({
     aspectRatio: 0.5,
     resizeMode: 'contain'
   }
-});
-
+})
 
 const mapStateToProps = state => ({
   auth: state.auth.user,
   user: state.user
-});
-export default connect(mapStateToProps)(AddComment);
+})
+export default connect(mapStateToProps)(AddComment)

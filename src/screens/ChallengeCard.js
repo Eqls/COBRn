@@ -14,6 +14,7 @@ import { Actions } from 'react-native-router-flux'
 import TeamRow from '../components/highcores/TeamRow'
 import UserRow from '../components/highcores/UserRow'
 import ChallengeRow from '../components/challenges/ChallengeRow'
+import { recordingActions } from '../actions'
 import {
   HomeIconBlue,
   ChallengesIcon2,
@@ -30,6 +31,9 @@ import Recording from '../components/challengecard/Recording'
 import team from '../reducers/team'
 import TeamMembersBar from '../components/challengecard/TeamMembersBar'
 import AllScreenMessage from '../components/AllScreenMessage'
+import ChallengeSubmitOptions from '../components/ChallengeSubmitOptions'
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import ImagePicker from 'react-native-image-crop-picker'
 
 const styles = StyleSheet.create({
   container: {
@@ -114,21 +118,50 @@ class ChallengeCard extends React.Component {
   state = {
     dim: false,
     loaded: false,
-    showHint: false
+    showHint: false,
+    option: undefined,
+    actionsDisabled: false
   }
 
+  setOption = name => this.setState({ option: name })
+
   componentDidMount() {
-    const { dispatch, token, challenge } = this.props
-    dispatch(teamActions.teamProgress(challenge.id, token))
+    const { dispatch, auth, challenge } = this.props
+    dispatch(teamActions.teamProgress(challenge.id, auth.token))
   }
+
+  submit = text => {
+    const { dispatch, auth, challenge } = this.props
+    dispatch(
+      recordingActions.create(auth, challenge, undefined, auth.token, text)
+    )
+    Actions.success()
+  }
+
+  toggleActions = () =>
+    this.setState({ actionsDisabled: !this.state.actionsDisabled })
+
+  resetOption = () => this.setState({ option: undefined })
 
   toggleHint = () => this.setState({ showHint: !this.state.showHint })
 
   toggleDimmer = () => this.setState({ dim: !this.state.dim })
 
+  shootPic = () => {
+    const { dispatch, user } = this.props
+    ImagePicker.openCamera({
+      cropping: true
+    }).then(image => {
+      dispatch(
+        recordingActions.create(auth, challenge, image, auth.token, image)
+      )
+      Actions.success()
+    })
+  }
+
   render() {
     const { challenge, team_progress, teamIsFetching, error } = this.props
-    const { dim, showHint } = this.state
+    const { dim, showHint, option, actionsDisabled } = this.state
     return (
       <View style={styles.container}>
         {[
@@ -149,11 +182,14 @@ class ChallengeCard extends React.Component {
                 <Image source={HomeIconBlue} />
               </TouchableOpacity>
               {showHint ? (
-                <TouchableOpacity
-                  onPress={this.toggleHint}
-                  style={styles.button}
-                >
-                  <Text style={styles.button_text}>Close</Text>
+                <TouchableOpacity onPress={this.toggleHint}>
+                  <Icon
+                    style={{
+                      fontSize: 32,
+                      color: '#010763'
+                    }}
+                    name="times-circle"
+                  />
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity
@@ -192,7 +228,26 @@ class ChallengeCard extends React.Component {
                 <TeamMembersBar users={team_progress.users} />
               </>
             )}
-            <Recording challenge={challenge} toggleDimmer={this.toggleDimmer} />
+            <ChallengeSubmitOptions
+              disabled={actionsDisabled}
+              record={challenge.audio_input}
+              shoot={challenge.photo_input}
+              action={this.setOption}
+            />
+            {option === 'record' ? (
+              <Recording
+                toggleActions={this.toggleActions}
+                challenge={challenge}
+                toggleDimmer={this.toggleDimmer}
+              />
+            ) : option === 'write' ? (
+              Actions.addcomment({
+                submitChallenge: this.submit,
+                reset: this.resetOption
+              })
+            ) : (
+              option === 'shoot' && this.shootPic()
+            )}
           </>
         )}
       </View>
@@ -203,7 +258,7 @@ class ChallengeCard extends React.Component {
 const mapStateToProps = state => ({
   team_progress: state.team.team_progress,
   teamIsFetching: state.team.isFetching,
-  token: state.auth.user.token,
+  auth: state.auth.user,
   error: state.team.error
 })
 

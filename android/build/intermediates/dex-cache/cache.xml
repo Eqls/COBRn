@@ -3,21 +3,21 @@
 
     <item
         is-multidex="false"
-        jar="/home/holo/Projects/COBRn/node_modules/react-native-image-crop-picker/android/build/intermediates/bundles/default/classes.jar"
+        jar="/Users/admin/Documents/projects/COBRn/node_modules/react-native-image-crop-picker/android/build/intermediates/bundles/default/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="305b7dce0b3d153a0b2f4258470bf61c71a5251e">
-        <dex dex="/home/holo/Projects/COBRn/android/app/build/intermediates/pre-dexed/release/classes_ded06318ba1785f24c620c43f15e4f19fe7aa75d.jar" />
+        sha1="a432bf13b1a75796fa9946676c1d450dd98c77a1">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/classes_b36363f866f9389b3f960e8b8ffe766218952205.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/home/holo/Projects/COBRn/node_modules/react-native-audio-toolkit/android/lib/build/intermediates/bundles/default/classes.jar"
+        jar="/Users/admin/Documents/projects/COBRn/node_modules/react-native-audio-toolkit/android/lib/build/intermediates/bundles/default/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="5646d006c2f82d0893fd419d05e8ea3d820628ce">
-        <dex dex="/home/holo/Projects/COBRn/android/app/build/intermediates/pre-dexed/release/classes_a58ac00b0e52b67eb7030ec7c1f633542183fc72.jar" />
+        sha1="b83fe0fde493a61ff19294f9db0aa40eb32960a9">
+        <dex dex="/Users/admin/Documents/projects/COBRn/android/app/build/intermediates/pre-dexed/debug/classes_1465a0d6cb3c8c8fd2ce8301865b6c41ab61bb82.jar" />
     </item>
 
 </items>

@@ -11,7 +11,7 @@ import {
 
 class StarRatingDisplay extends React.Component {
   state = {
-    selection: 1
+    selection: 0
   }
 
   changeRating = selection => {
@@ -45,7 +45,7 @@ class StarRatingDisplay extends React.Component {
         fullStar={chilli ? FullChiliIcon : FullStarIcon}
         emptyStar={chilli ? EmptyChiliIcon : EmptyStarIcon}
         halfStar={HalfStarIcon}
-        rating={selection}
+        rating={rating ? rating : selection}
         {...{ starSize }}
       />
     )

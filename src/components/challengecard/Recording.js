@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   View,
   Text,
@@ -7,18 +7,17 @@ import {
   TouchableOpacity,
   Platform,
   PermissionsAndroid
-} from "react-native";
-import StarRatingDisplay from "../StarRatingDisplay";
-import ProgressBar from "./ProgressBar";
+} from 'react-native'
+import StarRatingDisplay from '../StarRatingDisplay'
+import ProgressBar from './ProgressBar'
 import { MicIcon, CancelIcon } from '../../assets/images'
 import styleConsts from '../../constants/styles'
-import { Player, Recorder, MediaStates } from "react-native-audio-toolkit";
+import { Player, Recorder, MediaStates } from 'react-native-audio-toolkit'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { recordingActions } from '../../actions'
 
 class Recording extends React.Component {
-
   state = {
     finished: false,
     recording: false,
@@ -29,16 +28,23 @@ class Recording extends React.Component {
   constructor(props) {
     super(props)
 
-    this.player = null;
-    this.recorder = null;
+    this.player = null
+    this.recorder = null
 
-    this._reloadPlayer();
-    this._reloadRecorder();
+    this._reloadPlayer()
+    this._reloadRecorder()
   }
 
   submit = () => {
     const { dispatch, auth, challenge } = this.props
-    dispatch(recordingActions.create(auth, challenge, this.recorder._fsPath, auth.token))
+    dispatch(
+      recordingActions.create(
+        auth,
+        challenge,
+        this.recorder._fsPath,
+        auth.token
+      )
+    )
     this._reloadPlayer()
     this._reloadRecorder()
     Actions.success()
@@ -46,35 +52,35 @@ class Recording extends React.Component {
 
   _reloadPlayer() {
     if (this.player) {
-      this.player.destroy();
+      this.player.destroy()
     }
 
     this.player = new Player('myrec.mp4', {
       autoDestroy: false
-    }).prepare((err) => {
+    }).prepare(err => {
       if (err) {
-        console.log('error at _reloadPlayer():');
-        console.log(err);
+        console.log('error at _reloadPlayer():')
+        console.log(err)
       } else {
         // this.player.looping = this.state.loopButtonStatus;
       }
 
-      this._updateState();
-    });
+      this._updateState()
+    })
 
-    this._updateState();
+    this._updateState()
 
     this.player.on('ended', () => {
-      this._updateState();
-    });
+      this._updateState()
+    })
     this.player.on('pause', () => {
-      this._updateState();
-    });
+      this._updateState()
+    })
   }
 
   _reloadRecorder() {
     if (this.recorder) {
-      this.recorder.destroy();
+      this.recorder.destroy()
     }
 
     this.recorder = new Recorder('myrec.mp4', {
@@ -84,30 +90,30 @@ class Recording extends React.Component {
       quality: 'max'
       //format: 'ac3', // autodetected
       //encoder: 'aac', // autodetected
-    });
+    })
 
-    this._updateState();
+    this._updateState()
   }
 
   async checkPermission() {
-    if (Platform.OS !== "android") {
-      return Promise.resolve(true);
+    if (Platform.OS !== 'android') {
+      return Promise.resolve(true)
     }
 
-    let result;
+    let result
     try {
       result = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
         {
-          title: "Microphone Permission",
-          message: "To record audio please allow access to your microphone!"
+          title: 'Microphone Permission',
+          message: 'To record audio please allow access to your microphone!'
         }
-      );
+      )
     } catch (error) {
-      console.error("failed getting permission, result:", result);
+      console.error('failed getting permission, result:', result)
     }
-    console.log("permission result:", result);
-    return result === true || result === PermissionsAndroid.RESULTS.GRANTED;
+    console.log('permission result:', result)
+    return result === true || result === PermissionsAndroid.RESULTS.GRANTED
   }
 
   _updateState(err, finished) {
@@ -115,13 +121,14 @@ class Recording extends React.Component {
       ...this.state,
       recording: this.recorder && this.recorder.isRecording ? true : false,
       finished: finished ? finished : this.state.finished
-    });
+    })
+    this.props.toggleActions()
   }
 
-  formatTime = (time) => {
-    let mins = Math.round(time / 60)
-      , secs = Math.round(time - (mins * 60))
-      , format = [2]
+  formatTime = time => {
+    let mins = Math.round(time / 60),
+      secs = Math.round(time - mins * 60),
+      format = [2]
     secs = secs < 0 ? 0 : secs
     format[0] = mins <= 9 ? '0' + mins : mins
     format[1] = secs <= 9 ? '0' + secs : secs
@@ -129,8 +136,12 @@ class Recording extends React.Component {
   }
 
   tick = () => {
-    if (this.player.isStopped && this.state.finished) return clearInterval(this.timer)
-    return this.setState({ ...this.state, elapsed: new Date() - this.state.start })
+    if (this.player.isStopped && this.state.finished)
+      return clearInterval(this.timer)
+    return this.setState({
+      ...this.state,
+      elapsed: new Date() - this.state.start
+    })
   }
 
   startRecording = async () => {
@@ -138,7 +149,7 @@ class Recording extends React.Component {
     await this.setState({ ...this.state, elapsed: 0, start: new Date() })
     this.props.toggleDimmer()
     if (this.player) {
-      this.player.destroy();
+      this.player.destroy()
     }
     this.timer = setInterval(this.tick, 50)
     this.recorder.record(err => {
@@ -149,7 +160,7 @@ class Recording extends React.Component {
 
   stopRecording = () => {
     this.recorder.stop(err => {
-      clearInterval(this.timer);
+      clearInterval(this.timer)
       if (err) return console.log(err)
       this._updateState(err, true)
     })
@@ -159,7 +170,7 @@ class Recording extends React.Component {
     this.setState({ ...this.state, elapsed: 0, start: new Date() }, () =>
       this.player.playPause((err, playing) => {
         if (err) return console.log(err)
-        return this.timer = setInterval(this.tick, 50)
+        return (this.timer = setInterval(this.tick, 50))
       })
     )
   }
@@ -172,47 +183,57 @@ class Recording extends React.Component {
 
   render() {
     const { recording, finished, progress } = this.state
-    let elapsed = Math.round(this.state.elapsed / 100);
+    let elapsed = Math.round(this.state.elapsed / 100)
     let seconds = (elapsed / 10).toFixed(1)
 
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{this.getText(recording, finished)}</Text>
         <Text style={styles.timer}>{this.formatTime(seconds)}</Text>
-        {!recording && !finished ?
+        {!recording && !finished ? (
           <TouchableOpacity
             onPress={this.startRecording}
-            style={styles.start_recording}>
+            style={styles.start_recording}
+          >
             <Image style={styles.mic_icon} source={MicIcon} />
           </TouchableOpacity>
-          : recording ?
-            <TouchableOpacity
-              onPress={this.stopRecording}
-              style={styles.stop_recording}>
-              <View style={styles.rectangle} />
-            </TouchableOpacity>
-            : finished &&
+        ) : recording ? (
+          <TouchableOpacity
+            onPress={this.stopRecording}
+            style={styles.stop_recording}
+          >
+            <View style={styles.rectangle} />
+          </TouchableOpacity>
+        ) : (
+          finished && (
             <View style={styles.actions}>
               <View style={styles.actions_top}>
                 <TouchableOpacity
                   onPress={this.playback}
-                  style={styles.playback}>
+                  style={styles.playback}
+                >
                   <View style={styles.triangle} />
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.finish_button}
-                  onPress={this.submit}>
+                  onPress={this.submit}
+                >
                   <Text style={styles.finish_text}>Opslaan</Text>
                 </TouchableOpacity>
               </View>
               <TouchableOpacity
                 onPress={Actions.home}
-                style={styles.cancel_button}>
-                <Image style={{ width: 15, height: 15, marginRight: 5 }} source={CancelIcon} />
+                style={styles.cancel_button}
+              >
+                <Image
+                  style={{ width: 15, height: 15, marginRight: 5 }}
+                  source={CancelIcon}
+                />
                 <Text style={{ color: 'red' }}>Verwijder</Text>
               </TouchableOpacity>
             </View>
-        }
+          )
+        )}
       </View>
     )
   }
@@ -221,9 +242,9 @@ class Recording extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: '#000065',
     width: '100%',
     zIndex: 2,
@@ -302,9 +323,9 @@ const styles = StyleSheet.create({
   },
   finish_button: {
     display: 'flex',
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 100,
     backgroundColor: styleConsts.cream_yellow,
     padding: 12,
@@ -322,13 +343,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     marginTop: 10
-  },
+  }
 })
-
 
 const mapStateToProps = state => ({
   auth: state.auth.user
-});
-
+})
 
 export default connect(mapStateToProps)(Recording)

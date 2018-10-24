@@ -1,6 +1,6 @@
-import axios from "axios";
-import { recordingConstants } from "../constants";
-import config from "../config/config";
+import axios from 'axios'
+import { recordingConstants } from '../constants'
+import config from '../config/config'
 
 export const recordingActions = {
   create,
@@ -9,7 +9,7 @@ export const recordingActions = {
   // read,
   // remove,
   // uploadAvatar
-};
+}
 
 function readAll(token) {
   return {
@@ -20,11 +20,11 @@ function readAll(token) {
     ],
     callAPI: () =>
       axios
-        .get(config.API_URL + "recordings", {
-          headers: { Authorization: "Bearer " + token }
+        .get(config.API_URL + 'recordings', {
+          headers: { Authorization: 'Bearer ' + token }
         })
         .then(res => res.data)
-  };
+  }
 }
 
 function read(id, token) {
@@ -36,11 +36,11 @@ function read(id, token) {
     ],
     callAPI: () =>
       axios
-        .get(config.API_URL + "user", {
-          headers: { Authorization: "Bearer " + token }
+        .get(config.API_URL + 'user', {
+          headers: { Authorization: 'Bearer ' + token }
         })
         .then(res => res.data)
-  };
+  }
 }
 
 function remove(id) {
@@ -52,20 +52,32 @@ function remove(id) {
     ],
     callAPI: () =>
       axios
-        .delete(config.API_URL + "users/" + id, { headers: authHeader() })
+        .delete(config.API_URL + 'users/' + id, { headers: authHeader() })
         .then(res => res.data)
-  };
+  }
 }
 
-function create(user, challenge, path, token) {
-  let fd = new FormData();
-  fd.append("recording[path_to_recording]", {
-    uri: "file://" + path,
-    name: challenge.id + '_' + user.name + '_' + challenge.name + ".mp4",
-    type: "audio/mp4"
-  });
-  fd.append("recording[challenge_id]", challenge.id);
-  fd.append("recording[user_id]", user.id);
+function create(user, challenge, path, token, text, image) {
+  let fd = new FormData()
+  if (path) {
+    if (!image) {
+      fd.append('recording[path_to_recording]', {
+        uri: 'file://' + path,
+        name: challenge.id + '_' + user.name + '_' + challenge.name + '.mp4',
+        type: 'audio/mp4'
+      })
+    } else {
+      fd.append('recording[path_to_recording]', {
+        uri: file.path,
+        name: challenge.id + '_' + user.name + '_' + challenge.name + '.jpg',
+        type: file.mime
+      })
+    }
+  } else {
+    fd.append('recording[text_input]', text)
+  }
+  fd.append('recording[challenge_id]', challenge.id)
+  fd.append('recording[user_id]', user.id)
 
   return {
     types: [
@@ -75,13 +87,13 @@ function create(user, challenge, path, token) {
     ],
     callAPI: () =>
       axios
-        .post(config.API_URL + "recordings", fd, {
+        .post(config.API_URL + 'recordings', fd, {
           headers: {
-            Authorization: "Bearer " + token
+            Authorization: 'Bearer ' + token
           }
         })
         .then(res => res.data)
-  };
+  }
 }
 
 function update(recording, token) {
@@ -94,10 +106,10 @@ function update(recording, token) {
     callAPI: () =>
       axios
         .put(
-          config.API_URL + "recordings",
+          config.API_URL + 'recordings',
           { id: recording.id, recording },
-          { headers: { Authorization: "Bearer " + token } }
+          { headers: { Authorization: 'Bearer ' + token } }
         )
         .then(res => res.data)
-  };
+  }
 }
