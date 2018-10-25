@@ -15,7 +15,6 @@ import RatingRow from '../challengecard/RatingRow'
 import StarRatingDisplay from '../StarRatingDisplay'
 
 const ChallengeRow = ({ challenge }) => {
-  console.log(challenge)
   let available = challenge.days_left >= 0,
     completed = challenge.done_by_user
   return (
@@ -61,7 +60,7 @@ const ChallengeRow = ({ challenge }) => {
             <Text style={{ color: '#FF8373' }}>Niet Gedaan...</Text>
           )}
         </View>
-        <StarRatingDisplay chilli starSize={20} rating={challenge.rating} />
+        <StarRatingDisplay chilli starSize={20} rating={challenge.difficulty} />
       </View>
       {completed && available ? (
         <TouchableOpacity

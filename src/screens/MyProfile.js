@@ -24,8 +24,8 @@ import ImagePicker from 'react-native-image-crop-picker'
 
 class MyProfile extends React.Component {
   componentDidMount() {
-    const { dispatch, auth, uid } = this.props
-    dispatch(userActions.read(uid, auth.token))
+    const { dispatch, auth } = this.props
+    dispatch(userActions.read(auth.id, auth.token))
   }
 
   selectPicture = () => {

@@ -1,18 +1,18 @@
-import axios from "axios";
-import { commentConstants } from "../constants";
-import config from "../config/config";
+import axios from 'axios'
+import { commentConstants } from '../constants'
+import config from '../config/config'
 import { userActions } from './user'
 
 export const commentActions = {
   create
-};
+}
 
 function create(token, user_id, recording_id, text) {
   let comment = {
     message: text,
     user_id: user_id,
     recording_id: recording_id
-  };
+  }
   return {
     types: [
       commentConstants.CREATE_REQUEST,
@@ -22,10 +22,11 @@ function create(token, user_id, recording_id, text) {
     callAPI: () =>
       axios
         .post(
-          config.API_URL + "comments",
+          config.API_URL + 'comments',
           { comment },
-          { headers: { Authorization: "Bearer " + token } }
+          { headers: { Authorization: 'Bearer ' + token } }
         )
-        .then(res => res.data)
-  };
+        .then(res => res.data),
+    onSuccess: userActions.read(user_id, token)
+  }
 }

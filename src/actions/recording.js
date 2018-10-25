@@ -66,16 +66,20 @@ function create(user, challenge, path, token, text, image) {
         name: challenge.id + '_' + user.name + '_' + challenge.name + '.mp4',
         type: 'audio/mp4'
       })
+      fd.append('recording[type]', 'audio')
     } else {
       fd.append('recording[path_to_recording]', {
-        uri: file.path,
+        uri: image.path,
         name: challenge.id + '_' + user.name + '_' + challenge.name + '.jpg',
-        type: file.mime
+        type: image.mime
       })
+      fd.append('recording[type]', 'image')
     }
   } else {
     fd.append('recording[text_input]', text)
+    fd.append('recording[type]', 'text')
   }
+  fd.append('recording[name]', user.name + ' - ' + challenge.name)
   fd.append('recording[challenge_id]', challenge.id)
   fd.append('recording[user_id]', user.id)
 

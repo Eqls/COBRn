@@ -148,15 +148,24 @@ class ChallengeCard extends React.Component {
   toggleDimmer = () => this.setState({ dim: !this.state.dim })
 
   shootPic = () => {
-    const { dispatch, user } = this.props
+    const { dispatch, user, auth, challenge } = this.props
     ImagePicker.openCamera({
       cropping: true
-    }).then(image => {
-      dispatch(
-        recordingActions.create(auth, challenge, image, auth.token, image)
-      )
-      Actions.success()
     })
+      .then(image => {
+        dispatch(
+          recordingActions.create(
+            auth,
+            challenge,
+            image,
+            auth.token,
+            undefined,
+            image
+          )
+        )
+        Actions.success()
+      })
+      .catch(err => console.log(err))
   }
 
   render() {

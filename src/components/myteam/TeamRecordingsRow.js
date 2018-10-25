@@ -12,6 +12,7 @@ import config from './../../config/config'
 import { Actions } from 'react-native-router-flux'
 import { Player, MediaStates } from 'react-native-audio-toolkit'
 import ChallengeReplayOptions from '../ChallengeReplayOptions'
+import ImageView from 'react-native-image-view'
 
 const styles = StyleSheet.create({
   container: {
@@ -46,36 +47,74 @@ const styles = StyleSheet.create({
   }
 })
 
-const TeamRecordingsRow = ({ item, empty }) => {
-  playAudio = () => {
-    new Player(config.PHOTO_URL + path_to_recording).play()
+class TeamRecordingsRow extends React.Component {
+  state = {
+    displayImage: false,
+    width: 0,
+    height: 0
   }
-  console.log(item)
-  // Actions.comments({ id, user_id, rec_name, comments, path_to_recording })
 
-  return (
-    <View style={styles.container}>
-      {empty ? (
-        <Text style={styles.title}>Geen data gevonden.</Text>
-      ) : (
-        <>
-          <Text style={styles.title}>test</Text>
-          <TouchableOpacity style={{ paddingRight: 10, paddingLeft: 10 }}>
-            <ImageBackground style={styles.comment_icon} source={CommentIcon}>
-              <Text style={{ fontSize: 12 }}>4</Text>
-            </ImageBackground>
-          </TouchableOpacity>
-          {/* <TouchableOpacity
-            style={{ paddingRight: 10, paddingLeft: 10 }}
-            onPress={playAudio}
-          >
-            <Image style={styles.play_icon} source={PlayIcon} />
-          </TouchableOpacity> */}
-          <ChallengeReplayOptions text />
-        </>
-      )}
-    </View>
-  )
+  componentDidMount() {
+    Image.getSize(this.props.item.path_to_recording, (width, height) => {
+      this.setState({ width, height })
+    })
+  }
+
+  handleAction = actionType => {
+    const { item } = this.props
+    switch (actionType) {
+      case 'audio':
+        return new Player(config.PHOTO_URL + item.path_to_recording).play()
+      case 'image':
+        return this.setState({ displayImage: true })
+      case 'text':
+        return Actions.message({ text: item.text_input })
+    }
+  }
+  render() {
+    const { displayImage, width, height } = this.state
+    const { item, empty, handleAction } = this.props
+    return (
+      <View style={styles.container}>
+        {empty ? (
+          <Text style={styles.title}>Geen data gevonden.</Text>
+        ) : (
+          <>
+            {item.recording_type === 'image' && (
+              <ImageView
+                images={[
+                  {
+                    source: {
+                      uri: config.PHOTO_URL + item.path_to_recording
+                    },
+                    width,
+                    height
+                  }
+                ]}
+                imageIndex={0}
+                isVisible={displayImage}
+              />
+            )}
+            <Text style={styles.title}>{item.recording_name}</Text>
+            <TouchableOpacity
+              style={{ paddingRight: 10, paddingLeft: 10 }}
+              onPress={() => Actions.comments({ item })}
+            >
+              <ImageBackground style={styles.comment_icon} source={CommentIcon}>
+                <Text style={{ fontSize: 12 }}>{item.number_of_comments}</Text>
+              </ImageBackground>
+            </TouchableOpacity>
+            <ChallengeReplayOptions
+              handleAction={this.handleAction}
+              text={item.recording_type === 'text'}
+              audio={item.recording_type === 'audio'}
+              image={item.recording_type === 'image'}
+            />
+          </>
+        )}
+      </View>
+    )
+  }
 }
 
 export default TeamRecordingsRow

@@ -20,6 +20,7 @@ import AddComment from './screens/AddComment'
 import RatingPage from './screens/RatingPage'
 import Info from './screens/Info'
 import GroupedChallenges from './screens/GroupedChallenges'
+import Message from './screens/Message'
 
 class App extends React.Component {
   componentDidMount() {
@@ -97,6 +98,12 @@ class App extends React.Component {
               key="addcomment"
               component={AddComment}
               title="Add Comment"
+              swipeEnabled
+            />
+            <Scene
+              key="message"
+              component={Message}
+              title="Message"
               swipeEnabled
             />
             <Scene

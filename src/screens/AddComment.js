@@ -30,14 +30,14 @@ class AddComment extends React.Component {
 
   onChangeText = text => this.setState({ text })
 
-  submit = (id, user_id) => {
-    const { dispatch, auth } = this.props
+  submit = () => {
+    const { dispatch, auth, item } = this.props
     const { text } = this.state
     if (text) {
+      console.log(item)
       this.setState({ text: undefined, submitted: true })
-      dispatch(commentActions.create(auth.token, auth.id, id, text))
+      dispatch(commentActions.create(auth.token, item.user_id, item.id, text))
       Actions.pop()
-      dispatch(userActions.read(user_id, auth.token))
     } else {
       alert('Please enter your comment first')
     }
@@ -56,11 +56,18 @@ class AddComment extends React.Component {
   setDone = () => this.setState({ ...this.state, done: true })
 
   render() {
-    const { id, user_id, submitChallenge, reset } = this.props
+    const {
+      item,
+      auth,
+      submitChallenge,
+      reset,
+      isFetching,
+      dispatch
+    } = this.props
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={() => [Actions.pop(), reset()]}
+          onPress={() => [Actions.pop(), reset ? reset() : null]}
           style={styles.close_wrapper}
         >
           <Image style={styles.close} source={CloseIcon} />
@@ -76,9 +83,7 @@ class AddComment extends React.Component {
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() =>
-            submitChallenge ? this.submitChallenge() : this.submit(id, user_id)
-          }
+          onPress={submitChallenge ? this.submitChallenge : this.submit}
         >
           <Text style={{ color: 'white', fontWeight: 'bold' }}>
             {submitChallenge ? 'Submit' : 'Post'}
@@ -138,6 +143,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   auth: state.auth.user,
-  user: state.user
+  user: state.user,
+  isFetching: state.comment.isFetching
 })
 export default connect(mapStateToProps)(AddComment)

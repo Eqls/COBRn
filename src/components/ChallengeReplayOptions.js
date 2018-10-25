@@ -15,12 +15,19 @@ const styles = StyleSheet.create({
   wrapper: {}
 })
 
-const ChallengeReplayOptions = ({ audio, image, text, action, disabled }) => (
+const ChallengeReplayOptions = ({
+  audio,
+  image,
+  text,
+  handleAction,
+  disabled,
+  white
+}) => (
   <View style={styles.container}>
     {text && (
       <TouchableOpacity
         disabled={disabled}
-        onPress={() => action('text')}
+        onPress={() => handleAction('text')}
         style={styles.wrapper}
       >
         <Icon
@@ -28,7 +35,7 @@ const ChallengeReplayOptions = ({ audio, image, text, action, disabled }) => (
             padding: 5,
             paddingLeft: 7,
             borderRadius: 50,
-            backgroundColor: styleConsts.gold,
+            backgroundColor: white ? 'white' : styleConsts.gold,
             fontSize: 14,
             color: '#137BD1',
             opacity: disabled ? 0.5 : 1
@@ -40,7 +47,7 @@ const ChallengeReplayOptions = ({ audio, image, text, action, disabled }) => (
     {audio && (
       <TouchableOpacity
         disabled={disabled}
-        onPress={() => action('audio')}
+        onPress={() => handleAction('audio')}
         style={styles.wrapper}
       >
         <Icon
@@ -49,7 +56,7 @@ const ChallengeReplayOptions = ({ audio, image, text, action, disabled }) => (
             paddingLeft: 7,
             borderRadius: 50,
             fontSize: 14,
-            backgroundColor: styleConsts.gold,
+            backgroundColor: white ? 'white' : styleConsts.gold,
             color: '#137BD1',
             opacity: disabled ? 0.5 : 1
           }}
@@ -60,7 +67,7 @@ const ChallengeReplayOptions = ({ audio, image, text, action, disabled }) => (
     {image && (
       <TouchableOpacity
         disabled={disabled}
-        onPress={() => action('image')}
+        onPress={() => handleAction('image')}
         style={styles.wrapper}
       >
         <Icon
@@ -68,7 +75,7 @@ const ChallengeReplayOptions = ({ audio, image, text, action, disabled }) => (
             padding: 5,
             borderRadius: 50,
             fontSize: 15,
-            backgroundColor: styleConsts.gold,
+            backgroundColor: white ? 'white' : styleConsts.gold,
             color: '#137BD1',
             opacity: disabled ? 0.5 : 1
           }}

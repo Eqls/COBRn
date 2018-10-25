@@ -83,15 +83,13 @@ export class Home extends React.Component {
           <TouchableOpacity style={styles.logout_button} onPress={this.logout}>
             <Text style={styles.logout_text}>Uitloggen</Text>
           </TouchableOpacity>
-          {auth.role_id === 2 && (
-            <TouchableOpacity
-              style={styles.logout_button}
-              onPress={Actions.ratingpage}
-            >
-              <Image source={FullStarIcon} style={styles.star} />
-              <Text style={styles.logout_text}>Waarderen</Text>
-            </TouchableOpacity>
-          )}
+          <TouchableOpacity
+            style={styles.logout_button}
+            onPress={Actions.ratingpage}
+          >
+            <Image source={FullStarIcon} style={styles.star} />
+            <Text style={styles.logout_text}>Waarderen</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.footer_2}>
           <TouchableOpacity

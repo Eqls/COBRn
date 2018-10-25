@@ -45,7 +45,7 @@ class StarRatingDisplay extends React.Component {
         fullStar={chilli ? FullChiliIcon : FullStarIcon}
         emptyStar={chilli ? EmptyChiliIcon : EmptyStarIcon}
         halfStar={HalfStarIcon}
-        rating={rating ? rating : selection}
+        rating={selection}
         {...{ starSize }}
       />
     )
