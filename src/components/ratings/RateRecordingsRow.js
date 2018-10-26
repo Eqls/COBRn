@@ -50,9 +50,11 @@ class RateRecordingsRow extends React.Component {
   }
 
   componentDidMount() {
-    Image.getSize(this.props.item.path_to_recording, (width, height) => {
-      this.setState({ width, height })
-    })
+    let { item, empty } = this.props
+    if (!empty && item.recording_type === 'image')
+      Image.getSize(item.path_to_recording, (width, height) => {
+        this.setState({ width, height })
+      })
   }
 
   handleAction = actionType => {
@@ -71,7 +73,7 @@ class RateRecordingsRow extends React.Component {
     this.props.updateRecording(val, this.props.item.id)
 
   render() {
-    const { item, empty } = this.props
+    const { item, empty, updateRecording } = this.props
     const { displayImage, width, height } = this.state
     return (
       <View style={styles.container}>
@@ -79,6 +81,7 @@ class RateRecordingsRow extends React.Component {
           <Text style={styles.title}>Geen data gevonden.</Text>
         ) : (
           <>
+            {console.log(item)}
             {item.recording_type === 'image' && (
               <ImageView
                 images={[

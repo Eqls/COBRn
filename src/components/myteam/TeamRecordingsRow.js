@@ -55,9 +55,12 @@ class TeamRecordingsRow extends React.Component {
   }
 
   componentDidMount() {
-    Image.getSize(this.props.item.path_to_recording, (width, height) => {
-      this.setState({ width, height })
-    })
+    let { item, empty } = this.props
+    if (!empty && item.recording_type === 'image') {
+      Image.getSize(item.path_to_recording, (width, height) => {
+        this.setState({ width, height })
+      })
+    }
   }
 
   handleAction = actionType => {
@@ -105,7 +108,7 @@ class TeamRecordingsRow extends React.Component {
               </ImageBackground>
             </TouchableOpacity>
             <ChallengeReplayOptions
-              handleAction={this.handleAction}
+              handleAction={handleAction}
               text={item.recording_type === 'text'}
               audio={item.recording_type === 'audio'}
               image={item.recording_type === 'image'}

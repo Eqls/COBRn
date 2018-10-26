@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import config from '../config/config'
 import { connect } from 'react-redux'
-import { recordingActions } from '../actions'
+import { recordingActions, ratingActions } from '../actions'
 import { StarRatingRow } from './../components/StarRating'
 import { Player, MediaStates } from 'react-native-audio-toolkit'
 import { PlayIcon } from './../assets/images'
@@ -25,10 +25,9 @@ class RatingPage extends React.Component {
     dispatch(recordingActions.readAll(auth.token))
   }
 
-  updateRecording = (mod_score, id) => {
+  updateRecording = (val, id) => {
     const { dispatch, auth } = this.props
-    let rec = { id, mod_score }
-    dispatch(recordingActions.update(rec, auth.token))
+    dispatch(ratingActions.create(auth.token, auth.id, id, val))
     dispatch(recordingActions.readAll(auth.token))
   }
 
