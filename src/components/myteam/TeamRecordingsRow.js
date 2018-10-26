@@ -108,7 +108,7 @@ class TeamRecordingsRow extends React.Component {
               </ImageBackground>
             </TouchableOpacity>
             <ChallengeReplayOptions
-              handleAction={handleAction}
+              handleAction={this.handleAction}
               text={item.recording_type === 'text'}
               audio={item.recording_type === 'audio'}
               image={item.recording_type === 'image'}
