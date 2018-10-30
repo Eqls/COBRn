@@ -237,13 +237,14 @@ class ChallengeCard extends React.Component {
                 <TeamMembersBar users={team_progress.users} />
               </>
             )}
-            <ChallengeSubmitOptions
-              disabled={actionsDisabled}
-              record={challenge.audio_input}
-              shoot={challenge.photo_input}
-              action={this.setOption}
-            />
-            {option === 'record' ? (
+            {!option ? (
+              <ChallengeSubmitOptions
+                disabled={actionsDisabled}
+                record={challenge.audio_input}
+                shoot={challenge.photo_input}
+                action={this.setOption}
+              />
+            ) : option === 'record' ? (
               <Recording
                 toggleActions={this.toggleActions}
                 challenge={challenge}

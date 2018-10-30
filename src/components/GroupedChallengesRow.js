@@ -12,73 +12,82 @@ import {
 } from '../assets/images'
 import config from '../config/config'
 
-const GroupedChallengesRow = ({ group }) => {
-  return (
+const GroupedChallengesRow = ({ group, empty }) => {
+  let value = (
     <View style={styles.container}>
-      {group.expired && group.done ? (
-        <Image style={styles.img_frame} source={groupSuccess} />
-      ) : !group.expired && !group.done ? (
-        <View>
-          <Image style={styles.img_frame} source={BandFrame} />
-          <View style={styles.icon_wrapper}>
-            <Image
-              style={styles.icon}
-              borderRadius={50}
-              source={
-                group.avatar
-                  ? { uri: config.PHOTO_URL + group.avatar }
-                  : DefaultChallengeIcon
-              }
-            />
-          </View>
-        </View>
-      ) : (
-        <Image style={styles.img_frame} source={ChallengeFailure} />
-      )}
-      <View style={styles.info}>
-        <Text style={styles.info_text}>
-          {group.name ? group.name : 'No title'}
-        </Text>
-        <View style={styles.expiration}>
-          {!group.expired ? (
-            <Text style={{ color: '#4765FF' }}>
-              {group.number_of_challanges +
-                ' ' +
-                (group.number_of_challanges === 1 ? 'Challenge' : 'Challenges')}
-            </Text>
-          ) : group.expired && group.done ? (
-            <Text style={{ color: '#71E84C' }}>Afgetikt!</Text>
-          ) : (
-            <Text style={{ color: '#FF8373' }}>Niet Gedaan...</Text>
-          )}
-        </View>
-      </View>
-      {group.expired && group.done ? (
-        <TouchableOpacity
-          onPress={() => Actions.groupcard({ group })}
-          style={[styles.button, , { backgroundColor: '#78ff94' }]}
-        >
-          <Text style={[styles.button_text, { color: '#4765FF' }]}>
-            Opnieuw?
-          </Text>
-        </TouchableOpacity>
-      ) : !group.expired ? (
-        <TouchableOpacity
-          onPress={() => Actions.groupcard({ group })}
-          style={styles.button}
-        >
-          <Text style={styles.button_text}>Bekijk</Text>
-          <Image style={styles.arrow} source={RightArrow} />
-        </TouchableOpacity>
-      ) : (
-        <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
-          <Text style={[styles.button_text, { color: '#838383' }]}>
-            Verlopen
-          </Text>
-        </View>
-      )}
+      <Text style={styles.title}>Geen data gevonden.</Text>
     </View>
   )
+  if (!empty)
+    value = (
+      <View style={styles.container}>
+        {group.expired && group.done ? (
+          <Image style={styles.img_frame} source={groupSuccess} />
+        ) : !group.expired && !group.done ? (
+          <View>
+            <Image style={styles.img_frame} source={BandFrame} />
+            <View style={styles.icon_wrapper}>
+              <Image
+                style={styles.icon}
+                borderRadius={50}
+                source={
+                  group.avatar
+                    ? { uri: config.PHOTO_URL + group.avatar }
+                    : DefaultChallengeIcon
+                }
+              />
+            </View>
+          </View>
+        ) : (
+          <Image style={styles.img_frame} source={ChallengeFailure} />
+        )}
+        <View style={styles.info}>
+          <Text style={styles.info_text}>
+            {group.name ? group.name : 'No title'}
+          </Text>
+          <View style={styles.expiration}>
+            {!group.expired ? (
+              <Text style={{ color: '#4765FF' }}>
+                {group.number_of_challanges +
+                  ' ' +
+                  (group.number_of_challanges === 1
+                    ? 'Challenge'
+                    : 'Challenges')}
+              </Text>
+            ) : group.expired && group.done ? (
+              <Text style={{ color: '#71E84C' }}>Afgetikt!</Text>
+            ) : (
+              <Text style={{ color: '#FF8373' }}>Niet Gedaan...</Text>
+            )}
+          </View>
+        </View>
+        {group.expired && group.done ? (
+          <TouchableOpacity
+            onPress={() => Actions.groupcard({ group })}
+            style={[styles.button, , { backgroundColor: '#78ff94' }]}
+          >
+            <Text style={[styles.button_text, { color: '#4765FF' }]}>
+              Opnieuw?
+            </Text>
+          </TouchableOpacity>
+        ) : !group.expired ? (
+          <TouchableOpacity
+            onPress={() => Actions.groupcard({ group })}
+            style={styles.button}
+          >
+            <Text style={styles.button_text}>Bekijk</Text>
+            <Image style={styles.arrow} source={RightArrow} />
+          </TouchableOpacity>
+        ) : (
+          <View style={[styles.button, { backgroundColor: '#EEEEEE' }]}>
+            <Text style={[styles.button_text, { color: '#838383' }]}>
+              Verlopen
+            </Text>
+          </View>
+        )}
+      </View>
+    )
+  return value
 }
 
 const styles = StyleSheet.create({
@@ -92,6 +101,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderBottomColor: '#f2f2f2'
+  },
+  title: {
+    flex: 9,
+    color: '#010763',
+    fontWeight: 'bold'
   },
   button: {
     borderRadius: 40,

@@ -15,7 +15,7 @@ import {
   HighScoresIcon,
   TeamListIcon,
   MyTeamIcon,
-  ChallengesIcon,
+  ChiliBlueIcon,
   HomePeople,
   FullStarIcon,
   InfoIcon
@@ -71,20 +71,22 @@ export class Home extends React.Component {
         <View style={styles.row}>
           <TouchableOpacity
             onPress={Actions.groupedchallenges}
-            style={styles.box}
+            style={[styles.box, { backgroundColor: '#19408B' }]}
           >
-            <View style={styles.circle}>
-              <Image style={styles.img_new} source={ChallengesIcon} />
+            <View style={[styles.circle, { backgroundColor: 'white' }]}>
+              <Image style={styles.img_new} source={ChiliBlueIcon} />
             </View>
-            <Text style={styles.box_text}>Challenges</Text>
+            <Text style={[styles.box_text, { color: 'white' }]}>
+              Challenges
+            </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.logout_button} onPress={this.logout}>
+          <TouchableOpacity style={styles.button} onPress={this.logout}>
             <Text style={styles.logout_text}>Uitloggen</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.logout_button}
+            style={[styles.button, { backgroundColor: 'white' }]}
             onPress={Actions.ratingpage}
           >
             <Image source={FullStarIcon} style={styles.star} />
@@ -100,9 +102,8 @@ export class Home extends React.Component {
           </TouchableOpacity>
           <View style={styles.trademark_container}>
             <Text style={styles.trademark}>
-              <Text style={{ color: styleConsts.dark_blue }}>by</Text>{' '}
-              YellowStorm
-              <Text style={{ color: styleConsts.dark_blue }}>.nl</Text>
+              <Text style={{ color: styleConsts.dark_blue }}>by</Text> Yellow
+              <Text style={{ color: styleConsts.dark_blue }}>Storm.nl</Text>
             </Text>
           </View>
           <View style={styles.footer_container} />
@@ -135,7 +136,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    marginTop: 5
   },
   footer_2: {
     flex: 1,
@@ -144,30 +146,36 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   box: {
-    borderRadius: 10,
+    borderRadius: 20,
     flex: 1,
-    paddingTop: 20,
-    paddingBottom: 20,
-    margin: 7,
+    paddingTop: 15,
+    paddingBottom: 15,
+    margin: 10,
     alignItems: 'center',
     backgroundColor: 'white'
   },
-  logout_button: {
+  button: {
     flex: 1,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 5
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: 'white',
+    padding: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    width: '20%'
   },
   logout_text: {
     color: styleConsts.dark_blue,
     fontSize: 15
   },
   box_text: {
-    marginTop: 10,
     color: styleConsts.dark_blue,
-    fontSize: 15
+    fontSize: 15,
+    marginTop: 2
   },
   bg_wrapper: {
     position: 'absolute',
@@ -201,7 +209,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   img_new: {
-    aspectRatio: 0.75,
+    width: 50,
+    height: 50,
     resizeMode: 'contain'
   },
   circle: {
@@ -216,15 +225,13 @@ const styles = StyleSheet.create({
   trademark_container: {
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
-    backgroundColor: '#f2f2f2',
-    borderRadius: 40,
     padding: 3,
     paddingLeft: 10,
     paddingRight: 10
   },
   trademark: {
     color: styleConsts.gold,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold'
   }
 })

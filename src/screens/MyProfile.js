@@ -71,6 +71,7 @@ class MyProfile extends React.Component {
             </View>,
             <View style={styles.table}>
               <Text style={styles.table_header}>Mijn Scores</Text>
+              {console.log(user.current)}
               <Scores
                 score={user.current.team_score}
                 rating={user.current.mod_score_sum}

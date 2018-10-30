@@ -113,14 +113,17 @@ class GroupedChallenges extends React.Component {
                 <Image style={styles.guy_icon} source={ChallengesGuy} />
               </View>
               <Text style={styles.table_header} />
-              {allGroups &&
+              {allGroups ? (
                 this.sortChallenges(allGroups).map(x => (
                   <GroupedChallengesRow group={x} />
-                ))}
+                ))
+              ) : (
+                <GroupedChallengesRow empty />
+              )}
             </View>,
             <View style={styles.table}>
               <Text style={styles.table_header}>Team Punten</Text>
-              {teams &&
+              {teams ? (
                 teams.data
                   .sort((a, b) => b.team_score - a.team_score)
                   .map((item, index) => (
@@ -131,7 +134,10 @@ class GroupedChallenges extends React.Component {
                       team_score={item.team_score}
                       position={index + 1}
                     />
-                  ))}
+                  ))
+              ) : (
+                <TeamRow empty />
+              )}
             </View>
           ]
         )}

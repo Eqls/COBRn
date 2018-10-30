@@ -126,13 +126,9 @@ class Recording extends React.Component {
   }
 
   formatTime = time => {
-    let mins = Math.round(time / 60),
-      secs = Math.round(time - mins * 60),
-      format = [2]
-    secs = secs < 0 ? 0 : secs
-    format[0] = mins <= 9 ? '0' + mins : mins
-    format[1] = secs <= 9 ? '0' + secs : secs
-    return format[0] + ':' + format[1]
+    let secs = Math.round(time)
+    secs = secs <= 9 ? '0' + secs : secs
+    return secs
   }
 
   tick = () => {
@@ -173,6 +169,12 @@ class Recording extends React.Component {
         return (this.timer = setInterval(this.tick, 50))
       })
     )
+  }
+
+  componentDidUpdate(props, state) {
+    let elapsed = Math.round(this.state.elapsed / 100)
+    let seconds = (elapsed / 10).toFixed(1)
+    if (seconds === 60) this.stopRecording()
   }
 
   getText = (recording, finished) => {
