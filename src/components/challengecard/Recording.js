@@ -173,7 +173,7 @@ class Recording extends React.Component {
 
   componentDidUpdate(props, state) {
     let elapsed = Math.round(this.state.elapsed / 100)
-    let seconds = (elapsed / 10).toFixed(1)
+    let seconds = Math.round((elapsed / 10).toFixed(1))
     if (seconds === 60) this.stopRecording()
   }
 
