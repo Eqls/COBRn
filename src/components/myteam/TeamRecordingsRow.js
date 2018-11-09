@@ -7,12 +7,15 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native'
-import { CommentIcon, PlayIcon } from '../../assets/images'
+import { CommentIcon, PlayIcon, FullStarIcon } from '../../assets/images'
 import config from './../../config/config'
 import { Actions } from 'react-native-router-flux'
 import { Player, MediaStates } from 'react-native-audio-toolkit'
 import ChallengeReplayOptions from '../ChallengeReplayOptions'
 import ImageView from 'react-native-image-view'
+import styleConsts from '../../constants/styles'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import StarRatingDisplay from '../StarRatingDisplay'
 
 const styles = StyleSheet.create({
   container: {
@@ -44,14 +47,16 @@ const styles = StyleSheet.create({
     marginBottom: -10,
     aspectRatio: 0.5,
     resizeMode: 'contain'
-  }
+  },
+  rate: { padding: 3, backgroundColor: styleConsts.gold }
 })
 
 class TeamRecordingsRow extends React.Component {
   state = {
     displayImage: false,
     width: 0,
-    height: 0
+    height: 0,
+    showStars: false
   }
 
   componentDidMount() {
@@ -62,6 +67,8 @@ class TeamRecordingsRow extends React.Component {
       })
     }
   }
+
+  toggleStars = () => this.setState({ showStars: !this.state.showStars })
 
   handleAction = actionType => {
     const { item } = this.props
@@ -74,8 +81,14 @@ class TeamRecordingsRow extends React.Component {
         return Actions.message({ text: item.text_input })
     }
   }
+
+  attachUIDBeforeSubmit = val => {
+    this.props.updateRecording(val, this.props.item.id)
+    this.props.getRecordings()
+  }
+
   render() {
-    const { displayImage, width, height } = this.state
+    const { displayImage, width, height, showStars } = this.state
     const { item, empty, handleAction } = this.props
     return (
       <View style={styles.container}>
@@ -98,7 +111,36 @@ class TeamRecordingsRow extends React.Component {
                 isVisible={displayImage}
               />
             )}
-            <Text style={styles.title}>{item.recording_name}</Text>
+            {showStars ? (
+              <View style={{ flex: 3 }}>
+                <StarRatingDisplay
+                  starSize={30}
+                  rating={item.rating}
+                  editing={item.rating === 0}
+                  handleChange={this.attachUIDBeforeSubmit}
+                />
+              </View>
+            ) : (
+              <Text style={styles.title}>{item.recording_name}</Text>
+            )}
+            <TouchableOpacity
+              // disabled={disabled}
+              onPress={this.toggleStars}
+              style={{ maringLeft: 5, marginRight: 5 }}
+            >
+              <Icon
+                style={{
+                  padding: 5,
+                  paddingLeft: 6,
+                  paddingRight: 6,
+                  borderRadius: 50,
+                  backgroundColor: showStars ? '#137BD1' : styleConsts.gold,
+                  fontSize: 14,
+                  color: showStars ? styleConsts.gold : '#137BD1'
+                }}
+                name="star"
+              />
+            </TouchableOpacity>
             <TouchableOpacity
               style={{ paddingRight: 10, paddingLeft: 10 }}
               onPress={() => Actions.comments({ item })}

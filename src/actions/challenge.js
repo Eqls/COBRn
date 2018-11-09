@@ -4,7 +4,8 @@ import config from '../config/config'
 
 export const challengeActions = {
   readAll,
-  readAllGrouped
+  readAllGrouped,
+  readAllOrphans
 }
 
 function readAll(challenge_group_id, token) {
@@ -23,6 +24,22 @@ function readAll(challenge_group_id, token) {
             headers: { Authorization: 'Bearer ' + token }
           }
         )
+        .then(res => res.data)
+  }
+}
+
+function readAllOrphans(token) {
+  return {
+    types: [
+      challengeConstants.READALL_ORPHANS_REQUEST,
+      challengeConstants.READALL_ORPHANS_SUCCESS,
+      challengeConstants.READALL_ORPHANS_FAILURE
+    ],
+    callAPI: () =>
+      axios
+        .get(config.API_URL + 'challenges', {
+          headers: { Authorization: 'Bearer ' + token }
+        })
         .then(res => res.data)
   }
 }

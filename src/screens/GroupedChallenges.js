@@ -79,6 +79,7 @@ class GroupedChallenges extends React.Component {
   componentDidMount() {
     const { dispatch, auth } = this.props
     dispatch(challengeActions.readAllGrouped(auth.token))
+    dispatch(challengeActions.readAllOrphans(auth.token))
     dispatch(teamActions.readAll(auth.token))
   }
 
@@ -90,7 +91,13 @@ class GroupedChallenges extends React.Component {
   }
 
   render() {
-    const { challengeIsFetching, allGroups, teamIsFetching, teams } = this.props
+    const {
+      challengeIsFetching,
+      allGroups,
+      teamIsFetching,
+      allChallenges,
+      teams
+    } = this.props
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {challengeIsFetching || teamIsFetching ? (
@@ -100,14 +107,14 @@ class GroupedChallenges extends React.Component {
             <ActivityIndicator size="large" color="#FECB45" />
           </View>
         ) : (
-          [
+          <>
             <View style={styles.header}>
               <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
                 <Image source={HomeIconBlue} />
               </TouchableOpacity>
               <Image style={styles.icon} source={ChallengesIcon2} />
               <Text style={styles.header_title}>Challenges</Text>
-            </View>,
+            </View>
             <View style={styles.table}>
               <View style={styles.guy}>
                 <Image style={styles.guy_icon} source={ChallengesGuy} />
@@ -120,7 +127,11 @@ class GroupedChallenges extends React.Component {
               ) : (
                 <GroupedChallengesRow empty />
               )}
-            </View>,
+              {allChallenges &&
+                this.sortChallenges(allChallenges).map(x => (
+                  <ChallengeRow challenge={x} />
+                ))}
+            </View>
             <View style={styles.table}>
               <Text style={styles.table_header}>Team Punten</Text>
               {teams ? (
@@ -139,7 +150,7 @@ class GroupedChallenges extends React.Component {
                 <TeamRow empty />
               )}
             </View>
-          ]
+          </>
         )}
       </ScrollView>
     )
@@ -151,6 +162,7 @@ const mapStateToProps = state => ({
   teams: state.team.all,
   teamIsFetching: state.team.isFetching,
   allGroups: state.challenge.allGroups,
+  allChallenges: state.challenge.all,
   challengeIsFetching: state.challenge.isFetching
 })
 

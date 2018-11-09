@@ -21,7 +21,8 @@ const ChallengeReplayOptions = ({
   text,
   handleAction,
   disabled,
-  white
+  white,
+  big
 }) => (
   <View style={styles.container}>
     {text && (
@@ -32,11 +33,11 @@ const ChallengeReplayOptions = ({
       >
         <Icon
           style={{
-            padding: 5,
-            paddingLeft: 7,
+            padding: big ? 10 : 5,
+            paddingLeft: big ? 14 : 7,
             borderRadius: 50,
             backgroundColor: white ? 'white' : styleConsts.gold,
-            fontSize: 14,
+            fontSize: big ? 36 : 14,
             color: '#137BD1',
             opacity: disabled ? 0.5 : 1
           }}
@@ -52,10 +53,10 @@ const ChallengeReplayOptions = ({
       >
         <Icon
           style={{
-            padding: 5,
-            paddingLeft: 7,
+            padding: big ? 10 : 5,
+            paddingLeft: big ? 14 : 7,
             borderRadius: 50,
-            fontSize: 14,
+            fontSize: big ? 36 : 14,
             backgroundColor: white ? 'white' : styleConsts.gold,
             color: '#137BD1',
             opacity: disabled ? 0.5 : 1
@@ -72,9 +73,9 @@ const ChallengeReplayOptions = ({
       >
         <Icon
           style={{
-            padding: 5,
+            padding: big ? 10 : 5,
             borderRadius: 50,
-            fontSize: 15,
+            fontSize: big ? 36 : 14,
             backgroundColor: white ? 'white' : styleConsts.gold,
             color: '#137BD1',
             opacity: disabled ? 0.5 : 1

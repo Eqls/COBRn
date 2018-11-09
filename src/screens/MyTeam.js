@@ -14,7 +14,7 @@ import { Actions } from 'react-native-router-flux'
 import TeammateRow from '../components/myteam/TeammateRow'
 import TeamRecordingsRow from '../components/myteam/TeamRecordingsRow'
 import styleConsts from '../constants/styles'
-import { teamActions } from '../actions'
+import { teamActions, ratingActions } from '../actions'
 import { HomeIconBlue, TeamIcon, TeamGuy } from '../assets/images'
 
 const styles = StyleSheet.create({
@@ -86,10 +86,19 @@ class MyTeam extends React.Component {
   state = {}
 
   componentDidMount() {
-    const { dispatch, auth, tid } = this.props
-    // dispatch(teamActions.read(auth.token));
-    dispatch(teamActions.read(tid, auth.token))
+    this.getRecordings()
   }
+
+  getRecordings = () => {
+    const { dispatch, auth, tid } = this.props
+    dispatch(userActions.read(tid, auth.token))
+  }
+
+  updateRecording = (val, id) => {
+    const { dispatch, auth } = this.props
+    dispatch(ratingActions.create(auth.token, auth.id, id, val))
+  }
+
   render() {
     const { team } = this.props
     return (
@@ -135,7 +144,11 @@ class MyTeam extends React.Component {
               {console.log(team.current)}
               {team.current && team.current.team_recordings.length > 0 ? (
                 team.current.team_recordings.map((item, index) => (
-                  <TeamRecordingsRow {...{ item }} />
+                  <TeamRecordingsRow
+                    getRecordings={this.getRecordings}
+                    updateRecording={this.updateRecording}
+                    {...{ item }}
+                  />
                 ))
               ) : (
                 <TeamRecordingsRow empty />

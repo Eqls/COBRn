@@ -69,8 +69,10 @@ class RateRecordingsRow extends React.Component {
     }
   }
 
-  attachUIDBeforeSubmit = val =>
+  attachUIDBeforeSubmit = val => {
     this.props.updateRecording(val, this.props.item.id)
+    this.props.getRecordings()
+  }
 
   render() {
     const { item, empty, updateRecording } = this.props
