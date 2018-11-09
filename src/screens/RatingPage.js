@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   View,
   Text,
@@ -7,38 +7,37 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   Image
-} from 'react-native'
-import config from '../config/config'
-import { connect } from 'react-redux'
-import { recordingActions, ratingActions } from '../actions'
-import { StarRatingRow } from './../components/StarRating'
-import { Player, MediaStates } from 'react-native-audio-toolkit'
-import { PlayIcon } from './../assets/images'
-import styleConsts from '../constants/styles'
-import { Actions } from 'react-native-router-flux'
-import { HomeIcon } from '../assets/images'
-import RateRecordingsRow from '../components/ratings/RateRecordingsRow'
+} from "react-native";
+import config from "../config/config";
+import { connect } from "react-redux";
+import { recordingActions, ratingActions } from "../actions";
+import { StarRatingRow } from "./../components/StarRating";
+import { Player, MediaStates } from "react-native-audio-toolkit";
+import { PlayIcon } from "./../assets/images";
+import styleConsts from "../constants/styles";
+import { Actions } from "react-native-router-flux";
+import { HomeIcon } from "../assets/images";
+import RateRecordingsRow from "../components/ratings/RateRecordingsRow";
 
 class RatingPage extends React.Component {
   componentDidMount() {
-    const { dispatch, auth } = this.props
-    dispatch(recordingActions.readAll(auth.token))
+    const { dispatch, auth } = this.props;
+    dispatch(recordingActions.readAll(auth.token));
   }
 
   updateRecording = (val, id) => {
-    const { dispatch, auth } = this.props
-    dispatch(ratingActions.create(auth.token, auth.id, id, val))
-    dispatch(recordingActions.readAll(auth.token))
-  }
+    const { dispatch, auth } = this.props;
+    dispatch(ratingActions.create(auth.token, auth.id, id, val));
+  };
 
   render() {
-    const { recording } = this.props
+    const { recording } = this.props;
     // onPress = {() => playAudio(item.path_to_recording)
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {recording.isFetching || !recording.all ? (
           <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
             <ActivityIndicator size="large" color="#FECB45" />
           </View>
@@ -65,54 +64,54 @@ class RatingPage extends React.Component {
           ]
         )}
       </ScrollView>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: '#f2f2f2'
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    backgroundColor: "#f2f2f2"
   },
   header_title: {
     fontSize: 24,
     margin: 20
   },
   header: {
-    display: 'flex',
+    display: "flex",
     padding: 10,
-    width: '100%',
-    alignItems: 'center',
-    backgroundColor: '#FECB45'
+    width: "100%",
+    alignItems: "center",
+    backgroundColor: "#FECB45"
   },
   table: {
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
     marginTop: 10
   },
   table_header: {
     fontSize: 14,
     padding: 10,
     paddingLeft: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: styleConsts.light_blue
   },
   username: {
     margin: 20,
     fontSize: 18,
-    color: '#010763',
-    fontWeight: 'bold'
+    color: "#010763",
+    fontWeight: "bold"
   },
   homebar: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     padding: 20,
-    width: '100%'
+    width: "100%"
   },
   avatar_img: {
     height: 112,
@@ -122,13 +121,14 @@ const styles = StyleSheet.create({
   header_title: {
     fontSize: 24,
     margin: 15,
-    color: '#010763'
+    color: "#010763"
   }
-})
+});
 
 const mapStateToProps = state => ({
   auth: state.auth.user,
-  recording: state.recording
-})
+  recording: state.recording,
+  rating: state.recording
+});
 
-export default connect(mapStateToProps)(RatingPage)
+export default connect(mapStateToProps)(RatingPage);

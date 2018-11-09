@@ -21,7 +21,7 @@ import styleConsts from "../constants/styles";
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "#f2f2f2"
   },
   homebar: {
     position: "absolute",
@@ -85,30 +85,32 @@ class HighScores extends React.Component {
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {teams.isFetching &&
-          !this.props.teams.all &&
-          users.isFetching &&
-          !this.props.users.all ? (
-            <View
-              style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-            >
-              <ActivityIndicator size="large" color="#FECB45" />
-            </View>
-          ) : (
-            [
-              <View style={styles.header}>
-                <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
-                  <Image source={HomeIconBlue} />
-                </TouchableOpacity>
-                <Image style={styles.icon} source={HighScoresIcon2} />
-                <Text style={styles.header_title}>Score Lijst</Text>
-              </View>,
-              <View style={styles.guy_wrapper}>
-                <Image style={styles.guy} source={HighScoresGuy} />
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>Team Punten</Text>
-                {teams.all ? (
-                  teams.all.data.sort((a, b) => b.team_score - a.team_score).map((item, index) => (
+        !this.props.teams.all &&
+        users.isFetching &&
+        !this.props.users.all ? (
+          <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+          >
+            <ActivityIndicator size="large" color="#FECB45" />
+          </View>
+        ) : (
+          [
+            <View style={styles.header}>
+              <TouchableOpacity onPress={Actions.pop} style={styles.homebar}>
+                <Image source={HomeIconBlue} />
+              </TouchableOpacity>
+              <Image style={styles.icon} source={HighScoresIcon2} />
+              <Text style={styles.header_title}>Score Lijst</Text>
+            </View>,
+            <View style={styles.guy_wrapper}>
+              <Image style={styles.guy} source={HighScoresGuy} />
+            </View>,
+            <View style={styles.table}>
+              <Text style={styles.table_header}>Team Punten</Text>
+              {teams.all ? (
+                teams.all.data
+                  .sort((a, b) => b.team_score - a.team_score)
+                  .map((item, index) => (
                     <TeamRow
                       id={item.id}
                       name={item.name}
@@ -116,14 +118,17 @@ class HighScores extends React.Component {
                       position={index + 1}
                     />
                   ))
-                ) : (
-                    <TeamRow empty />
-                  )}
-              </View>,
-              <View style={styles.table}>
-                <Text style={styles.table_header}>HC Waarderingen</Text>
-                {users.all ? (
-                  users.all.data.sort((a, b) => b.mod_score - a.mod_score).map((item, index) => (
+              ) : (
+                <TeamRow empty />
+              )}
+            </View>,
+            <View style={styles.table}>
+              {console.log("users", users)}
+              <Text style={styles.table_header}>HC Waarderingen</Text>
+              {users.all ? (
+                users.all.data
+                  .sort((a, b) => b.mod_score - a.mod_score)
+                  .map((item, index) => (
                     <UserRow
                       id={item.id}
                       name={item.name}
@@ -132,12 +137,12 @@ class HighScores extends React.Component {
                       position={index + 1}
                     />
                   ))
-                ) : (
-                    <UserRow empty />
-                  )}
-              </View>
-            ]
-          )}
+              ) : (
+                <UserRow empty />
+              )}
+            </View>
+          ]
+        )}
       </ScrollView>
     );
   }
