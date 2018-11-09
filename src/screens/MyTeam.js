@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   View,
   Text,
@@ -7,23 +7,23 @@ import {
   Image,
   ScrollView,
   ActivityIndicator
-} from 'react-native'
-import config from '../config/config'
-import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
-import TeammateRow from '../components/myteam/TeammateRow'
-import TeamRecordingsRow from '../components/myteam/TeamRecordingsRow'
-import styleConsts from '../constants/styles'
-import { teamActions, ratingActions } from '../actions'
-import { HomeIconBlue, TeamIcon, TeamGuy } from '../assets/images'
+} from "react-native";
+import config from "../config/config";
+import { connect } from "react-redux";
+import { Actions } from "react-native-router-flux";
+import TeammateRow from "../components/myteam/TeammateRow";
+import TeamRecordingsRow from "../components/myteam/TeamRecordingsRow";
+import styleConsts from "../constants/styles";
+import { teamActions, ratingActions } from "../actions";
+import { HomeIconBlue, TeamIcon, TeamGuy } from "../assets/images";
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: '#f2f2f2'
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    backgroundColor: "#f2f2f2"
   },
   header_title: {
     fontSize: 22,
@@ -32,15 +32,15 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 10,
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
     backgroundColor: styleConsts.gold
   },
   table: {
     flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
     marginTop: 10
   },
   table_header: {
@@ -48,64 +48,65 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingLeft: 30,
     marginTop: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: styleConsts.light_blue
   },
   icon: {
     aspectRatio: 1,
-    resizeMode: 'contain'
+    resizeMode: "contain"
   },
   guy: {
-    position: 'absolute',
+    position: "absolute",
     top: -30,
     right: 0
   },
   guy_icon: {
     aspectRatio: 0.3,
-    resizeMode: 'contain'
+    resizeMode: "contain"
   },
   homebar: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     padding: 20,
-    width: '100%'
+    width: "100%"
   },
   score: {
     fontSize: 30,
     color: styleConsts.light_blue,
-    fontWeight: 'bold'
+    fontWeight: "bold"
   },
   score_text: {
     fontSize: 14,
     color: styleConsts.dark_blue
   }
-})
+});
 
 class MyTeam extends React.Component {
-  state = {}
+  state = {};
 
   componentDidMount() {
-    this.getRecordings()
+    this.getRecordings();
   }
 
   getRecordings = () => {
-    const { dispatch, auth, tid } = this.props
-    dispatch(userActions.read(tid, auth.token))
-  }
+    const { dispatch, auth, tid } = this.props;
+    dispatch(teamActions.read(tid, auth.token));
+  };
 
   updateRecording = (val, id) => {
-    const { dispatch, auth } = this.props
-    dispatch(ratingActions.create(auth.token, auth.id, id, val))
-  }
+    const { dispatch, auth } = this.props;
+    dispatch(ratingActions.create(auth.token, auth.id, id, val));
+  };
 
   render() {
-    const { team } = this.props
+    const { team } = this.props;
+    console.log(team);
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {team.isFetching || !team.current ? (
           <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
             <ActivityIndicator size="large" color="#FECB45" />
           </View>
@@ -117,8 +118,8 @@ class MyTeam extends React.Component {
               </TouchableOpacity>
               <Image style={styles.icon} source={TeamIcon} />
               <Text style={styles.header_title}>
-                Team{' '}
-                <Text style={{ fontWeight: 'bold' }}>{team.current.name}</Text>
+                Team{" "}
+                <Text style={{ fontWeight: "bold" }}>{team.current.name}</Text>
               </Text>
               <Text style={styles.score}>{team.current.team_score}</Text>
               <Text style={styles.score_text}>punten</Text>
@@ -157,13 +158,13 @@ class MyTeam extends React.Component {
           ]
         )}
       </ScrollView>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
   auth: state.auth.user,
   team: state.team
-})
+});
 
-export default connect(mapStateToProps)(MyTeam)
+export default connect(mapStateToProps)(MyTeam);
